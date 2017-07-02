@@ -41,8 +41,7 @@ public interface JobsRepository extends CrudRepository <Jobs, Long> {
 			+ "SET is_paid =:isPaid WHERE id=:id")
 	void isPaid(@Param("id")int id,
 				@Param("isPaid") Boolean isPaid);
-	
-	
+
 	@Modifying
 	@Transactional
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Jobs "

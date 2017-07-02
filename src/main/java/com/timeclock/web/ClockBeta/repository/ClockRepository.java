@@ -1,6 +1,5 @@
 package com.timeclock.web.ClockBeta.repository;
 
-
 import java.util.Date;
 
 import org.springframework.data.jpa.repository.Modifying;

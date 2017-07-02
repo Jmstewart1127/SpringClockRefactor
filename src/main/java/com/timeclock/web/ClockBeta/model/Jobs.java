@@ -12,6 +12,8 @@ public class Jobs {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	@Column(name = "biz_id")
+	private int bizId;
     @Column(name = "job_name")
     private String jobName;
     @Column(name = "job_address")
@@ -27,7 +29,7 @@ public class Jobs {
     @Column(name = "amount_paid")
     private double amountPaid = 0;
     @Column(name = "is_paid")
-    private Boolean isPayed = false;
+    private Boolean isPaid = false;
 	
     public Jobs() {
 		super();
@@ -39,6 +41,14 @@ public class Jobs {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getBizId() {
+		return bizId;
+	}
+
+	public void setBizId(int bizId) {
+		this.bizId = bizId;
 	}
 
 	public String getJobName() {
@@ -97,12 +107,12 @@ public class Jobs {
 		this.amountPaid = amountPaid;
 	}
 
-	public Boolean getIsPayed() {
-		return isPayed;
+	public Boolean getIsPaid() {
+		return isPaid;
 	}
 
-	public void setIsPayed(Boolean isPayed) {
-		this.isPayed = isPayed;
+	public void setIsPaid(Boolean isPayed) {
+		this.isPaid = isPaid;
 	}
 	
 	

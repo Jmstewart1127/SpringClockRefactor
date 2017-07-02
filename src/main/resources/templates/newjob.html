@@ -29,7 +29,7 @@
       			<a class="navbar-brand" href="/login">Unlimited Solutions</a>
     	</div>
     	<ul class="nav navbar-nav">
-      		<li class="active"><a href="/newjob">Add Job</a></li>
+      		<li class="active"><a href="/hello/newjob">Add Job</a></li>
       		<li><a href="/adduser">Add User</a></li>
       		<li><a href="/register">Register</a></li>
       		<li><a href="/clock">Clock</a></li>
@@ -41,7 +41,7 @@
       
       <h4>New Employee</h4>
 
-      <form autocomplete="off" action="#" th:action="@{/newjob}"
+      <form autocomplete="off" action="#" th:action="@{/hello/newjob}"
         th:object="${jobs}" method="post" class="m-t" role="form"
         data-toggle="validator">
 

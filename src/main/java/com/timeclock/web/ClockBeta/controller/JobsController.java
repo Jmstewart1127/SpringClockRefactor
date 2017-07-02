@@ -3,6 +3,8 @@ package com.timeclock.web.ClockBeta.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.timeclock.web.ClockBeta.model.Material;
+import com.timeclock.web.ClockBeta.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,9 @@ public class JobsController {
 	
 	@Autowired
 	JobsService jobsService;
+
+	@Autowired
+	MaterialService materialService;
 	
 	@RequestMapping(path="/hello/newjob", method = RequestMethod.GET)
 	public ModelAndView showNewJobForm(ModelAndView modelAndView, Jobs jobs) {
@@ -39,7 +44,7 @@ public class JobsController {
 		if (jobExists != null) {
 			modelAndView.addObject("alreadyRegisteredMessage", 
 					"Oops!  There is already a user registered with the email provided.");
-			modelAndView.setViewName("register");
+			modelAndView.setViewName("newjob");
 			bindingResult.reject("email");
 		}
 			
@@ -112,7 +117,7 @@ public class JobsController {
     
     @RequestMapping(value="/hello/jobs/{id}/update",method=RequestMethod.POST)
 	public ModelAndView processJobEditForm(ModelAndView modelAndView,
-			@PathVariable int id,@Valid Jobs jobs, BindingResult bindingResult, 
+			@PathVariable int id, @Valid Jobs jobs, BindingResult bindingResult,
 			HttpServletRequest request) {
 			
 		if (bindingResult.hasErrors()) { 
@@ -123,6 +128,40 @@ public class JobsController {
 			jobsService.saveJobs(jobs);
 		}
 			
+		return modelAndView;
+	}
+
+    @RequestMapping(value="/hello/jobs/{id}/materials/", method = RequestMethod.GET)
+    public ModelAndView showMaterialsPage(ModelAndView modelAndView, @PathVariable int id) {
+        Jobs jobs = jobsService.findById(id);
+        modelAndView.addObject("jobs", jobs);
+        modelAndView.setViewName("materials");
+        return modelAndView;
+    }
+
+	@RequestMapping(value="/hello/jobs/{id}/materials/update", method = RequestMethod.GET)
+	public ModelAndView showUpdateMaterialsPage(ModelAndView modelAndView, @PathVariable int id) {
+		Jobs jobs = jobsService.findById(id);
+		modelAndView.addObject("jobs", jobs);
+		modelAndView.setViewName("addmaterials");
+		return modelAndView;
+	}
+
+	@RequestMapping(value="/hello/jobs/{id}/materials/update",method=RequestMethod.POST)
+	public ModelAndView processJobMaterialsForm(ModelAndView modelAndView,
+        @PathVariable int id, @Valid Jobs jobs, @Valid Material material, BindingResult bindingResult,
+        HttpServletRequest request) {
+
+		if (bindingResult.hasErrors()) {
+			modelAndView.setViewName("addmaterials");
+		} else {
+
+			modelAndView.setViewName("showmaterials");
+			modelAndView.addObject(material);
+			material.setJobId(id);
+			materialService.saveMaterial(material);
+		}
+
 		return modelAndView;
 	}
    
