@@ -41,16 +41,9 @@
 
         <h4>New Employee</h4>
 
-        <form autocomplete="off" action="#" th:action="@{/jobs/{path}/materials/update(path=${id})}"
+        <form autocomplete="off" action="#" th:action="@{/hello/jobs/{path}/materials/update(path=${id})}"
               th:object="${material}" method="post" class="m-t" role="form"
               data-toggle="validator">
-
-            <div class="form-group input-group has-feedback">
-                <label th:if="${#fields.hasErrors('poNumber')}"
-                       th:errors="*{poNumber}" class="validation-message"></label>
-                <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
-          </span>
 
                 <input type="text" th:field="*{poNumber}"
                        placeholder="PO Number" class="form-control" required />

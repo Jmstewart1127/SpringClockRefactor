@@ -13,7 +13,7 @@ public class Material {
     @Column(name = "po_number")
     private int poNumber;
     @Column(name = "part_name")
-    private int partName;
+    private String partName;
     @Column(name = "quantity")
     private int quantity;
     @Column(name = "price")
@@ -47,11 +47,11 @@ public class Material {
         this.poNumber = poNumber;
     }
 
-    public int getPartName() {
+    public String getPartName() {
         return partName;
     }
 
-    public void setPartName(int partName) {
+    public void setPartName(String partName) {
         this.partName = partName;
     }
 

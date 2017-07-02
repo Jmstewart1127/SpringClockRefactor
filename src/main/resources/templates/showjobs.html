@@ -57,9 +57,10 @@
         <td th:text="${jobs.amountCharged}">1</td>
         <td th:text="${jobs.amountDue}">1</td>
         <td th:text="${jobs.amountPaid}">1</td>
-        <td th:text="${jobs.isPayed}">1</td>
+        <td th:text="${jobs.isPaid}">1</td>
         <td><a type="button" class="btn btn-primary" th:href="@{/jobs/{id}/update(id=${jobs.id})}" th:text="Update"></a></td>
 		<td><a type="button" class="btn btn-danger" th:href="@{/jobs/{id}/delete(id=${jobs.id})}" th:text="Delete"></a></td>
+		<td><a type="button" class="btn btn-danger" th:href="@{/jobs/{id}/materials/update(id=${jobs.id})}" th:text="Delete"></a></td>
     </tr>
 
 

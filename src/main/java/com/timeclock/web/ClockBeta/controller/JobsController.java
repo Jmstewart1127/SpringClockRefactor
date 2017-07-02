@@ -132,18 +132,20 @@ public class JobsController {
 	}
 
     @RequestMapping(value="/hello/jobs/{id}/materials/", method = RequestMethod.GET)
-    public ModelAndView showMaterialsPage(ModelAndView modelAndView, @PathVariable int id) {
+    public ModelAndView showMaterialsPage(ModelAndView modelAndView, @PathVariable int id, @Valid Material material) {
         Jobs jobs = jobsService.findById(id);
-        modelAndView.addObject("jobs", jobs);
-        modelAndView.setViewName("materials");
+		modelAndView.addObject("jobs", jobs);
+		modelAndView.addObject("material", material);
+        modelAndView.setViewName("showmaterials");
         return modelAndView;
     }
 
 	@RequestMapping(value="/hello/jobs/{id}/materials/update", method = RequestMethod.GET)
-	public ModelAndView showUpdateMaterialsPage(ModelAndView modelAndView, @PathVariable int id) {
+	public ModelAndView showUpdateMaterialsPage(ModelAndView modelAndView, @PathVariable int id, @Valid Material material, BindingResult bindingResult) {
 		Jobs jobs = jobsService.findById(id);
 		modelAndView.addObject("jobs", jobs);
-		modelAndView.setViewName("addmaterials");
+		modelAndView.addObject("material", material);
+		modelAndView.setViewName("addmaterial");
 		return modelAndView;
 	}
 
@@ -153,7 +155,7 @@ public class JobsController {
         HttpServletRequest request) {
 
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("addmaterials");
+			modelAndView.setViewName("addmaterial");
 		} else {
 
 			modelAndView.setViewName("showmaterials");
