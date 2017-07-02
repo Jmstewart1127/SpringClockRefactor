@@ -1,10 +1,10 @@
-package com.timeclock.web.service;
+package com.timeclock.web.ClockBeta.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.timeclock.web.model.Business;
-import com.timeclock.web.repository.BusinessRepository;
+import com.timeclock.web.ClockBeta.model.Business;
+import com.timeclock.web.ClockBeta.repository.BusinessRepository;
 
 @Service
 public class BusinessService {

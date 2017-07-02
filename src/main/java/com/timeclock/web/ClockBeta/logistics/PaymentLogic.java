@@ -1,4 +1,4 @@
-package com.timeclock.web.logistics;
+package com.timeclock.web.ClockBeta.logistics;
 
 public class PaymentLogic {
 	

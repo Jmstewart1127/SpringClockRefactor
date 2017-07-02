@@ -1,4 +1,4 @@
-package com.timeclock.web.controller;
+package com.timeclock.web.ClockBeta.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.timeclock.web.model.Jobs;
-import com.timeclock.web.service.JobsService;
+import com.timeclock.web.ClockBeta.model.Jobs;
+import com.timeclock.web.ClockBeta.service.JobsService;
 
 @Controller
 public class JobsController {
@@ -20,7 +20,7 @@ public class JobsController {
 	@Autowired
 	JobsService jobsService;
 	
-	@RequestMapping(path="/newjob", method = RequestMethod.GET)
+	@RequestMapping(path="/hello/newjob", method = RequestMethod.GET)
 	public ModelAndView showNewJobForm(ModelAndView modelAndView, Jobs jobs) {
 		modelAndView.addObject("jobs", jobs);
 		modelAndView.setViewName("newjob");
@@ -28,7 +28,7 @@ public class JobsController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/newjob", method = RequestMethod.POST)
+	@RequestMapping(value = "/hello/newjob", method = RequestMethod.POST)
 	public ModelAndView processJobRegistrationForm(ModelAndView modelAndView, 
 			@Valid Jobs jobs, BindingResult bindingResult, HttpServletRequest request) {
 				
@@ -56,7 +56,7 @@ public class JobsController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(path="/jobpayments", method = RequestMethod.GET)
+	@RequestMapping(path="/hello/jobpayments", method = RequestMethod.GET)
 	public ModelAndView showJobUpdateForm(ModelAndView modelAndView, Jobs jobs) {
 		modelAndView.addObject("jobs", jobs);
 		modelAndView.setViewName("updatejobstatus");
@@ -64,7 +64,7 @@ public class JobsController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/jobpayments", method = RequestMethod.POST)
+	@RequestMapping(value = "/hello/jobpayments", method = RequestMethod.POST)
 	public ModelAndView processJobUpdateForm(ModelAndView modelAndView, 
 			@Valid Jobs jobs, BindingResult bindingResult, HttpServletRequest request) {
 				
@@ -94,7 +94,7 @@ public class JobsController {
 		return modelAndView;
 	}
 	
-    @RequestMapping(path="showjobs", method = RequestMethod.GET)
+    @RequestMapping(path="/hello/showjobs", method = RequestMethod.GET)
     public ModelAndView showJobs() {
         ModelAndView mav = new ModelAndView("showjobs");
         mav.addObject("jobs", jobsService.findAll());
@@ -102,7 +102,7 @@ public class JobsController {
         return mav;
     }
     
-	@RequestMapping(value="/jobs/{id}/update", method = RequestMethod.GET)
+	@RequestMapping(value="/hello/jobs/{id}/update", method = RequestMethod.GET)
     public ModelAndView showUpdateJobsPage(ModelAndView modelAndView, @PathVariable int id) {
 		Jobs jobs = jobsService.findById(id);
 		modelAndView.addObject("jobs", jobs);
@@ -110,7 +110,7 @@ public class JobsController {
         return modelAndView;
 	}
     
-    @RequestMapping(value="/jobs/{id}/update",method=RequestMethod.POST)
+    @RequestMapping(value="/hello/jobs/{id}/update",method=RequestMethod.POST)
 	public ModelAndView processJobEditForm(ModelAndView modelAndView,
 			@PathVariable int id,@Valid Jobs jobs, BindingResult bindingResult, 
 			HttpServletRequest request) {
@@ -126,7 +126,7 @@ public class JobsController {
 		return modelAndView;
 	}
    
-	@RequestMapping(value="/jobs/{id}/delete", method = RequestMethod.GET)
+	@RequestMapping(value="/hello/jobs/{id}/delete", method = RequestMethod.GET)
     public ModelAndView deleteJob(ModelAndView modelAndView, @Valid Jobs jobs, @PathVariable int id) {
 		modelAndView.addObject(jobs);
 		modelAndView.setViewName("showjobs");

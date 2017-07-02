@@ -1,4 +1,4 @@
-package com.timeclock.web.controller;
+package com.timeclock.web.ClockBeta.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.timeclock.web.model.Clock;
-import com.timeclock.web.model.Jobs;
-import com.timeclock.web.service.ClockService;
-import com.timeclock.web.service.HistoryService;
+import com.timeclock.web.ClockBeta.model.Clock;
+import com.timeclock.web.ClockBeta.service.ClockService;
 
 @Controller
 @SessionAttributes("user")
@@ -24,7 +22,7 @@ public class ClockController {
 	@Autowired
 	ClockService clockService;
 	
-    @RequestMapping(path="/employees", method = RequestMethod.GET)
+    @RequestMapping(path="/hello/employees", method = RequestMethod.GET)
     public ModelAndView showClock() {
         ModelAndView mav = new ModelAndView("showemployees");
         mav.addObject("clock", clockService.findByBizId(1));
@@ -32,7 +30,7 @@ public class ClockController {
         return mav;
     }
 	
-	@RequestMapping(path="/adduser", method = RequestMethod.GET)
+	@RequestMapping(path="/hello/adduser", method = RequestMethod.GET)
 	public ModelAndView showNewUserForm(ModelAndView modelAndView, Clock clock) {
 		modelAndView.addObject("clock", clock);
 		modelAndView.setViewName("newuser");
@@ -41,7 +39,7 @@ public class ClockController {
 	}
 	
 	// Process form input data
-	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
+	@RequestMapping(value = "/hello/adduser", method = RequestMethod.POST)
 	public ModelAndView processRegistrationForm(ModelAndView modelAndView, 
 			@Valid Clock clock, BindingResult bindingResult, HttpServletRequest request) {
 				
@@ -70,7 +68,7 @@ public class ClockController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(path="/clock", method = RequestMethod.GET)
+	@RequestMapping(path="/", method = RequestMethod.GET)
 	public ModelAndView showClockForm(ModelAndView modelAndView, Clock clock) {
 		modelAndView.addObject("clock", clock);
 		modelAndView.setViewName("timeclock");
@@ -78,7 +76,7 @@ public class ClockController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/clock", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ModelAndView processClockForm(ModelAndView modelAndView, 
 			@Valid Clock clock, BindingResult bindingResult, HttpServletRequest request) {
 		
@@ -98,7 +96,7 @@ public class ClockController {
 
 	}
 	
-	@RequestMapping(value="/employee/{id}/update", method = RequestMethod.GET)
+	@RequestMapping(value="/hello/employee/{id}/update", method = RequestMethod.GET)
     public ModelAndView showUpdateJobsPage(ModelAndView modelAndView, @PathVariable int id) {
 		Clock clock = clockService.findById(id);
 		modelAndView.addObject("clock", clock);
@@ -106,7 +104,7 @@ public class ClockController {
         return modelAndView;
 	}
     
-    @RequestMapping(value="/employee/{id}/update",method=RequestMethod.POST)
+    @RequestMapping(value="/hello/employee/{id}/update",method=RequestMethod.POST)
 	public ModelAndView processJobEditForm(ModelAndView modelAndView,
 			@PathVariable int id,@Valid Clock clock, BindingResult bindingResult, 
 			HttpServletRequest request) {
@@ -122,7 +120,7 @@ public class ClockController {
 		return modelAndView;
 	}
     
-	@RequestMapping(value="/employee/{id}/delete", method = RequestMethod.GET)
+	@RequestMapping(value="/hello/employee/{id}/delete", method = RequestMethod.GET)
     public ModelAndView deleteJob(ModelAndView modelAndView, @Valid Clock clock, @PathVariable int id) {
 		modelAndView.addObject(clock);
 		modelAndView.setViewName("showemployees");

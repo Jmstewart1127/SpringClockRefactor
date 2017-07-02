@@ -1,11 +1,11 @@
-package com.timeclock.web.service;
+package com.timeclock.web.ClockBeta.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.timeclock.web.logistics.PaymentLogic;
-import com.timeclock.web.model.Jobs;
-import com.timeclock.web.repository.JobsRepository;
+import com.timeclock.web.ClockBeta.logistics.PaymentLogic;
+import com.timeclock.web.ClockBeta.model.Jobs;
+import com.timeclock.web.ClockBeta.repository.JobsRepository;
 
 @Service
 public class JobsService {

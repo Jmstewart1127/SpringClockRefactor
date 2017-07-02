@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.timeclock.web.logistics;
+package com.timeclock.web.ClockBeta.logistics;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package com.timeclock.web.model;
+package com.timeclock.web.ClockBeta.model;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.timeclock.web.controller;
+package com.timeclock.web.ClockBeta.controller;
 
 import java.util.Map;
 import java.util.UUID;
@@ -8,8 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -22,10 +20,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.timeclock.web.model.Business;
-import com.timeclock.web.repository.BusinessRepository;
-import com.timeclock.web.service.BusinessService;
-import com.timeclock.web.service.EmailService;
+import com.timeclock.web.ClockBeta.model.Business;
+import com.timeclock.web.ClockBeta.repository.BusinessRepository;
+import com.timeclock.web.ClockBeta.service.BusinessService;
+import com.timeclock.web.ClockBeta.service.EmailService;
 import com.nulabinc.zxcvbn.Strength;
 import com.nulabinc.zxcvbn.Zxcvbn;
 

@@ -1,13 +1,13 @@
-package com.timeclock.web.service;
+package com.timeclock.web.ClockBeta.service;
 
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.timeclock.web.logistics.ClockLogic;
-import com.timeclock.web.model.Clock;
-import com.timeclock.web.repository.ClockRepository;
+import com.timeclock.web.ClockBeta.logistics.ClockLogic;
+import com.timeclock.web.ClockBeta.model.Clock;
+import com.timeclock.web.ClockBeta.repository.ClockRepository;
 
 @Service
 public class ClockService {

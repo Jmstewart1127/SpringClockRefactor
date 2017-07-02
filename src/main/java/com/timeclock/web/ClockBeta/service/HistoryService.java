@@ -1,12 +1,12 @@
-package com.timeclock.web.service;
+package com.timeclock.web.ClockBeta.service;
 
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.timeclock.web.model.History;
-import com.timeclock.web.repository.HistoryRepository;
+import com.timeclock.web.ClockBeta.model.History;
+import com.timeclock.web.ClockBeta.repository.HistoryRepository;
 
 @Service
 public class HistoryService {
