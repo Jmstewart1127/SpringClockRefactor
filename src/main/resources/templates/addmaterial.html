@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="User account registration" />
-    <meta name="author" content="Amir Boroumand" />
     <link rel="icon" href="favicon.ico" />
 
     <title>Registration Page</title>
@@ -26,10 +25,10 @@
 <nav th:fragment="navbar" class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/login">Unlimited Solutions</a>
+            <a class="navbar-brand" href="#">WebSiteName</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="/newjob">Add Job</a></li>
+            <li class="active"><a href="#">Home</a></li>
             <li><a href="/adduser">Add User</a></li>
             <li><a href="/register">Register</a></li>
             <li><a href="/clock">Clock</a></li>
@@ -45,8 +44,15 @@
               th:object="${material}" method="post" class="m-t" role="form"
               data-toggle="validator">
 
+            <div class="form-group input-group has-feedback">
+                <label th:if="${#fields.hasErrors('poNumber')}"
+                       th:errors="*{poNumber}" class="validation-message"></label>
+                <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+
                 <input type="text" th:field="*{poNumber}"
-                       placeholder="PO Number" class="form-control" required />
+                       placeholder="Business Id" class="form-control" required />
                 <span class="glyphicon form-control-feedback"
                       aria-hidden="true"></span>
             </div>
@@ -56,7 +62,7 @@
             <span class="glyphicon glyphicon-user"></span>
           </span>
                 <input type="text" th:field="*{partName}"
-                       placeholder="Material Name" class="form-control" required />
+                       placeholder="Employee Name" class="form-control" required />
                 <span class="glyphicon form-control-feedback"
                       aria-hidden="true"></span>
             </div>
@@ -66,7 +72,7 @@
             <span class="glyphicon glyphicon-user"></span>
           </span>
                 <input type="text" th:field="*{quantity}"
-                       placeholder="Job Category" class="form-control" required />
+                       placeholder="Pay Rate" class="form-control" required />
                 <span class="glyphicon form-control-feedback"
                       aria-hidden="true"></span>
             </div>
@@ -76,7 +82,7 @@
             <span class="glyphicon glyphicon-user"></span>
           </span>
                 <input type="text" th:field="*{price}"
-                       placeholder="Customer Name" class="form-control" required />
+                       placeholder="Pay Rate" class="form-control" required />
                 <span class="glyphicon form-control-feedback"
                       aria-hidden="true"></span>
             </div>
@@ -89,7 +95,7 @@
             </div>
 
             <button type="submit"
-                    class="btn btn-primary block full-width m-b">Submit</button>
+                    class="btn btn-primary block full-width m-b">Register</button>
 
         </form>
 

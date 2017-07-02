@@ -141,9 +141,7 @@ public class JobsController {
     }
 
 	@RequestMapping(value="/hello/jobs/{id}/materials/update", method = RequestMethod.GET)
-	public ModelAndView showUpdateMaterialsPage(ModelAndView modelAndView, @PathVariable int id, @Valid Material material, BindingResult bindingResult) {
-		Jobs jobs = jobsService.findById(id);
-		modelAndView.addObject("jobs", jobs);
+	public ModelAndView showUpdateMaterialsPage(ModelAndView modelAndView, @PathVariable int id, Material material) {
 		modelAndView.addObject("material", material);
 		modelAndView.setViewName("addmaterial");
 		return modelAndView;
@@ -157,7 +155,6 @@ public class JobsController {
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("addmaterial");
 		} else {
-
 			modelAndView.setViewName("showmaterials");
 			modelAndView.addObject(material);
 			material.setJobId(id);
