@@ -1,29 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-
-<head>
-	<title>Spring Security Tutorial</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<head th:include="head :: head">
+	<title>Update Clock</title>
 </head>
 
 <body>
-	<nav th:fragment="navbar" class="navbar navbar-default">
-  		<div class="container-fluid">
-    		<div class="navbar-header">
-      			<a class="navbar-brand" href="/login">Unlimited Solutions</a>
-    	</div>
-    	<ul class="nav navbar-nav">
-      		<li class="active"><a href="/newjob">Add Job</a></li>
-      		<li><a href="/adduser">Add User</a></li>
-      		<li><a href="/register">Register</a></li>
-      		<li><a href="/clock">Clock</a></li>
-    	</ul>
-  		</div>
-	</nav>
+<div th:include="nav :: nav"></div>
 	<form th:action="@{/clock}" method="POST">
 		<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
 	</form>	
@@ -43,5 +26,6 @@
 			<button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
 		</form>
 	</div>
+<div th:include="scripts :: scripts"></div>
 </body>
 </html>
