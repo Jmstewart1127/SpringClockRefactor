@@ -33,14 +33,25 @@ public interface JobsRepository extends CrudRepository <Jobs, Long> {
 	
 	@Query("SELECT id FROM com.timeclock.web.ClockBeta.model.Jobs"
 			+ " WHERE customer_name= :customerName")
-	int findIdByCustomerName(@Param("customerName")String customerName );
-	
+	int findIdByCustomerName(@Param("customerName")String customerName);
+
+	@Query("SELECT materialCost FROM com.timeclock.web.ClockBeta.model.Jobs"
+			+ " WHERE id= :id")
+	double findMaterialCostById(@Param("id")int id);
+
 	@Modifying
 	@Transactional
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Jobs "
 			+ "SET is_paid =:isPaid WHERE id=:id")
 	void isPaid(@Param("id")int id,
 				@Param("isPaid") Boolean isPaid);
+
+	@Modifying
+	@Transactional
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.Jobs "
+			+ "SET material_cost =:materialCost WHERE id=:id")
+	void updateMaterialCost(@Param("id")int id,
+				@Param("materialCost") double materialCost);
 
 	@Modifying
 	@Transactional

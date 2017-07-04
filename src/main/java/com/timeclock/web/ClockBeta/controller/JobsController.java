@@ -158,6 +158,13 @@ public class JobsController {
 			modelAndView.setViewName("showmaterials");
 			modelAndView.addObject(material);
 			material.setJobId(id);
+			int quantity = material.getQuantity();
+			double price = material.getPrice();
+			double totalPrice = materialService.calculateTotalPrice(quantity, price);
+			double currentMaterialCost = jobsService.findMaterialCostById(id);
+			double newCost = currentMaterialCost + totalPrice;
+			jobsService.updateMaterialCost(id, newCost);
+			material.setTotalPrice(totalPrice);
 			materialService.saveMaterial(material);
 		}
 

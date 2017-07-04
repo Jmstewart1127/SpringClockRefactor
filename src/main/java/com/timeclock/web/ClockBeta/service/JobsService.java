@@ -56,7 +56,15 @@ public class JobsService {
 	public void isPaid(int id, Boolean bool) {
 		jobsRepository.isPaid(id, bool);
 	}
-	
+
+	public double findMaterialCostById(int id) {
+		return jobsRepository.findMaterialCostById(id);
+	}
+
+	public void updateMaterialCost(int id, double materialCost) {
+		jobsRepository.updateMaterialCost(id, materialCost);
+	}
+
 	public void checkIfPaid(int id, double totalPaid) {
 		double totalAmountCharged = findTotalAmountChargedById(id);
 		Boolean paid = true;

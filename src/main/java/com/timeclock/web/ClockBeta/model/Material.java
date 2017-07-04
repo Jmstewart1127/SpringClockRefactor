@@ -18,6 +18,8 @@ public class Material {
     private int quantity;
     @Column(name = "price")
     private double price;
+    @Column(name = "total_price")
+    private double totalPrice;
 
     public Material() {
         super();
@@ -71,4 +73,11 @@ public class Material {
         this.price = price;
     }
 
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }

@@ -30,6 +30,8 @@ public class Jobs {
     private double amountPaid = 0;
     @Column(name = "is_paid")
     private Boolean isPaid = false;
+    @Column(name = "material_cost")
+	private double materialCost;
 	
     public Jobs() {
 		super();
@@ -114,7 +116,12 @@ public class Jobs {
 	public void setIsPaid(Boolean isPayed) {
 		this.isPaid = isPaid;
 	}
-	
-	
-	
+
+	public double getMaterialCost() {
+		return materialCost;
+	}
+
+	public void setMaterialCost(double materialCost) {
+		this.materialCost = materialCost;
+	}
 }
