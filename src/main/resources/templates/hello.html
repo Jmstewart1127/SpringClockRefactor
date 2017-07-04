@@ -5,7 +5,7 @@
     <title>Welcome [[${#httpServletRequest.remoteUser}]]</title>
 </head>
 <body>
-<nav th:include="nav :: nav"></nav>
+<nav th:include="nav :: nav" class="navbar navbar-default"></nav>
 <div class="container">
 <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
 <form th:action="@{/logout}" method="post">

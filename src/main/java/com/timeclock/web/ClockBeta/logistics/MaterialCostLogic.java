@@ -10,7 +10,6 @@ public class MaterialCostLogic {
     private int quantity;
     private double price;
     private double totalCost;
-    private ArrayList<Double> prices = new ArrayList();
 
     public MaterialCostLogic() {
         super();
@@ -32,14 +31,6 @@ public class MaterialCostLogic {
         this.price = price;
     }
 
-    public ArrayList<Double> getPrices() {
-        return prices;
-    }
-
-    public void setPrices(ArrayList<Double> prices) {
-        this.prices = prices;
-    }
-
     public double getTotalCost() {
         return totalCost;
     }
@@ -50,15 +41,7 @@ public class MaterialCostLogic {
 
     public double storeTotalPrice(int quantity, double price) {
         double total = quantity * price;
-        prices.add(total);
         return total;
     }
 
-    public double totalCost() {
-        for(double eachPrice : prices) {
-            setTotalCost(eachPrice++);
-        }
-
-        return getTotalCost();
-    }
 }

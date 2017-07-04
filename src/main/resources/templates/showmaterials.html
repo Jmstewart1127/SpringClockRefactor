@@ -6,7 +6,7 @@
     <title>View Materials</title>
 </head>
 <body>
-<nav th:include="nav :: nav"></nav>
+<nav th:include="nav :: nav" class="navbar navbar-default"></nav>
 <div class="container">
     <table class="table table-striped">
         <caption></caption>
@@ -16,6 +16,7 @@
             <th>Part Name</th>
             <th>Quantity</th>
             <th>Price</th>
+            <th>Total Price</th>
         </tr>
         </thead>
 
@@ -25,6 +26,7 @@
             <td th:text="${material.partName}">1</td>
             <td th:text="${material.quantity}">1</td>
             <td th:text="${material.price}">1</td>
+            <td th:text="${material.totalPrice}">1</td>
         </tr>
 
 
