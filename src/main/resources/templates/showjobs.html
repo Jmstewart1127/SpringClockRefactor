@@ -20,6 +20,7 @@
 				<th>Quote Amount</th>
 				<th>Amount Due</th>
 				<th>Amount Paid</th>
+				<th>Material Cost</th>
 				<th>Paid</th>
 			</tr>
 		</thead>
@@ -33,6 +34,7 @@
         <td th:text="${jobs.amountCharged}">1</td>
         <td th:text="${jobs.amountDue}">1</td>
         <td th:text="${jobs.amountPaid}">1</td>
+		<td th:text="${jobs.materialCost}">1</td>
         <td th:text="${jobs.isPaid}">1</td>
         <td><a type="button" class="btn btn-primary" th:href="@{/hello/jobs/{id}/update(id=${jobs.id})}" th:text="Update"></a></td>
 		<td><a type="button" class="btn btn-danger" th:href="@{/hello/jobs/{id}/delete(id=${jobs.id})}" th:text="Delete"></a></td>
