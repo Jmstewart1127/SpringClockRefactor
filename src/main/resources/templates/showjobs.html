@@ -38,14 +38,14 @@
         <td th:text="${jobs.isPaid}">1</td>
         <td><a type="button" class="btn btn-primary" th:href="@{/hello/jobs/{id}/update(id=${jobs.id})}" th:text="Update"></a></td>
 		<td><a type="button" class="btn btn-danger" th:href="@{/hello/jobs/{id}/delete(id=${jobs.id})}" th:text="Delete"></a></td>
-		<td><a type="button" class="btn btn-danger" th:href="@{/hello/jobs/{id}/materials/update(id=${jobs.id})}" th:text="Delete"></a></td>
+		<td><a type="button" class="btn btn-danger" th:href="@{/hello/jobs/{id}/materials/update(id=${jobs.id})}" th:text="Add Materials"></a></td>
     </tr>
 
 
 </table>
 <br>
-<div> <a class="button" href="/newjob">Add New Job</a></div>
-<div> <a class="button" href="/showjobs">View All Jobs</a></div>
+<div> <a class="button" href="/hello/newjob">Add New Job</a></div>
+<div> <a class="button" href="/hello/showjobs">View All Jobs</a></div>
 </div>
 	<div th:include="scripts :: scripts"></div>
 </body>
