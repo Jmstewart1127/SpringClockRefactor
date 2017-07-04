@@ -24,10 +24,10 @@ public class ClockController {
 	
     @RequestMapping(path="/hello/employees", method = RequestMethod.GET)
     public ModelAndView showClock() {
-        ModelAndView mav = new ModelAndView("showemployees");
-        mav.addObject("clock", clockService.findByBizId(1));
+        ModelAndView modelAndView = new ModelAndView("showemployees");
+        modelAndView.addObject("clock", clockService.findByBizId(1));
         
-        return mav;
+        return modelAndView;
     }
 	
 	@RequestMapping(path="/hello/adduser", method = RequestMethod.GET)
@@ -57,10 +57,8 @@ public class ClockController {
 			
 		if (bindingResult.hasErrors()) { 
 			modelAndView.setViewName("newuser");		
-		} else { 
-		        
+		} else {
 		    clockService.saveClock(clock);
-		    
 			modelAndView.addObject(clock.getUser());
 			modelAndView.setViewName("useradded");
 		}

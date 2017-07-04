@@ -16,6 +16,13 @@ public class MaterialService {
     @Autowired
     MaterialCostLogic mcl;
 
+//    public Material findMaterialsByJobId(int jobId) {
+//        return materialRepository.findMaterialsByJobId(jobId);
+//    }
+    public Iterable<Material> findByJobId(int jobId) {
+        return materialRepository.findByJobId(jobId);
+    }
+
     public void saveMaterial(Material material) {
         materialRepository.save(material);
     }

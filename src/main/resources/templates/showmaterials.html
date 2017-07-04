@@ -6,7 +6,7 @@
     <title>View Materials</title>
 </head>
 <body>
-<div th:include="nav :: nav"></div>
+<nav th:include="nav :: nav"></nav>
 <div class="container">
     <table class="table table-striped">
         <caption></caption>
@@ -30,8 +30,8 @@
 
     </table>
     <br>
-    <div> <a class="button" href="/newjob">Add New Job</a></div>
-    <div> <a class="button" href="/showjobs">View All Jobs</a></div>
+    <div> <a class="button" href="/hello/newjob">Add New Job</a></div>
+    <div> <a class="button" href="/hello/showjobs">View All Jobs</a></div>
 </div>
 <div th:include="scripts :: scripts"></div>
 </body>

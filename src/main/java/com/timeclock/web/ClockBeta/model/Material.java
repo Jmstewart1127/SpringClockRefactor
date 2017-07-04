@@ -25,6 +25,15 @@ public class Material {
         super();
     }
 
+    public Material(int jobId, int poNumber, String partName, int quantity, double price, double totalPrice) {
+        this.jobId = jobId;
+        this.poNumber = poNumber;
+        this.partName = partName;
+        this.quantity = quantity;
+        this.price = price;
+        this.totalPrice = totalPrice;
+    }
+
     public int getId() {
         return id;
     }

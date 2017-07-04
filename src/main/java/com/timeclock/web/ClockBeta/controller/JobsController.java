@@ -132,10 +132,8 @@ public class JobsController {
 	}
 
     @RequestMapping(value="/hello/jobs/{id}/materials/", method = RequestMethod.GET)
-    public ModelAndView showMaterialsPage(ModelAndView modelAndView, @PathVariable int id, @Valid Material material) {
-        Jobs jobs = jobsService.findById(id);
-		modelAndView.addObject("jobs", jobs);
-		modelAndView.addObject("material", material);
+    public ModelAndView showMaterialsPage(ModelAndView modelAndView, @PathVariable int id) {
+		modelAndView.addObject("material", materialService.findByJobId(id));
         modelAndView.setViewName("showmaterials");
         return modelAndView;
     }
@@ -149,7 +147,7 @@ public class JobsController {
 
 	@RequestMapping(value="/hello/jobs/{id}/materials/update",method=RequestMethod.POST)
 	public ModelAndView processJobMaterialsForm(ModelAndView modelAndView,
-        @PathVariable int id, @Valid Jobs jobs, @Valid Material material, BindingResult bindingResult,
+        @PathVariable int id, BindingResult bindingResult, Material material,
         HttpServletRequest request) {
 
 		if (bindingResult.hasErrors()) {
@@ -165,7 +163,8 @@ public class JobsController {
 			double newCost = currentMaterialCost + totalPrice;
 			jobsService.updateMaterialCost(id, newCost);
 			material.setTotalPrice(totalPrice);
-			materialService.saveMaterial(material);
+			Material mat = new Material(id, material.getPoNumber(), material.getPartName(), material.getQuantity(), material.getPrice(), totalPrice);
+			materialService.saveMaterial(mat);
 		}
 
 		return modelAndView;

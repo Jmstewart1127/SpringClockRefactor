@@ -36,7 +36,7 @@
         <td th:text="${clock.user}">1</td>
         <td th:text="${clock.clockIn}">1</td>
         <td th:text="${clock.clockOut}">1</td>
-        <td th:text="${clock.weekTime}">1</td>
+        <td th:text="${clock.weekTimeInHours}">1</td>
         <td th:text="${clock.totalPay}">1</td>
         <td th:text="${clock.payRate}">1</td>
         <td th:text="${clock.clocked}">1</td>
@@ -47,7 +47,7 @@
 
 </table>
 <br>
-<div> <a class="button" href="/adduser">Add New Employee</a></div>
+<div> <a class="button" href="/hello/adduser">Add New Employee</a></div>
 </div>
 <div th:include="scripts :: scripts"></div>
 </body>
