@@ -13,7 +13,7 @@
 	
 	<div class="container">
 		<form th:action="@{/}" th:object="${clock}" method="POST" class="form-signin">
-			<h3 class="Clock" th:text="Welcome"></h3>
+			<h3 class="Clock">Enter employee ID to end shift.</h3>
 			<br/>
 			<h3>Status Updated</h3> 
 			<input type="text" id="id" name="id"  th:placeholder="id" th:field="*{id}"
@@ -22,7 +22,7 @@
 			<div align="center" th:if="${param.error}">
 				<p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
 			</div>
-			<button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+			<button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Time_Out"></button>
 		</form>
 	</div>
 <div th:include="scripts :: scripts"></div>

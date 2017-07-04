@@ -15,13 +15,8 @@ public class ClockService {
 	@Autowired
 	ClockRepository clockRepository;
 
-	public void addNewUser (int bizId, String name, double payRate) {
-		Clock c = new Clock();
-		c.setBizId(bizId);
-		c.setUser(name);
-		c.setPayRate(payRate);
-		clockRepository.save(c);
-	}
+	@Autowired
+	ClockLogic cl;
 	
 	public void clockIn (int id) {
 		Date d = new Date();
@@ -29,7 +24,6 @@ public class ClockService {
 	}
 	
 	public void clockOut (int id) {
-		ClockLogic cl = new ClockLogic();
 		Date d = new Date();
 		cl.endShift(clockRepository.findStartTimeById(id), d);
 		long currentWeek = clockRepository.findWeekTimeById(id);

@@ -102,7 +102,7 @@ public class ClockLogic {
 	}
 	
 	public double calculatePay(double time, double payRate) {
-		return time * payRate;
+		return (double)Math.round((time * payRate) * 100d) / 100d;
 	}
 	
 
