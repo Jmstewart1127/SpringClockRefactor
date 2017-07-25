@@ -126,5 +126,17 @@ public class ClockController {
         return modelAndView;
 	}
 	
+	@RequestMapping(value="/test", method = RequestMethod.GET)
+    public ModelAndView viewTest(ModelAndView modelAndView) {
+		modelAndView.setViewName("basic_table");
+        return modelAndView;
+	}
+	
+	@RequestMapping(value="/test2", method = RequestMethod.GET)
+    public ModelAndView testTwo(ModelAndView modelAndView) {
+		modelAndView.setViewName("grids");
+        return modelAndView;
+	}
+	
 
 }
