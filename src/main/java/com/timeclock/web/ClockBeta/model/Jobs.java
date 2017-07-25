@@ -113,7 +113,7 @@ public class Jobs {
 		return isPaid;
 	}
 
-	public void setIsPaid(Boolean isPayed) {
+	public void setIsPaid(Boolean isPaid) {
 		this.isPaid = isPaid;
 	}
 

@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:include="head :: head">
-	<title>Registration Page</title>
+	<title>Spring Security Example </title>
 </head>
-
 <body>
 <nav th:include="nav :: nav" class="navbar navbar-default"></nav>
 
 
 
- <div class="row">
+
+ 				<div class="row">
                   <div class="col-lg-12">
                       <section class="panel">
                          
@@ -38,8 +37,8 @@
         						<td th:text="${clock.clocked}">1</td>
         						<td>
         						  <div class="btn-group">
-                                      <a class="btn btn-primary" th:href="@{/employee/{id}/update(id=${clock.id})}"><i class="icon_plus_alt2"></i></a>
-                                      <a class="btn btn-danger" th:href="@{/employee/{id}/delete(id=${clock.id})}"><i class="icon_close_alt2"></i></a>
+                                      <a class="btn btn-primary" th:href="@{/hello/employee/{id}/update(id=${clock.id})}"><i class="icon_plus_alt2"></i></a>
+                                      <a class="btn btn-danger" th:href="@{/hello/employee/{id}/delete(id=${clock.id})}"><i class="icon_close_alt2"></i></a>
                                   </div>
         						</td>
     						</tr>

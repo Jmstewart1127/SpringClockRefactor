@@ -1,6 +1,5 @@
 package com.timeclock.web.ClockBeta.logistics;
 
-import java.util.ArrayList;
 
 /**
  * Created by Jacob Stewart on 7/3/2017.

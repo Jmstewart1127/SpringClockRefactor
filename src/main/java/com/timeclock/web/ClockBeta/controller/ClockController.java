@@ -132,9 +132,11 @@ public class ClockController {
         return modelAndView;
 	}
 	
-	@RequestMapping(value="/test2", method = RequestMethod.GET)
+	@RequestMapping(value="/hello/test2", method = RequestMethod.GET)
     public ModelAndView testTwo(ModelAndView modelAndView) {
-		modelAndView.setViewName("grids");
+        modelAndView.setViewName("showemployees");
+        modelAndView.addObject("clock", clockService.findByBizId(1));
+        
         return modelAndView;
 	}
 	
