@@ -510,14 +510,13 @@ table tr th { color: #688a7e;}
 
 #sidebar {
 
-	width: 180px;
+	width: 186px;
 
 	height: 100%;
 
 	position: fixed;
 
 	background: dimgrey;
-
 
 }
 
@@ -543,7 +542,7 @@ ul.sidebar-menu , ul.sidebar-menu li ul.sub{
 
 ul.sidebar-menu {
 
-    margin-top: 60px;
+    margin-top: 50px;
 
 }
 

@@ -6,6 +6,7 @@
 </head>
 
 <body>
+<aside th:include="sidebar :: sidebar"></aside>
 <nav th:include="nav :: nav" class="navbar navbar-default"></nav>
 	<form th:action="@{/clock}" method="POST">
 		<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>

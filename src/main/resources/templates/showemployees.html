@@ -5,11 +5,12 @@
 	<title>Spring Security Example </title>
 </head>
 <body>
+<aside th:include="sidebar :: sidebar"></aside>
 <nav th:include="nav :: nav" class="navbar navbar-default"></nav>
 
 
 
-
+			<div class="container">
  				<div class="row">
                   <div class="col-lg-12">
                       <section class="panel">
@@ -47,6 +48,7 @@
                       </section>
                   </div>
               </div>
+			</div>
               <!-- page end-->
       <!--main content end-->
       <div class="text-right">
