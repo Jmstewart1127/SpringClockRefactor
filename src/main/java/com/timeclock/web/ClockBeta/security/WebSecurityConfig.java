@@ -19,6 +19,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/js/**");
         web.ignoring().antMatchers("/scripts/**");
         web.ignoring().antMatchers("/images/**");
+        web.ignoring().antMatchers("/assets/**");
+        web.ignoring().antMatchers("/error/**");
+        web.ignoring().antMatchers("/fonts/**");
+        web.ignoring().antMatchers("/img/**");
     }
 	
 	@Override
