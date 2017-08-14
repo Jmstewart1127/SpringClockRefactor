@@ -23,8 +23,8 @@ public class ClockController {
 	ClockService clockService;
 	
     @RequestMapping(path="/hello/employees", method = RequestMethod.GET)
-    public ModelAndView showClock() {
-        ModelAndView modelAndView = new ModelAndView("showemployees");
+    public ModelAndView showClock(ModelAndView modelAndView, Clock clock) {
+        modelAndView.setViewName("showemployees");
         modelAndView.addObject("clock", clockService.findByBizId(1));
         
         return modelAndView;
@@ -76,7 +76,7 @@ public class ClockController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ModelAndView processClockForm(ModelAndView modelAndView, 
-			@Valid Clock clock, BindingResult bindingResult, HttpServletRequest request) {
+		@Valid Clock clock, BindingResult bindingResult, HttpServletRequest request) {
 		
 		modelAndView.setViewName("timeclockupdate");
 		
@@ -90,6 +90,25 @@ public class ClockController {
 		} else {
 			clockService.clockIn(userId);
 			return modelAndView;
+		}
+
+	}
+	
+	// Clock in form for 'showemployees' view
+	@RequestMapping(value = "/hello/employees/{id}/clockin", method = RequestMethod.POST)
+	public ModelAndView processClockFormAdmin(ModelAndView modelAndView, @Valid Clock clock,
+		@PathVariable int id, BindingResult bindingResult, HttpServletRequest request) {
+		
+		int userId = id;
+		
+		Boolean isClocked = clockService.findClockedById(userId);
+		
+		if (isClocked) {
+			clockService.clockOut(userId);
+			return this.showClock(modelAndView, clock);
+		} else {
+			clockService.clockIn(userId);
+			return this.showClock(modelAndView, clock);
 		}
 
 	}
