@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="head :: head">
+    <title>Registration Page</title>
+</head>
+
+<body class="gray-bg">
+
+<aside th:include="sidebar :: sidebar"></aside>
+<nav th:include="nav :: nav" class="navbar navbar-default"></nav>
+
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+
+        <h4>Add Materials</h4>
+
+        <form autocomplete="off" action="#" th:action="@{/hello/jobs/{path}/materials/update(path=${id})}"
+              th:object="${material}" method="post" class="m-t" role="form"
+              data-toggle="validator">
+
+            <div class="form-group input-group has-feedback">
+                <label th:if="${#fields.hasErrors('poNumber')}"
+                       th:errors="*{poNumber}" class="validation-message"></label>
+                <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+
+                <input type="text" th:field="*{poNumber}"
+                       placeholder="PO Number" class="form-control" required />
+                <span class="glyphicon form-control-feedback"
+                      aria-hidden="true"></span>
+            </div>
+
+            <div class="form-group input-group has-feedback">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+                <input type="text" th:field="*{partName}"
+                       placeholder="Part Name" class="form-control" required />
+                <span class="glyphicon form-control-feedback"
+                      aria-hidden="true"></span>
+            </div>
+
+            <div class="form-group input-group has-feedback">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+                <input type="text" th:field="*{quantity}"
+                       placeholder="Quantity" class="form-control" required />
+                <span class="glyphicon form-control-feedback"
+                      aria-hidden="true"></span>
+            </div>
+
+            <div class="form-group input-group has-feedback">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+                <input type="text" th:field="*{price}"
+                       placeholder="Price" class="form-control" required />
+                <span class="glyphicon form-control-feedback"
+                      aria-hidden="true"></span>
+            </div>
+
+            <div class="form-group input-group has-feedback">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-envelope"></span>
+          </span>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary block full-width m-b">Submit</button>
+
+        </form>
+
+    </div>
+</div>
+<div th:include="scripts :: scripts"></div>
+</body>
+
+</html>

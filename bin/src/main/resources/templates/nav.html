@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Hello World!</title>
+</head>
+<body>
+<nav th:fragment="nav" class="navbar navbar-collapse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/login">Unlimited Solutions</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/hello/newjob">Add Job</a></li>
+            <li><a href="/hello/adduser">Add User</a></li>
+            <li><a href="/hello/showjobs">View Jobs</a></li>
+            <li><a href="/hello/employees">View Employees</a></li>
+            <li><a href="/hello/jobpayments">Add Payment</a></li>
+            <li><a href="/">Time Clock</a></li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>

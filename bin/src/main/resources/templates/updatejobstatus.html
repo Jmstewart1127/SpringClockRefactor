@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="head :: head">
+    <title>Update Jobs Status</title>
+</head>
+
+<body class="gray-bg">
+
+<aside th:include="sidebar :: sidebar"></aside>
+<nav th:include="nav :: nav" class="navbar navbar-default"></nav>
+  <div class="middle-box text-center loginscreen animated fadeInDown">
+    <div class="container">
+      
+      <h4>New Employee</h4>
+
+      <form autocomplete="off" action="#" th:action="@{/hello/jobpayments}"
+        th:object="${jobs}" method="post" class="m-t" role="form"
+        data-toggle="validator">
+        
+        <div class="form-group input-group has-feedback">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+          <input type="text" th:field="*{customerName}"
+            placeholder="Customer Name" class="form-control" required />
+          <span class="glyphicon form-control-feedback"
+            aria-hidden="true"></span>
+        </div>
+        
+        <div class="form-group input-group has-feedback">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+          <input type="text" th:field="*{amountPaid}"
+            placeholder="Amount Paid" class="form-control" required />
+          <span class="glyphicon form-control-feedback"
+            aria-hidden="true"></span>
+        </div>
+
+        <div class="form-group input-group has-feedback">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-envelope"></span>
+          </span>
+
+        </div>
+       
+        <button type="submit"
+          class="btn btn-primary block full-width m-b">Register</button>
+
+      </form>
+     
+    </div>
+  </div>
+
+    <div th:include="scripts :: scripts"></div>
+</body>
+
+</html>

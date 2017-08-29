@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="head :: head">
+    <title>View Materials</title>
+</head>
+<body>
+<aside th:include="sidebar :: sidebar"></aside>
+<nav th:include="nav :: nav" class="navbar navbar-default"></nav>
+<div class="container">
+    <table class="table table-striped">
+        <caption></caption>
+        <thead>
+        <tr>
+            <th>PO Number</th>
+            <th>Part Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total Price</th>
+        </tr>
+        </thead>
+
+
+        <tr th:each="material : ${material}">
+            <td th:text="${material.poNumber}">1</td>
+            <td th:text="${material.partName}">1</td>
+            <td th:text="${material.quantity}">1</td>
+            <td th:text="${material.price}">1</td>
+            <td th:text="${material.totalPrice}">1</td>
+        </tr>
+
+
+    </table>
+    <br>
+    <div> <a class="button" href="/hello/newjob">Add New Job</a></div>
+    <div> <a class="button" href="/hello/showjobs">View All Jobs</a></div>
+</div>
+<div th:include="scripts :: scripts"></div>
+</body>
+</html>
