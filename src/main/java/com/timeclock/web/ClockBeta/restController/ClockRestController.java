@@ -14,8 +14,6 @@ import com.timeclock.web.ClockBeta.service.ClockService;
 
 @RestController
 public class ClockRestController {
-
-	private final AtomicLong counter = new AtomicLong();
 	
 	@Autowired
 	ClockService clockService;
