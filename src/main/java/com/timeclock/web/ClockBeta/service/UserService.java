@@ -20,6 +20,10 @@ public class UserService {
 		return userRepository.findById(id);
 	}
 	
+	public void createUserWithRole(String userName, String role) {
+		userRoleRepository.newUserRole(userName, role);
+	}
+	
 	public User saveUser(User user) {
 		return userRepository.save(user);
 	}

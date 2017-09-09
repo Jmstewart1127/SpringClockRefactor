@@ -44,11 +44,11 @@
         <div class="form-group input-group has-feedback">
           <span class="glyphicon glyphicon-user">Admin</span>
           </span>
-          <input type="radio" th:field="*{role}" th:value="${admin}"
+          <input type="radio" th:field="*{role}" th:value="admin"
             placeholder="Admin" class="form-control" required />
           <span class="glyphicon form-control-feedback"
             aria-hidden="true">User</span>
-          <input type="radio" th:field="*{role}" th:value="${user}"
+          <input type="radio" th:field="*{role}" th:value="user"
             placeholder="Employee" class="form-control" required />
           <span class="glyphicon form-control-feedback"
             aria-hidden="true"></span>

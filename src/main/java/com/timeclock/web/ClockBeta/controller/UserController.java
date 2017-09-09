@@ -50,6 +50,7 @@ public class UserController {
 			modelAndView.setViewName("newuser");		
 		} else {
 		    userService.saveUser(user);
+		    userService.createUserWithRole(user.getUserName(), user.getRole());
 			modelAndView.addObject(user.getUserName());
 			modelAndView.setViewName("registered");
 		}
