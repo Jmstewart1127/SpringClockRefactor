@@ -12,11 +12,13 @@ public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-    @Column(name="user_name")
+    @Column(name = "user_name")
     private String userName;
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
-    @Column(name="enabled")
+    @Column(name = "role")
+    private String role;
+    @Column(name = "enabled")
     private boolean enabled = false;
     
 	public User() {
@@ -45,6 +47,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public boolean isEnabled() {

@@ -62,60 +62,60 @@ public class BusinessController {
 	}
 	
 	
-		// Return registration form template
-		@RequestMapping(value="/register", method = RequestMethod.GET)
-		public ModelAndView showRegistrationPage(ModelAndView modelAndView, Business business){
-			modelAndView.addObject("business", business);
-			modelAndView.setViewName("register");
-			return modelAndView;
-		}
-		
-		// Process form input data
-		@RequestMapping(value = "/register", method = RequestMethod.POST)
-		public ModelAndView processRegistrationForm(ModelAndView modelAndView, 
-				@Valid Business business, BindingResult bindingResult, HttpServletRequest request) {
-					
-			// Lookup user in database by id
-			Business businessExists = businessService.findById(business.getId());
-			
-			System.out.println(businessExists);
-			
-			if (businessExists != null) {
-				modelAndView.addObject("alreadyRegisteredMessage", 
-						"Oops!  There is already a user registered with the email provided.");
-				modelAndView.setViewName("register");
-				bindingResult.reject("email");
-			}
-				
-			if (bindingResult.hasErrors()) { 
-				modelAndView.setViewName("register");		
-			} else { // new user so we create user and send confirmation e-mail
-						
-				// Disable user until they click on confirmation link in email
-		    business.setEnabled(false);
-			      
-			    // Generate random 36-character string token for confirmation link
-			    business.setConfirmationToken(UUID.randomUUID().toString());
-			        
-			    businessService.saveBusiness(business);
-					
-				String appUrl = request.getScheme() + "://" + request.getServerName();
-				
-				SimpleMailMessage registrationEmail = new SimpleMailMessage();
-				registrationEmail.setTo(business.getEmail());
-				registrationEmail.setSubject("Registration Confirmation");
-				registrationEmail.setText("To confirm your e-mail address, please click the link below:\n"
-						+ appUrl + "/confirm?token=" + business.getConfirmationToken());
-				registrationEmail.setFrom("noreply@domain.com");
-				
-				emailService.sendEmail(registrationEmail);
-				
-				modelAndView.addObject("confirmationMessage", "A confirmation e-mail has been sent to " + business.getEmail());
-				modelAndView.setViewName("register");
-			}
-				
-			return modelAndView;
-		}
+//		// Return registration form template
+//		@RequestMapping(value="/register", method = RequestMethod.GET)
+//		public ModelAndView showRegistrationPage(ModelAndView modelAndView, Business business){
+//			modelAndView.addObject("business", business);
+//			modelAndView.setViewName("register");
+//			return modelAndView;
+//		}
+//		
+//		// Process form input data
+//		@RequestMapping(value = "/register", method = RequestMethod.POST)
+//		public ModelAndView processRegistrationForm(ModelAndView modelAndView, 
+//				@Valid Business business, BindingResult bindingResult, HttpServletRequest request) {
+//					
+//			// Lookup user in database by id
+//			Business businessExists = businessService.findById(business.getId());
+//			
+//			System.out.println(businessExists);
+//			
+//			if (businessExists != null) {
+//				modelAndView.addObject("alreadyRegisteredMessage", 
+//						"Oops!  There is already a user registered with the email provided.");
+//				modelAndView.setViewName("register");
+//				bindingResult.reject("email");
+//			}
+//				
+//			if (bindingResult.hasErrors()) { 
+//				modelAndView.setViewName("register");		
+//			} else { // new user so we create user and send confirmation e-mail
+//						
+//				// Disable user until they click on confirmation link in email
+//		    business.setEnabled(false);
+//			      
+//			    // Generate random 36-character string token for confirmation link
+//			    business.setConfirmationToken(UUID.randomUUID().toString());
+//			        
+//			    businessService.saveBusiness(business);
+//					
+//				String appUrl = request.getScheme() + "://" + request.getServerName();
+//				
+//				SimpleMailMessage registrationEmail = new SimpleMailMessage();
+//				registrationEmail.setTo(business.getEmail());
+//				registrationEmail.setSubject("Registration Confirmation");
+//				registrationEmail.setText("To confirm your e-mail address, please click the link below:\n"
+//						+ appUrl + "/confirm?token=" + business.getConfirmationToken());
+//				registrationEmail.setFrom("noreply@domain.com");
+//				
+//				emailService.sendEmail(registrationEmail);
+//				
+//				modelAndView.addObject("confirmationMessage", "A confirmation e-mail has been sent to " + business.getEmail());
+//				modelAndView.setViewName("register");
+//			}
+//				
+//			return modelAndView;
+//		}
 		
 		// Process confirmation link
 		@RequestMapping(value="/confirm", method = RequestMethod.GET)
