@@ -1,5 +1,7 @@
 package com.timeclock.web.ClockBeta.security;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,6 +14,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
+	@Autowired
+	DataSource dataSource;
+	
     @Override
     public void configure(WebSecurity web) throws Exception {
         //Web resources
@@ -48,5 +53,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth
             .inMemoryAuthentication()
                 .withUser("jake").password("password").roles("USER");
+        
+		auth.jdbcAuthentication().dataSource(dataSource)
+			.usersByUsernameQuery("select user_name, password, enabled from user where user_name=?")
+			.authoritiesByUsernameQuery("select user_name, role from user_role where user_name=?");
     }
 }
