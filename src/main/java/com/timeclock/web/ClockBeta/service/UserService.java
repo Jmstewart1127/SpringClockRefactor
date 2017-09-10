@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.timeclock.web.ClockBeta.model.User;
+import com.timeclock.web.ClockBeta.model.UserRole;
 import com.timeclock.web.ClockBeta.repository.UserRepository;
 import com.timeclock.web.ClockBeta.repository.UserRoleRepository;
 
@@ -20,11 +21,16 @@ public class UserService {
 		return userRepository.findById(id);
 	}
 	
-	public void createUserWithRole(String userName, String role) {
-		userRoleRepository.newUserRole(userName, role);
-	}
+//	public void createUserWithRole(String userName, String role) {
+//		userRoleRepository.newUserRole(userName, role);
+//	}
 	
 	public User saveUser(User user) {
+		user.setEnabled(true);
 		return userRepository.save(user);
+	}
+	
+	public UserRole saveUserRole(UserRole userRole) {
+		return userRoleRepository.save(userRole);
 	}
 }
