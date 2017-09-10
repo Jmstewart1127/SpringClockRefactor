@@ -21,10 +21,6 @@ public class UserService {
 		return userRepository.findById(id);
 	}
 	
-//	public void createUserWithRole(String userName, String role) {
-//		userRoleRepository.newUserRole(userName, role);
-//	}
-	
 	public User saveUser(User user) {
 		user.setEnabled(true);
 		return userRepository.save(user);
@@ -32,5 +28,9 @@ public class UserService {
 	
 	public UserRole saveUserRole(UserRole userRole) {
 		return userRoleRepository.save(userRole);
+	}
+	
+	public int getIdByUserName(String userName) {
+		return userRepository.findIdByUserName(userName);
 	}
 }

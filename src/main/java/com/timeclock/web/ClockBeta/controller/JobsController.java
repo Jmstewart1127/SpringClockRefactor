@@ -25,7 +25,7 @@ public class JobsController {
 	@Autowired
 	MaterialService materialService;
 	
-	@RequestMapping(path="/hello/newjob", method = RequestMethod.GET)
+	@RequestMapping(value="/hello/newjob", method = RequestMethod.GET)
 	public ModelAndView showNewJobForm(ModelAndView modelAndView, Jobs jobs) {
 		modelAndView.addObject("jobs", jobs);
 		modelAndView.setViewName("newjob");
@@ -61,7 +61,7 @@ public class JobsController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(path="/hello/jobpayments", method = RequestMethod.GET)
+	@RequestMapping(value="/hello/jobpayments", method = RequestMethod.GET)
 	public ModelAndView showJobUpdateForm(ModelAndView modelAndView, Jobs jobs) {
 		modelAndView.addObject("jobs", jobs);
 		modelAndView.setViewName("updatejobstatus");

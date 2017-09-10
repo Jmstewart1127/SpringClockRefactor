@@ -11,13 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.timeclock.web.ClockBeta.model.UserRole;
 
 public interface UserRoleRepository extends CrudRepository<UserRole, Long> {
-//
-//	@Modifying
-//	@Transactional
-//	@Query("INSERT INTO com.timeclock.web.ClockBeta.model.UserRole (user_name, role)VALUES"
-//			+ "(userName, role)")
-//	void newUserRole( 
-//			  @Param("userName")String userName, 
-//			  @Param("role")String role);
+
 	
 }

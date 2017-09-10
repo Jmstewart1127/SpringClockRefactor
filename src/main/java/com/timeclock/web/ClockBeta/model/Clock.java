@@ -16,6 +16,8 @@ public class Clock {
 	private int id;
     @Column(name = "biz_id")
     private int bizId;
+	@Column(name = "user_id")
+	private int userId;
     @Column(name = "user")
 	private String user;
     @Column(name = "clock_in")
@@ -55,7 +57,15 @@ public class Clock {
 	public void setBizId(int bizId) {
 		this.bizId = bizId;
 	}
-	
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	public String getUser() {
 		return user;
 	}

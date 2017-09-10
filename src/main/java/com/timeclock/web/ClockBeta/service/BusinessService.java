@@ -19,19 +19,11 @@ public class BusinessService {
 	public Business findByBizName(String bizName) {
 		return businessRepository.findByBizName(bizName);
 	}
-	
-	public Business findByConfirmationToken(String confirmationToken) {
-		return businessRepository.findByConfirmationToken(confirmationToken);
-	}
-	
-	public Business findByEmail(String email) {
-		return businessRepository.findByEmail(email);
-	}
-	
-	public Business findByPassword(String password) {
-		return businessRepository.findByPassword(password);
-	}
-	
+
+	public Iterable<Business> findByAdminId(int adminId) {
+	    return businessRepository.findByAdminId(adminId);
+    }
+
 	public void saveBusiness(Business business) {
 		businessRepository.save(business);
 	}
