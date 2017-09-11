@@ -65,5 +65,7 @@ public class ClockService {
 		return clockRepository.save(clock);
 	}
 	
-	
+	public int findBizIdById(int id) {
+		return clockRepository.findBizIdById(id);
+	}
 }

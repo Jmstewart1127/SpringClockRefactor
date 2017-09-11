@@ -3,6 +3,7 @@ package com.timeclock.web.ClockBeta.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.timeclock.web.ClockBeta.model.Business;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ public class ClockController {
 
 	// Show employees by business id
     @RequestMapping(path="/hello/business/{id}/employees", method = RequestMethod.GET)
-    public ModelAndView showClock(ModelAndView modelAndView, Clock clock, @PathVariable int id) {
+    public ModelAndView showClock(ModelAndView modelAndView, Clock clock, Business business, @PathVariable int id) {
         modelAndView.setViewName("showemployees");
         modelAndView.addObject("clock", clockService.findByBizId(id));
         
@@ -34,7 +35,9 @@ public class ClockController {
 
     // Add employees to business
 	@RequestMapping(path="/hello/business/{id}/adduser", method = RequestMethod.GET)
-	public ModelAndView showNewUserForm(ModelAndView modelAndView, Clock clock, @PathVariable int id) {
+	public ModelAndView showNewUserForm(ModelAndView modelAndView,
+        Clock clock, Business business) {
+
 		modelAndView.addObject("clock", clock);
 		modelAndView.setViewName("newuser");
 		
@@ -43,27 +46,17 @@ public class ClockController {
 	
 	// Process form input data
 	@RequestMapping(value = "/hello/business/{id}/adduser", method = RequestMethod.POST)
-	public ModelAndView processRegistrationForm(ModelAndView modelAndView, 
-			@Valid Clock clock, BindingResult bindingResult, HttpServletRequest request, @PathVariable int id) {
-				
-		// Lookup user in database by id
-		Clock clockExists = clockService.findById(clock.getId());
-		
-		System.out.println(clockExists);
-		
-		if (clockExists != null) {
-			modelAndView.addObject("alreadyRegisteredMessage", 
-					"Oops!  There is already a user registered with the email provided.");
-			modelAndView.setViewName("register");
-			bindingResult.reject("email");
-		}
+	public ModelAndView processRegistrationForm(ModelAndView modelAndView, Business business,
+        @Valid Clock clock, BindingResult bindingResult, HttpServletRequest request, @PathVariable int id) {
 			
 		if (bindingResult.hasErrors()) { 
 			modelAndView.setViewName("newuser");		
 		} else {
-			clock.setBizId(id);
-		    clockService.saveClock(clock);
-			modelAndView.addObject(clock.getUser());
+		    Clock cl = new Clock();
+		    cl.setUser(clock.getUser());
+			cl.setBizId(id);
+			cl.setPayRate(clock.getPayRate());
+		    clockService.saveClock(cl);
 			modelAndView.setViewName("useradded");
 		}
 			
@@ -102,19 +95,19 @@ public class ClockController {
 	
 	// Clock in form for 'showemployees' view
 	@RequestMapping(value = "/hello/employees/{id}/clockin", method = RequestMethod.POST)
-	public ModelAndView processClockFormAdmin(ModelAndView modelAndView, @Valid Clock clock,
+	public ModelAndView processClockFormAdmin(ModelAndView modelAndView, @Valid Clock clock, Business business,
 		@PathVariable int id, BindingResult bindingResult, HttpServletRequest request) {
 		
 		int userId = id;
 		
 		Boolean isClocked = clockService.findClockedById(userId);
-		
+
 		if (isClocked) {
 			clockService.clockOut(userId);
-			return this.showClock(modelAndView, clock, id);
+			return this.showClock(modelAndView, clock, business, clockService.findBizIdById(id));
 		} else {
 			clockService.clockIn(userId);
-			return this.showClock(modelAndView, clock, id);
+			return this.showClock(modelAndView, clock, business, clockService.findBizIdById(id));
 		}
 
 	}
