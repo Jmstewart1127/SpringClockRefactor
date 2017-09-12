@@ -3,6 +3,7 @@ package com.timeclock.web.ClockBeta.restController;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,9 +22,9 @@ public class ClockRestController {
 	/*
 	 * Displays all employee data
 	 */
-	@RequestMapping("/rest/employees") 
-	public Iterable<Clock> showEmployeesByBizId() {
-		return clockService.findByBizId(1);
+	@RequestMapping("/rest/employees/{id}")
+	public Iterable<Clock> showEmployeesByBizId(@PathVariable int id) {
+		return clockService.findByBizId(id);
 	}
 	
 	/*
