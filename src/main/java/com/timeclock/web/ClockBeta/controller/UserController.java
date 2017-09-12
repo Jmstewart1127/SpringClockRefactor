@@ -75,7 +75,7 @@ public class UserController {
 	}
 
 
-	
+	// Get user id test
 	@RequestMapping(path="/hello/getuser", method = RequestMethod.GET)
 	@ResponseBody
 	public int getUserId(Authentication authentication) {
@@ -83,43 +83,6 @@ public class UserController {
 		int userId = userService.getIdByUserName(username);
 		return userId;
 	}
-
-//    @RequestMapping(path="/hello/business/{id}/addemployee", method = RequestMethod.GET)
-//    public ModelAndView showNewEmployeeForm(ModelAndView modelAndView, User user, Clock clock, Business business) {
-//        modelAndView.addObject("user", user);
-//        modelAndView.addObject("clock", clock);
-//        modelAndView.addObject("business", business);
-//        modelAndView.setViewName("newemployee");
-//
-//        return modelAndView;
-//    }
-//
-//    // Process form input data
-//    @RequestMapping(value = "/hello/business/{id}/addemployee", method = RequestMethod.POST)
-//    public ModelAndView processEmployeeForm(ModelAndView modelAndView,
-//        User user, Clock clock, BindingResult bindingResult, @RequestParam String password,
-//        @RequestParam String password1, HttpServletRequest request, @PathVariable int id) {
-//
-//	    modelAndView.addObject("user", user);
-//        modelAndView.addObject("clock", clock);
-//        modelAndView.setViewName("showbusinesses");
-//
-//        user.setEnabled(true);
-//        user.setRole("user");
-//        UserRole ur = new UserRole();
-//        ur.setUserName(user.getUserName());
-//        ur.setRole(user.getRole());
-//        clock.setUserId(user.getId());
-//        clock.setBizId(id);
-//        clock.setUser(user.getUserName());
-//        userService.saveUser(user);
-//        userService.saveUserRole(ur);
-//        clockService.saveClock(clock);
-//
-//        return modelAndView;
-//    }
-
-
 
 }
 
