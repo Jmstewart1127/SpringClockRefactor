@@ -57,7 +57,7 @@ public class BusinessController {
 
         modelAndView.setViewName("showbusinesses");
         modelAndView.addObject("business",
-                businessService.findByAdminId(userAuthDetails.getUserId(auth))
+                businessService.findByCurrentUserId(auth)
         );
 
         return modelAndView;

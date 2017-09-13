@@ -20,7 +20,7 @@ public class ClockRestController {
 	ClockService clockService;
 	
 	/*
-	 * Displays all employee data
+	 * Displays all employee data by business id
 	 */
 	@RequestMapping("/rest/employees/{id}")
 	public Iterable<Clock> showEmployeesByBizId(@PathVariable int id) {
