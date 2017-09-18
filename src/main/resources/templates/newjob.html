@@ -16,7 +16,7 @@
       
       <h4>New Job</h4>
 
-      <form autocomplete="off" action="#" th:action="@{/hello/newjob}"
+      <form autocomplete="off" action="#" th:action="@{/hello/business/{id}/newjob(id=${business.id})}"
         th:object="${jobs}" method="post" class="m-t" role="form"
         data-toggle="validator">
 

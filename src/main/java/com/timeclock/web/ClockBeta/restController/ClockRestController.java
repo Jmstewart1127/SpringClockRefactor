@@ -31,15 +31,17 @@ public class ClockRestController {
 	 * Employee Clock In  
 	 */
 	@RequestMapping(value="/rest/clockin/{id}")
-	public void clockIn(@PathVariable int id) {
+	public String clockIn(@PathVariable int id) {
 		int userId = id;
 		
 		Boolean isClocked = clockService.findClockedById(userId);
 		
 		if (isClocked) {
 			clockService.clockOut(userId);
+			return "Shift End";
 		} else {
 			clockService.clockIn(userId);
+			return "Shift Start";
 		}
 	}
 	

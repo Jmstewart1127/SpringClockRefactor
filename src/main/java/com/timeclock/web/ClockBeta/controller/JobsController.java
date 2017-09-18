@@ -3,6 +3,7 @@ package com.timeclock.web.ClockBeta.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.timeclock.web.ClockBeta.model.Business;
 import com.timeclock.web.ClockBeta.model.Material;
 import com.timeclock.web.ClockBeta.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,33 +26,26 @@ public class JobsController {
 	@Autowired
 	MaterialService materialService;
 	
-	@RequestMapping(value="/hello/newjob", method = RequestMethod.GET)
-	public ModelAndView showNewJobForm(ModelAndView modelAndView, Jobs jobs) {
+	@RequestMapping(value="/hello/business/{id}/newjob", method = RequestMethod.GET)
+	public ModelAndView showNewJobForm(ModelAndView modelAndView, Jobs jobs, Business business) {
 		modelAndView.addObject("jobs", jobs);
+		modelAndView.addObject("business", business);
 		modelAndView.setViewName("newjob");
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/hello/newjob", method = RequestMethod.POST)
+	@RequestMapping(value = "/hello/business/{id}/newjob", method = RequestMethod.POST)
 	public ModelAndView processJobRegistrationForm(ModelAndView modelAndView, 
-			@Valid Jobs jobs, BindingResult bindingResult, HttpServletRequest request) {
-				
-		Jobs jobExists = jobsService.findById(jobs.getId());
-		
-		System.out.println(jobExists);
-		
-		if (jobExists != null) {
-			modelAndView.addObject("alreadyRegisteredMessage", 
-					"Oops!  There is already a user registered with the email provided.");
-			modelAndView.setViewName("newjob");
-			bindingResult.reject("email");
-		}
-			
+			@PathVariable int id, Jobs jobs, Business business, BindingResult bindingResult, HttpServletRequest request) {
+
+
 		if (bindingResult.hasErrors()) { 
 			modelAndView.setViewName("newuser");		
-		} else { 
-		    jobs.setAmountCharged(jobs.getAmountDue());    
+		} else {
+			jobs.setBizId(id);
+			jobs.setAddressArray(jobsService.splitAddress(jobs.getJobAddress()));
+		    jobs.setAmountCharged(jobs.getAmountDue());
 		    jobsService.saveJobs(jobs);
 		    
 			modelAndView.addObject(jobs.getJobName());

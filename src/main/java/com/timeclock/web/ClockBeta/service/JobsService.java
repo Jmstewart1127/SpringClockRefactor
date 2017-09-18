@@ -20,6 +20,22 @@ public class JobsService {
 	public Iterable<Jobs> findAll() {
 		return jobsRepository.findAll();
 	}
+
+	public Iterable<Jobs> findByBizId(int bizId) {
+		return jobsRepository.findByBizId(bizId);
+	}
+
+	public String[] splitAddress(String address) {
+		String[] addressStuff = address.split(" ");
+		for ( String ss : addressStuff) {
+			System.out.println(ss);
+		}
+		return addressStuff;
+	}
+
+	public String[] getJobAddressArray(int id) {
+		return jobsRepository.findAddressArrayById(id);
+	}
 	
 	public Jobs findByCategory(String category) {
 		return jobsRepository.findByCategory(category);

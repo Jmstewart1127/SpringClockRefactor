@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.ArrayList;
 
 @Entity
 public class Jobs {
@@ -18,6 +19,8 @@ public class Jobs {
     private String jobName;
     @Column(name = "job_address")
     private String jobAddress;
+    @Column(name = "address_array")
+	private String[] addressArray;
     @Column(name = "category")
     private String category;
     @Column(name = "customer_name")
@@ -69,6 +72,14 @@ public class Jobs {
 		this.jobAddress = jobAddress;
 	}
 
+	public String[] getAddressArray() {
+		return addressArray;
+	}
+
+	public void setAddressArray(String[] addressArray) {
+		this.addressArray = addressArray;
+	}
+
 	public String getCategory() {
 		return category;
 	}
@@ -116,6 +127,7 @@ public class Jobs {
 	public void setIsPaid(Boolean isPaid) {
 		this.isPaid = isPaid;
 	}
+
 
 	public double getMaterialCost() {
 		return materialCost;
