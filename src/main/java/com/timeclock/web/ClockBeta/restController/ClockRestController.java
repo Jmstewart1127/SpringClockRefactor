@@ -26,7 +26,15 @@ public class ClockRestController {
 	public Iterable<Clock> showEmployeesByBizId(@PathVariable int id) {
 		return clockService.findByBizId(id);
 	}
-	
+
+	/*
+	* Gets businessId that employee belongs to.
+	*/
+	@RequestMapping("/rest/get/business/by/user{id}")
+	public int getBizIdByUserId(@PathVariable int id) {
+		return clockService.findBizIdById(id);
+	}
+
 	/*
 	 * Employee Clock In  
 	 */
