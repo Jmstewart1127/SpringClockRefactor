@@ -21,9 +21,9 @@ public interface JobsRepository extends CrudRepository <Jobs, Long> {
 
 	Iterable<Jobs> findByBizId(int bizId);
 
-	@Query("SELECT addressArray FROM com.timeclock.web.ClockBeta.model.Jobs"
-			+ " WHERE id= :id")
-	String[] findAddressArrayById(@Param("id")int id);
+	@Query("SELECT jobAddress FROM com.timeclock.web.ClockBeta.model.Jobs"
+			+ " WHERE bizId= :bizId")
+	Iterable<Jobs> findAddressByBizId(@Param("bizId")int bizId);
 
 	@Query("SELECT amountCharged FROM com.timeclock.web.ClockBeta.model.Jobs"
 			+ " WHERE id= :id")

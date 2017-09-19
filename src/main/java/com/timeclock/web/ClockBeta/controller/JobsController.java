@@ -43,10 +43,13 @@ public class JobsController {
 		if (bindingResult.hasErrors()) { 
 			modelAndView.setViewName("newuser");		
 		} else {
-			jobs.setBizId(id);
-			jobs.setAddressArray(jobsService.splitAddress(jobs.getJobAddress()));
-		    jobs.setAmountCharged(jobs.getAmountDue());
-		    jobsService.saveJobs(jobs);
+			Jobs j = new Jobs();
+			j.setBizId(id);
+			j.setCustomerName(jobs.getCustomerName());
+			j.setCategory(jobs.getCategory());
+			j.setJobAddress(jobs.getJobAddress());
+		    j.setAmountCharged(jobs.getAmountDue());
+		    jobsService.saveJobs(j);
 		    
 			modelAndView.addObject(jobs.getJobName());
 			modelAndView.setViewName("newjobadded");

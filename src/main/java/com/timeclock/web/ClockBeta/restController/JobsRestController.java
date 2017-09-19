@@ -19,15 +19,17 @@ public class JobsRestController {
     /*
     * Puts address into array for use with geolocation api
     */
-    @RequestMapping("/rest/jobs/address/{id}")
-    public String[] showAddressArray(@PathVariable int id) {
-        return jobsService.getJobAddressArray(id);
-    }
-
-
 //    @RequestMapping("/rest/jobs/address/{id}")
 //    public String[] showAddressArray(@PathVariable int id) {
 //        return jobsService.getJobAddressArray(id);
 //    }
+
+    /*
+    *  Gets all job addresses by business ID
+    */
+    @RequestMapping("/rest/jobs/address/{bizId}")
+    public Iterable<Jobs> showJobAddressByBizId(@PathVariable int bizId) {
+        return jobsService.findAddressByBizId(bizId);
+    }
 
 }

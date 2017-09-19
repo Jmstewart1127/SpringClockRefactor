@@ -19,8 +19,6 @@ public class Jobs {
     private String jobName;
     @Column(name = "job_address")
     private String jobAddress;
-    @Column(name = "address_array")
-	private String[] addressArray;
     @Column(name = "category")
     private String category;
     @Column(name = "customer_name")
@@ -70,14 +68,6 @@ public class Jobs {
 
 	public void setJobAddress(String jobAddress) {
 		this.jobAddress = jobAddress;
-	}
-
-	public String[] getAddressArray() {
-		return addressArray;
-	}
-
-	public void setAddressArray(String[] addressArray) {
-		this.addressArray = addressArray;
 	}
 
 	public String getCategory() {

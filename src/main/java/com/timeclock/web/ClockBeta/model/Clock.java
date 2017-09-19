@@ -34,8 +34,11 @@ public class Clock {
     private double payRate;
     @Column(name = "total_pay")
     private double totalPay;
+	@Column(name = "job_address")
+	private String jobAddress;
 
-	
+
+
 	public Clock() {
 		super();
 	}
@@ -127,9 +130,12 @@ public class Clock {
 	public void setTotalPay(double totalPay) {
 		this.totalPay = totalPay;
 	}
-	
-	
-	
-	
-	
+
+	public String getJobAddress() {
+		return jobAddress;
+	}
+
+	public void setJobAddress(String jobAddress) {
+		this.jobAddress = jobAddress;
+	}
 }
