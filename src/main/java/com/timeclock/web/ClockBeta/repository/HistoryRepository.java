@@ -20,7 +20,8 @@ public interface HistoryRepository extends CrudRepository <History, Long> {
 
 	@Modifying
 	@Transactional
-	@Query("UPDATE com.timeclock.web.ClockBeta.model.History SET clock_out=:endTime, shift_time=:shiftTime, week_time=:weeklyTime, clocked=false WHERE id=:id")
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.History SET clock_out=:endTime, shift_time=:shiftTime, " +
+			"week_time=:weeklyTime, clocked=false WHERE id=:id")
 	void updateClock(@Param("id")int id, 
 			  @Param("endTime")Date endTime, 
 			  @Param("shiftTime")long shiftTime, 
