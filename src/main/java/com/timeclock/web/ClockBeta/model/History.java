@@ -14,6 +14,8 @@ public class History {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	@Column(name = "user_id")
+	private int userId;
     @Column(name = "biz_id")
     private int bizId;
     @Column(name = "user")
@@ -39,6 +41,14 @@ public class History {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public int getBizId() {

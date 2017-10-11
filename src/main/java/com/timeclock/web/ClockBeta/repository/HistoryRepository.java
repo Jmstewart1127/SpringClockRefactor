@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.method.P;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.timeclock.web.ClockBeta.model.History;
@@ -20,9 +21,10 @@ public interface HistoryRepository extends CrudRepository <History, Long> {
 
 	@Modifying
 	@Transactional
-	@Query("UPDATE com.timeclock.web.ClockBeta.model.History SET clock_out=:endTime, shift_time=:shiftTime, " +
-			"week_time=:weeklyTime, clocked=false WHERE id=:id")
-	void updateClock(@Param("id")int id, 
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.History SET clock_in=:startTime, clock_out=:endTime, " +
+			"shift_time=:shiftTime, week_time=:weeklyTime, clocked=false WHERE id=:id")
+	void updateClock(@Param("id")int id,
+			  @Param("startTime")Date startTime,
 			  @Param("endTime")Date endTime, 
 			  @Param("shiftTime")long shiftTime, 
 			  @Param("weeklyTime")long weeklyTime);

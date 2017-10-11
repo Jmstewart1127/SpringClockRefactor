@@ -29,8 +29,8 @@ public class HistoryService {
 		historyRepository.updateClock(id, startTime);
 	}
 	
-	public void updateClockOut(int id, Date endTime, long shiftTime, long weeklyTime) {
-		historyRepository.updateClock(id, endTime, shiftTime, weeklyTime);
+	public void updateClockOut(int id, Date startTime, Date endTime, long shiftTime, long weeklyTime) {
+		historyRepository.updateClock(id, startTime, endTime, shiftTime, weeklyTime);
 	}
 	
 }
