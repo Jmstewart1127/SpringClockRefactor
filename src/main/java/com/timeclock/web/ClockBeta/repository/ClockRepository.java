@@ -2,6 +2,7 @@ package com.timeclock.web.ClockBeta.repository;
 
 import java.util.Date;
 
+import com.timeclock.web.ClockBeta.model.Business;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -53,6 +54,13 @@ public interface ClockRepository extends CrudRepository <Clock, Long> {
 			  @Param("weeklyTime")long weeklyTime,
 			  @Param("weeklyTimeInHours")double weeklyTimeInHours,
 			  @Param("totalPay")double totalPay);
+
+	@Modifying
+	@Transactional
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.Clock SET "
+			+ "clock_out=null, clock_in=null, shift_time=0, week_time=0, "
+			+ "week_time_in_hours=0, total_pay=0, clocked=false WHERE bizId=:bizId")
+	void resetClock(@Param("bizId")int bizId);
 	
 	@Modifying
 	@Transactional

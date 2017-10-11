@@ -3,7 +3,9 @@ package com.timeclock.web.ClockBeta.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.timeclock.web.ClockBeta.logistics.UserAuthDetails;
 import com.timeclock.web.ClockBeta.model.Business;
+import com.timeclock.web.ClockBeta.service.BusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,12 @@ public class ClockController {
 	
 	@Autowired
 	ClockService clockService;
+
+	@Autowired
+	BusinessService businessService;
+
+	@Autowired
+	UserAuthDetails userAuthDetails;
 
 	// Show employees by business id
     @RequestMapping(path="/hello/business/{id}/employees", method = RequestMethod.GET)
@@ -60,6 +68,17 @@ public class ClockController {
 			modelAndView.setViewName("useradded");
 		}
 			
+		return modelAndView;
+	}
+
+	// Reset pay period
+	@RequestMapping(value = "/hello/business/reset", method = RequestMethod.GET)
+	public ModelAndView resetPayPeriod(ModelAndView modelAndView, Business business,
+		@Valid Clock clock, BindingResult bindingResult, Authentication auth) {
+    	modelAndView.setViewName("showbusinesses");
+		modelAndView.addObject("business", businessService.findByCurrentUserId(auth));
+		clockService.resetPayPeriod(userAuthDetails.getUserId(auth));
+
 		return modelAndView;
 	}
 

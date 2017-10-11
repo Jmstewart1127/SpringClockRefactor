@@ -2,6 +2,7 @@ package com.timeclock.web.ClockBeta.service;
 
 import java.util.Date;
 
+import com.timeclock.web.ClockBeta.model.Business;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +19,12 @@ public class ClockService {
 	@Autowired
 	ClockLogic cl;
 	
-	public void clockIn (int id) {
+	public void clockIn(int id) {
 		Date d = new Date();
 		clockRepository.updateClock(id, d);
 	}
 	
-	public void clockOut (int id) {
+	public void clockOut(int id) {
 		Date d = new Date();
 		cl.endShift(clockRepository.findStartTimeById(id), d);
 		long currentWeek = clockRepository.findWeekTimeById(id);
@@ -35,6 +36,10 @@ public class ClockService {
 		double weeklyHours = cl.timeToHours(cl.getWeeklyTime());
 		double weeklyPay = cl.calculatePay(exactWeeklyTime, payRate);
 		clockRepository.updateClock(id, d, cl.getShiftTime(), cl.getWeeklyTime(), weeklyHours, weeklyPay);
+	}
+
+	public void resetPayPeriod(int bizId) {
+		clockRepository.resetClock(bizId);
 	}
 	
 	public Iterable<Clock> findByBizId(int bizId) {

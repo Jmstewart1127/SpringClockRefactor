@@ -34,10 +34,6 @@ public class BusinessService {
         return businessRepository.findByAdminId(id);
     }
 
-//    public Iterable<Business> findBusinessesByUserId() {
-//	    return this.findByAdminId(auth);
-//    }
-
 	public void saveBusiness(Business business) {
 		businessRepository.save(business);
 	}
