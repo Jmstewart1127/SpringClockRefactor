@@ -65,15 +65,14 @@
                     Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
                 -->
                 <a th:href="@{https://bootstrapmade.com/free-business-bootstrap-themes-website-templates}">Business Bootstrap Themes</a> by <a th:href="@{https://bootstrapmade.com}">BootstrapMade</a>
-				<a class="btn btn-primary" th:href="@{/hello/business/reset}">Reset</a>
             </div>
         </div>
   </section>
   <!-- container section end -->
 
 <div>
-	<a class="button" href="/hello/adduser">Add New Employee</a>
-	<a class="btn btn-primary" th:href="@{/hello/business/reset}">Reset</a>
+	<a class="button" href="/hello/adduser">Add New Employee</a><br>
+	<a class="button" th:href="@{/hello/business/reset}">Reset</a>
 </div>
 <div th:include="scripts :: scripts"></div>
 </body>
