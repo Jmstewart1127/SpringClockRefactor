@@ -24,13 +24,23 @@ public class HistoryService {
 		h.setUser(user);
 		historyRepository.save(h);
 	}
-	
+
 	public void updateClockIn(int id, Date startTime) {
 		historyRepository.updateClock(id, startTime);
 	}
 	
-	public void updateClockOut(int id, Date startTime, Date endTime, long shiftTime, long weeklyTime) {
-		historyRepository.updateClock(id, startTime, endTime, shiftTime, weeklyTime);
+	public void saveHistory(
+			int userId,
+			Date startTime,
+			Date endTime,
+			long shiftTime
+			) {
+		History h = new History();
+		h.setUserId(userId);
+		h.setClockIn(startTime);
+		h.setClockOut(endTime);
+		h.setShiftTime(shiftTime);
+		historyRepository.save(h);
 	}
 	
 }

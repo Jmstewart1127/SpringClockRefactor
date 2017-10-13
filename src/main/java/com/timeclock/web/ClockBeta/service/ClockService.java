@@ -18,6 +18,9 @@ public class ClockService {
 
 	@Autowired
 	ClockLogic cl;
+
+	@Autowired
+	HistoryService historyService;
 	
 	public void clockIn(int id) {
 		Date d = new Date();
@@ -26,16 +29,17 @@ public class ClockService {
 	
 	public void clockOut(int id) {
 		Date d = new Date();
-		cl.endShift(clockRepository.findStartTimeById(id), d);
+		Date startTime = clockRepository.findStartTimeById(id);
 		long currentWeek = clockRepository.findWeekTimeById(id);
 		long shift = cl.getShiftTime();
 		double payRate = clockRepository.findPayRateById(id);
-		cl.calcWeeklyTime(currentWeek, shift);
 		double exactWeeklyTime = cl.longToDoubleInHours(cl.getWeeklyTime());
-		System.out.println(exactWeeklyTime);
 		double weeklyHours = cl.timeToHours(cl.getWeeklyTime());
 		double weeklyPay = cl.calculatePay(exactWeeklyTime, payRate);
+		cl.endShift(startTime, d);
+		cl.calcWeeklyTime(currentWeek, shift);
 		clockRepository.updateClock(id, d, cl.getShiftTime(), cl.getWeeklyTime(), weeklyHours, weeklyPay);
+		historyService.saveHistory(id, startTime, d, shift);
 	}
 
 	public void resetPayPeriod(int bizId) {

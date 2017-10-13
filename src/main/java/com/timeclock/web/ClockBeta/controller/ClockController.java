@@ -74,7 +74,7 @@ public class ClockController {
 	// Reset pay period
 	@RequestMapping(value = "/hello/business/reset", method = RequestMethod.GET)
 	public ModelAndView resetPayPeriod(ModelAndView modelAndView, Business business,
-		@Valid Clock clock, BindingResult bindingResult, Authentication auth) {
+		@Valid Clock clock, Authentication auth) {
     	modelAndView.setViewName("showbusinesses");
 		modelAndView.addObject("business", businessService.findByCurrentUserId(auth));
 		clockService.resetPayPeriod(userAuthDetails.getUserId(auth));
@@ -93,13 +93,9 @@ public class ClockController {
 
 	// Process clock in form
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public ModelAndView processClockForm(ModelAndView modelAndView, 
-		@Valid Clock clock, BindingResult bindingResult, HttpServletRequest request) {
-		
+	public ModelAndView processClockForm(ModelAndView modelAndView, @Valid Clock clock) {
 		modelAndView.setViewName("timeclockupdate");
-		
 		int userId = clock.getId();
-		
 		Boolean isClocked = clockService.findClockedById(userId);
 		
 		if (isClocked) {
@@ -115,7 +111,7 @@ public class ClockController {
 	// Clock in form for 'showemployees' view
 	@RequestMapping(value = "/hello/employees/{id}/clockin", method = RequestMethod.POST)
 	public ModelAndView processClockFormAdmin(ModelAndView modelAndView, @Valid Clock clock, Business business,
-		@PathVariable int id, BindingResult bindingResult, HttpServletRequest request) {
+		@PathVariable int id) {
 		
 		int userId = id;
 		
@@ -146,8 +142,7 @@ public class ClockController {
 			
 		if (bindingResult.hasErrors()) { 
 			modelAndView.setViewName("updatejobstatus");		
-		} else { 
- 
+		} else {
 			modelAndView.setViewName("showemployees");
 			clockService.saveClock(clock);
 		}

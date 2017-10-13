@@ -15,9 +15,7 @@ public class UserRestController {
 
     @RequestMapping(value="/rest/login/{username}/{password}")
     public String login(@PathVariable String username, @PathVariable String password, Authentication auth) {
-
         return auth.getName();
-
     }
 
 }
