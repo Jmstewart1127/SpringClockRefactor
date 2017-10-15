@@ -157,6 +157,5 @@ public class ClockController {
 		clockService.delete(clock);
         return modelAndView;
 	}
-	
 
 }
