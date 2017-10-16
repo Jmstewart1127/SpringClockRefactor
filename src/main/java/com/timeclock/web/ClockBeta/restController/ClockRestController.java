@@ -26,8 +26,8 @@ public class ClockRestController {
 	* Gets user by id
 	*/
 	@RequestMapping("/rest/get/employee/{id}")
-	public Clock getEmployee(@PathVariable int id) {
-		return clockService.findById(id);
+	public Clock getEmployee(@PathVariable String id) {
+		return clockService.findById(Integer.parseInt(id));
 	}
 
 	/*
