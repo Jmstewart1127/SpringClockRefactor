@@ -26,18 +26,16 @@ public class ClockRestController {
 	* Gets user by id
 	*/
 	@RequestMapping("/rest/get/employee/{id}")
-	public Iterable<Clock> getEmployee(@PathVariable String id) {
-		int result = Integer.parseInt(id);
-		return clockService.findById(result);
+	public Iterable<Clock> getEmployee(@PathVariable int id) {
+		return clockService.findById(id);
 	}
 
 	/*
 	* Gets businessId that employee belongs to.
 	*/
 	@RequestMapping("/rest/get/business/by/user/{id}")
-	public int getBizIdByUserId(@PathVariable String id) {
-		int result = Integer.parseInt(id);
-		return clockService.findBizIdById(result);
+	public int getBizIdByUserId(@PathVariable int id) {
+		return clockService.findBizIdById(id);
 	}
 
 	/*
