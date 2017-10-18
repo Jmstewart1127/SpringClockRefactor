@@ -23,11 +23,11 @@ public class ClockRestController {
 	}
 
 	/*
-	* Gets user by id, problem with json for some reason
+	* Gets user by id
 	*/
 	@RequestMapping("/rest/get/employee/{id}")
-	public Clock getEmployee(@PathVariable Object id) {
-		return clockService.findById((int)id);
+	public Iterable<Clock> getEmployee(@PathVariable int id) {
+		return clockService.findById(id);
 	}
 
 	/*
