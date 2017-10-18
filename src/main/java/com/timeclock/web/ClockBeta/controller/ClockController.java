@@ -129,7 +129,7 @@ public class ClockController {
 	
 	@RequestMapping(value="/hello/employee/{id}/update", method = RequestMethod.GET)
     public ModelAndView showUpdateJobsPage(ModelAndView modelAndView, @PathVariable int id) {
-		Clock clock = clockService.findById(id);
+		Iterable<Clock> clock = clockService.findById(id);
 		modelAndView.addObject("clock", clock);
 		modelAndView.setViewName("updateemployee");
         return modelAndView;
