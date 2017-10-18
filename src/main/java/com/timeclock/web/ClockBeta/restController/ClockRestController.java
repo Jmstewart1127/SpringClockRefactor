@@ -23,7 +23,7 @@ public class ClockRestController {
 	}
 
 	/*
-	* Gets user by id
+	* Gets user by id, problem with json for some reason
 	*/
 	@RequestMapping("/rest/get/employee/{id}")
 	public Clock getEmployee(@PathVariable Object id) {
