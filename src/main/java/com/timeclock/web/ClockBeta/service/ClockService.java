@@ -23,8 +23,12 @@ public class ClockService {
 	HistoryService historyService;
 	
 	public void clockIn(int id) {
-		Date d = new Date();
-		clockRepository.updateClock(id, d);
+		if (!this.findClockedById(id)) {
+			Date d = new Date();
+			clockRepository.updateClock(id, d);
+		} else {
+			System.out.print("User clocked in");
+		}
 	}
 	
 	public void clockOut(int id) {
