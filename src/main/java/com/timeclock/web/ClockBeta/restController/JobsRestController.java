@@ -8,21 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 public class JobsRestController {
 
     @Autowired
     JobsService jobsService;
-
-    /*
-    * Puts address into array for use with geolocation api
-    */
-//    @RequestMapping("/rest/jobs/address/{id}")
-//    public String[] showAddressArray(@PathVariable int id) {
-//        return jobsService.getJobAddressArray(id);
-//    }
 
     /*
     *  Gets all job addresses by business ID

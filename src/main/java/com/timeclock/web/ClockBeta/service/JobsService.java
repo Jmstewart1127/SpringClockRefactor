@@ -28,14 +28,6 @@ public class JobsService {
 	public Iterable<Jobs> findAddressByBizId(int bizId) {
 		return jobsRepository.findAddressByBizId(bizId);
 	}
-
-	public String[] splitAddress(String address) {
-		String[] addressStuff = address.split(" ");
-		for ( String ss : addressStuff) {
-			System.out.println(ss);
-		}
-		return addressStuff;
-	}
 	
 	public Jobs findByCategory(String category) {
 		return jobsRepository.findByCategory(category);

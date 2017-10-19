@@ -31,14 +31,6 @@ public class ClockRestController {
 	}
 
 	/*
-	* Gets businessId that employee belongs to.
-	*/
-	@RequestMapping("/rest/get/business/by/user/{id}")
-	public int getBizIdByUserId(@PathVariable int id) {
-		return clockService.findBizIdById(id);
-	}
-
-	/*
  	* Employee Clock In
  	*/
 	@RequestMapping(value="/rest/clock/in/{id}")
@@ -52,32 +44,6 @@ public class ClockRestController {
 	@RequestMapping(value="/rest/clock/out/{id}")
 	public void clockOut(@PathVariable int id) {
 		clockService.clockOut(id);
-	}
-
-	/*
-	 * Employee Clock In
-	 *
-	 * This method was the original way of clocking in and out.
-	 * However, during testing of the mobile app, it was found
-	 * that this method would not get the job done as the app
-	 * were intended.
-	 *
-	 * We wanted an employee's shift to end when they left the
-	 * premises, but with this method they would be clocked in
-	 * and out while on the premises.
-	 */
-	@RequestMapping(value="/rest/clock/in/current/status/{id}")
-	public String clockInByClockStatus(@PathVariable int id) {
-		
-		Boolean isClocked = clockService.findClockedById(id);
-		
-		if (isClocked) {
-			clockService.clockOut(id);
-			return "Shift End";
-		} else {
-			clockService.clockIn(id);
-			return "Shift Start";
-		}
 	}
 	
 }
