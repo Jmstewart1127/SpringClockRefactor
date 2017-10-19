@@ -32,18 +32,21 @@ public class ClockService {
 	}
 	
 	public void clockOut(int id) {
-		Date d = new Date();
-		Date startTime = clockRepository.findStartTimeById(id);
-		long currentWeek = clockRepository.findWeekTimeById(id);
-		long shift = cl.getShiftTime();
-		double payRate = clockRepository.findPayRateById(id);
-		double exactWeeklyTime = cl.longToDoubleInHours(cl.getWeeklyTime());
-		double weeklyHours = cl.timeToHours(cl.getWeeklyTime());
-		double weeklyPay = cl.calculatePay(exactWeeklyTime, payRate);
-		cl.endShift(startTime, d);
-		cl.calcWeeklyTime(currentWeek, shift);
-		clockRepository.updateClock(id, d, cl.getShiftTime(), cl.getWeeklyTime(), weeklyHours, weeklyPay);
-		historyService.saveHistory(id, startTime, d, shift);
+		if (this.findClockedById(id)) {
+			Date d = new Date();
+			Date startTime = clockRepository.findStartTimeById(id);
+			long currentWeek = clockRepository.findWeekTimeById(id);
+			cl.setWeeklyTime(currentWeek);
+			long shift = cl.getShiftTime();
+			double payRate = clockRepository.findPayRateById(id);
+			double exactWeeklyTime = cl.longToDoubleInHours(cl.getWeeklyTime());
+			double weeklyHours = cl.timeToHours(cl.getWeeklyTime());
+			double weeklyPay = cl.calculatePay(exactWeeklyTime, payRate);
+			cl.endShift(startTime, d);
+			cl.calcWeeklyTime(currentWeek, shift);
+			clockRepository.updateClock(id, d, cl.getShiftTime(), cl.getWeeklyTime(), weeklyHours, weeklyPay);
+			historyService.saveHistory(id, startTime, d, shift);
+		}
 	}
 
 	public void resetPayPeriod(int bizId) {

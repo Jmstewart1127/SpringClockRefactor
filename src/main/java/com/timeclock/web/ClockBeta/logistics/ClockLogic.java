@@ -67,8 +67,7 @@ public class ClockLogic {
 		long startTime = start.getTime();
 		long endTime = end.getTime();
 		long shiftTime = endTime - startTime;
-		
-		list.add(shiftTime);
+
 		setShiftTime(shiftTime);
 		System.out.println(shiftTime + " Shift");
 		return shiftTime;
@@ -97,7 +96,6 @@ public class ClockLogic {
 	
 	public double longToDoubleInHours(long aLong) {
 		double longToDouble = aLong;
-		
 		return longToDouble / 3600000;
 	}
 	
