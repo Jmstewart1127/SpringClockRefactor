@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.timeclock.web.ClockBeta.model.History;
 
 public interface HistoryRepository extends CrudRepository <History, Long> {
-	
+
+	Iterable<History> findByUserId(int id);
+
 	@Modifying
 	@Transactional
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.History SET clock_in=:startTime, clocked=true WHERE id=:id")
@@ -28,6 +30,8 @@ public interface HistoryRepository extends CrudRepository <History, Long> {
 			  @Param("endTime")Date endTime, 
 			  @Param("shiftTime")long shiftTime, 
 			  @Param("weeklyTime")long weeklyTime);
+
+
 
 //  Since you can't use insert statements using CRUDrepository, I'll just have to use a method with setters...
 //	@Modifying

@@ -45,5 +45,13 @@ public class ClockRestController {
 	public void clockOut(@PathVariable int id) {
 		clockService.clockOut(id);
 	}
+
+	/*
+	* Refresh Employee Status
+	*/
+	@RequestMapping(value="/rest/status/refresh/{id}")
+	public void refreshClock(@PathVariable int id) {
+		clockService.refreshClock(id);
+	}
 	
 }

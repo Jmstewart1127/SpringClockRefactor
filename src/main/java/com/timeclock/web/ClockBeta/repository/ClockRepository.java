@@ -35,13 +35,17 @@ public interface ClockRepository extends CrudRepository <Clock, Long> {
 	
 	@Query("SELECT weekTime FROM com.timeclock.web.ClockBeta.model.Clock WHERE id= :id")
 	Long findWeekTimeById(@Param("id")int id);
+
+	@Query("SELECT lastRefresh FROM com.timeclock.web.ClockBeta.model.Clock WHERE id= :id")
+	Date findlastRefreshById(@Param("id")int id);
 	
 	@Modifying
 	@Transactional
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Clock "
-			+ "SET clock_in=:startTime, clocked=true WHERE id=:id")
-	void updateClock(@Param("id")int id, 
-			  @Param("startTime")Date startTime); 
+			+ "SET clock_in=:startTime, last_refresh=:lastRefresh, clocked=true WHERE id=:id")
+	void updateClock(@Param("id")int id,
+					 @Param("startTime")Date startTime,
+					 @Param("lastRefresh")Date lastRefresh);
 
 	@Modifying
 	@Transactional
@@ -54,6 +58,19 @@ public interface ClockRepository extends CrudRepository <Clock, Long> {
 			  @Param("weeklyTime")long weeklyTime,
 			  @Param("weeklyTimeInHours")double weeklyTimeInHours,
 			  @Param("totalPay")double totalPay);
+
+	@Modifying
+	@Transactional
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.Clock SET "
+			+ "shift_time=:shiftTime, week_time=:weeklyTime, "
+			+ "week_time_in_hours=:weeklyTimeInHours, total_pay=:totalPay, "
+			+ "last_refresh=:lastRefresh, clocked=true WHERE id=:id")
+	void refreshClock(@Param("id")int id,
+					 @Param("shiftTime")long shiftTime,
+					 @Param("weeklyTime")long weeklyTime,
+					 @Param("weeklyTimeInHours")double weeklyTimeInHours,
+					 @Param("totalPay")double totalPay,
+					 @Param("lastRefresh")Date lastRefresh);
 
 	@Modifying
 	@Transactional

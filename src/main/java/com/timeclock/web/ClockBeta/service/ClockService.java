@@ -25,7 +25,7 @@ public class ClockService {
 	public void clockIn(int id) {
 		if (!this.findClockedById(id)) {
 			Date d = new Date();
-			clockRepository.updateClock(id, d);
+			clockRepository.updateClock(id, d, d);
 		} else {
 			System.out.print("User clocked in");
 		}
@@ -35,6 +35,7 @@ public class ClockService {
 		if (this.findClockedById(id)) {
 			Date d = new Date();
 			Date startTime = clockRepository.findStartTimeById(id);
+			Date lastRefreshTime = clockRepository.findlastRefreshById(id);
 			long currentWeek = clockRepository.findWeekTimeById(id);
 			cl.setWeeklyTime(currentWeek);
 			long shift = cl.getShiftTime();
@@ -42,10 +43,27 @@ public class ClockService {
 			double exactWeeklyTime = cl.longToDoubleInHours(cl.getWeeklyTime());
 			double weeklyHours = cl.timeToHours(cl.getWeeklyTime());
 			double weeklyPay = cl.calculatePay(exactWeeklyTime, payRate);
-			cl.endShift(startTime, d);
+			cl.endShift(lastRefreshTime, d);
 			cl.calcWeeklyTime(currentWeek, shift);
 			clockRepository.updateClock(id, d, cl.getShiftTime(), cl.getWeeklyTime(), weeklyHours, weeklyPay);
-			historyService.saveHistory(id, startTime, d, shift);
+			historyService.saveHistory(id, startTime, d, shift); // add time to hours sometime
+		}
+	}
+
+	public void refreshClock(int id) {
+		if (this.findClockedById(id)) {
+			Date d = new Date();
+			Date lastRefreshTime = clockRepository.findlastRefreshById(id);
+			long currentWeek = clockRepository.findWeekTimeById(id);
+			cl.setWeeklyTime(currentWeek);
+			long shift = cl.getShiftTime();
+			double payRate = clockRepository.findPayRateById(id);
+			double exactWeeklyTime = cl.longToDoubleInHours(cl.getWeeklyTime());
+			double weeklyHours = cl.timeToHours(cl.getWeeklyTime());
+			double weeklyPay = cl.calculatePay(exactWeeklyTime, payRate);
+			cl.endShift(lastRefreshTime, d);
+			cl.calcWeeklyTime(currentWeek, shift);
+			clockRepository.refreshClock(id, cl.getShiftTime(), cl.getWeeklyTime(), weeklyHours, weeklyPay, d);
 		}
 	}
 

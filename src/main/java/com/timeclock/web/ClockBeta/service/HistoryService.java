@@ -13,7 +13,11 @@ public class HistoryService {
 	
 	@Autowired
 	HistoryRepository historyRepository;
-	
+
+	public Iterable<History> findByUserId(int id) {
+		return historyRepository.findByUserId(id);
+	}
+
 	public void saveHistory(
 			int userId,
 			Date startTime,

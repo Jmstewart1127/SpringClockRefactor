@@ -34,9 +34,8 @@ public class Clock {
     private double payRate;
     @Column(name = "total_pay")
     private double totalPay;
-	@Column(name = "job_address")
-	private String jobAddress;
-
+	@Column(name = "last_refresh")
+	private Date lastRefresh;
 
 
 	public Clock() {
@@ -131,11 +130,11 @@ public class Clock {
 		this.totalPay = totalPay;
 	}
 
-	public String getJobAddress() {
-		return jobAddress;
+	public Date getLastRefresh() {
+		return lastRefresh;
 	}
 
-	public void setJobAddress(String jobAddress) {
-		this.jobAddress = jobAddress;
+	public void setLastRefresh(Date lastRefresh) {
+		this.lastRefresh = lastRefresh;
 	}
 }
