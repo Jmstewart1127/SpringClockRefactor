@@ -17,6 +17,7 @@ public class ClockRestController {
 	/*
 	 * Displays all employee data by business id
 	 */
+	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping("/rest/employees/{id}")
 	public Iterable<Clock> showEmployeesByBizId(@PathVariable int id) {
 		return clockService.findByBizId(id);
@@ -25,6 +26,7 @@ public class ClockRestController {
 	/*
 	* Gets user by id
 	*/
+	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping("/rest/get/employee/{id}")
 	public Iterable<Clock> getEmployee(@PathVariable int id) {
 		return clockService.findById(id);
@@ -33,6 +35,7 @@ public class ClockRestController {
 	/*
  	* Employee Clock In
  	*/
+	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value="/rest/clock/in/{id}")
 	public void clockIn(@PathVariable int id) {
 		clockService.clockIn(id);
@@ -41,6 +44,7 @@ public class ClockRestController {
 	/*
 	* Employee Clock Out
  	*/
+	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value="/rest/clock/out/{id}")
 	public void clockOut(@PathVariable int id) {
 		clockService.clockOut(id);
@@ -49,6 +53,7 @@ public class ClockRestController {
 	/*
 	* Refresh Employee Status
 	*/
+	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value="/rest/status/refresh/{id}")
 	public void refreshClock(@PathVariable int id) {
 		clockService.refreshClock(id);
