@@ -8,10 +8,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<groupId>org.springframework</groupId>
-	<artifactId>gs-rest-service-cors</artifactId>
-	<version>0.1.0</version>
-
 	<name>ClockBeta</name>
 	<description>Demo project for Spring Boot</description>
 
