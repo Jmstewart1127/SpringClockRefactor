@@ -21,6 +21,14 @@ public class ClockService {
 
 	@Autowired
 	HistoryService historyService;
+
+	public void handleClockInOut(int id) {
+		if (this.findClockedById(id)) {
+			this.clockOut(id);
+		} else {
+			this.clockIn(id);
+		}
+	}
 	
 	public void clockIn(int id) {
 		if (!this.findClockedById(id)) {

@@ -34,7 +34,16 @@ public class ClockRestController {
 	}
 
 	/*
- 	* Employee Clock In
+	* Employee Clock In (Web)
+	*/
+	@CrossOrigin(origins = "http://localhost:3000")
+	@RequestMapping(value="/rest/web/clock/in/{id}")
+	public void handleClockInOut(@PathVariable int id) {
+		clockService.handleClockInOut(id);
+	}
+
+	/*
+ 	* Employee Clock In (Mobile)
  	*/
 	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value="/rest/clock/in/{id}")
@@ -43,7 +52,7 @@ public class ClockRestController {
 	}
 
 	/*
-	* Employee Clock Out
+	* Employee Clock Out (Mobile)
  	*/
 	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value="/rest/clock/out/{id}")

@@ -105,7 +105,6 @@ public class ClockController {
 			clockService.clockIn(userId);
 			return modelAndView;
 		}
-
 	}
 	
 	// Clock in form for 'showemployees' view
