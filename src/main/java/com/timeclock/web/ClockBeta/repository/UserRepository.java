@@ -13,4 +13,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
 	@Query("SELECT id FROM com.timeclock.web.ClockBeta.model.User WHERE user_name= :username")
 	int findIdByUserName(@Param("username")String username);
 	
+	@Query("SELECT id FROM com.timeclock.web.ClockBeta.model.User WHERE user_name= :username AND password= :password")
+	int findIdByCredentials(@Param("username")String username,
+							@Param("password")String password);
+	
 }

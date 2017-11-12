@@ -13,9 +13,16 @@ public class UserRestController {
     @Autowired
     UserService userService;
 
+//    @RequestMapping(value="/rest/login/{username}/{password}")
+//    public String login(@PathVariable String username, @PathVariable String password, Authentication auth) {
+//        return auth.getName();
+//    }
+    
     @RequestMapping(value="/rest/login/{username}/{password}")
-    public String login(@PathVariable String username, @PathVariable String password, Authentication auth) {
-        return auth.getName();
+    public int loginTest(@PathVariable String username, @PathVariable String password, Authentication auth) {
+        return userService.getIdByCredentials(username, password);
     }
+    
+    
 
 }
