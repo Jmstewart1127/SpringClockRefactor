@@ -2,7 +2,6 @@ package com.timeclock.web.ClockBeta.repository;
 
 import java.util.Date;
 
-import com.timeclock.web.ClockBeta.model.Business;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

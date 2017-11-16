@@ -31,16 +31,5 @@ public interface HistoryRepository extends CrudRepository <History, Long> {
 			  @Param("shiftTime")long shiftTime, 
 			  @Param("weeklyTime")long weeklyTime);
 
-
-
-//  Since you can't use insert statements using CRUDrepository, I'll just have to use a method with setters...
-//	@Modifying
-//	@Transactional
-//	@Query("INSERT INTO com.timeclock.web.ClockBeta.model.History (clock_in, clock_out, " +
-//			"shift_time, week_time, clocked, user_id) " +
-//			"SELECT clock_in, clock_out, shift_time, week_time, clocked, id " +
-//			"FROM com.timeclock.web.ClockBeta.model.Clock")
-//	void saveHistory();
-
 	
 }
