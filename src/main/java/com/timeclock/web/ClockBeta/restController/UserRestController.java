@@ -20,9 +20,8 @@ public class UserRestController {
     @CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
     @RequestMapping(value="/rest/login/{username}/{password}")
     public User loginTest(@PathVariable String username, @PathVariable String password) {
-        return userService.FindIdByCredentials(username, password);
+        return userService.findIdByCredentials(username, password);
     }
-    
     
 
 }

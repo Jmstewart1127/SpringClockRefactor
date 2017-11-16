@@ -34,7 +34,7 @@ public class UserService {
 		return userRepository.findIdByUserName(userName);
 	}
 	
-	public User FindIdByCredentials(String userName, String password) {
+	public User findIdByCredentials(String userName, String password) {
 		return userRepository.findByUserNameAndPassword(userName, password);
 	}
 }
