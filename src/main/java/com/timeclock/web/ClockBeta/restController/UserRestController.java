@@ -1,5 +1,6 @@
 package com.timeclock.web.ClockBeta.restController;
 
+import com.timeclock.web.ClockBeta.model.User;
 import com.timeclock.web.ClockBeta.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,9 +20,12 @@ public class UserRestController {
 //        return auth.getName();
 //    }
     
+    /*
+     * Get user id 
+     */
     @CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
     @RequestMapping(value="/rest/login/{username}/{password}")
-    public int loginTest(@PathVariable String username, @PathVariable String password, Authentication auth) {
+    public User loginTest(@PathVariable String username, @PathVariable String password, Authentication auth) {
         return userService.getIdByCredentials(username, password);
     }
     
