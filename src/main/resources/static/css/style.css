@@ -9870,3 +9870,15 @@ span.customSelect.changed {
 
 }
 
+.end-btn {
+	
+	border-right-style: solid;
+	
+	border-right-width: thin;
+	
+	border-top-right-radius: 4px !important;
+	
+	border-bottom-right-radius: 4px !important;
+	
+}
+

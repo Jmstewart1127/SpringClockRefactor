@@ -8,8 +8,6 @@
 <aside th:include="sidebar :: sidebar"></aside>
 <nav th:include="nav :: nav" class="navbar navbar-default"></nav>
 
-
-
 			<div class="container">
  				<div class="row">
                   <div class="col-lg-12">
@@ -26,7 +24,7 @@
 								<th>Period Pay</th>
 								<th>Pay Rate</th>
 								<th>Clocked In</th>
-								<th>Edit/Delete/Time</th>
+								<th>Edit/Delete/Time In</th>
 							</tr>
     						<tr th:each="clock : ${clock}">
         						<td th:text="${clock.id}">1</td>
@@ -40,9 +38,11 @@
         						<td>
         						  <div class="btn-group">
                                       <a class="btn btn-primary" th:href="@{/hello/employee/{id}/update(id=${clock.id})}"><i class="icon_plus_alt2"></i></a>
-                                      <a class="btn btn-danger" th:href="@{/hello/employee/{id}/delete(id=${clock.id})}"><i class="icon_close_alt2"></i></a>
-                                      <form th:action="@{/hello/employees/{id}/clockin(id=${clock.id})}" method="POST" class="form-signin">
-										<button class="btn btn-default" name="Submit" value="Login" type="Submit">Time In/Out</button>
+                                      <form th:action="@{/hello/employee/{id}/delete(id=${clock.id})}" method="POST" class="btn-group">
+										<button class="btn btn-danger btn-group" name="Submit" type="Submit"><i class="icon_close_alt2"></i></button>
+									  </form>	
+                                      <form th:action="@{/hello/employees/{id}/clockin(id=${clock.id})}" method="POST" class="btn-group">
+										<button class="btn btn-default btn-group end-btn" name="Submit" type="Submit"><i class="icon_clock_alt"></i></button>
 									  </form>
                                   </div>
         						</td>
@@ -54,26 +54,18 @@
               </div>
 			</div>
 			
-              <!-- page end-->
-      <!--main content end-->
-      <div class="text-right">
-            <div class="credits">
-                <!-- 
-                    All the links in the footer should remain intact. 
-                    You can delete the links only if you purchased the pro version.
-                    Licensing information: https://bootstrapmade.com/license/
-                    Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
-                -->
-                <a th:href="@{https://bootstrapmade.com/free-business-bootstrap-themes-website-templates}">Business Bootstrap Themes</a> by <a th:href="@{https://bootstrapmade.com}">BootstrapMade</a>
-            </div>
-        </div>
-  </section>
-  <!-- container section end -->
-
-<div>
-	<a class="button" href="/hello/adduser">Add New Employee</a><br>
-	<a class="button" th:href="@{/hello/business/reset}">Reset</a>
-</div>
+			<div class="container">
+				<a class="button" th:href="@{/hello/business/{id}/adduser(id=${business.id})}">Add New Employee</a><br>
+				<a class="button" th:href="@{/hello/business/reset}">Reset</a>
+			</div>
 <div th:include="scripts :: scripts"></div>
+<script>
+	function deleteUser() {
+		var confirm = window.confirm("Click ok to delete this user, click cancel to keep this user");
+		if (!confirm) {
+			return false;
+		}
+	}
+</script>
 </body>
 </html>

@@ -41,25 +41,11 @@
     </div>
 </div>
 
-<!-- page end-->
-<!--main content end-->
-<div class="text-right">
-    <div class="credits">
-        <!--
-            All the links in the footer should remain intact.
-            You can delete the links only if you purchased the pro version.
-            Licensing information: https://bootstrapmade.com/license/
-            Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
-        -->
-        <a th:href="@{https://bootstrapmade.com/free-business-bootstrap-themes-website-templates}">Business Bootstrap Themes</a> by <a th:href="@{https://bootstrapmade.com}">BootstrapMade</a>
-    </div>
-</div>
 </section>
 <!-- container section end -->
 
-<div>
-    <a class="button" href="/hello/adduser">Add New Employee</a><br>
-    <a class="button" th:href="@{/hello/business/reset}">Reset</a>
+<div class="container">
+    <a class="button" href="/hello/newbusiness">Add New Business</a>
 </div>
 
 <div th:include="scripts :: scripts"></div>

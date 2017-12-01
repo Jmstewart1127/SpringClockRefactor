@@ -12,7 +12,7 @@ import com.timeclock.web.ClockBeta.model.Clock;
 
 public interface ClockRepository extends CrudRepository <Clock, Long> {
 	
-	Iterable<Clock> findById(int id);
+	Clock findById(int id);
 	
 	Clock findByUser(String user);
 	

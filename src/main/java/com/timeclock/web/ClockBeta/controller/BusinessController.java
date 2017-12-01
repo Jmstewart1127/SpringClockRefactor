@@ -31,6 +31,9 @@ public class BusinessController {
 	@Autowired
 	UserAuthDetails userAuthDetails;
 	
+	/*
+	 * Shows new business form
+	 */
 	@RequestMapping(value="/hello/newbusiness", method = RequestMethod.GET)
 	public ModelAndView newBiz(ModelAndView modelAndView, Business business) {
 	    modelAndView.addObject(business);
@@ -38,6 +41,9 @@ public class BusinessController {
 		return modelAndView;
 	}
 	
+	/*
+	 * Adds business 
+	 */
 	@RequestMapping(value="/hello/newbusiness", method = RequestMethod.POST)
 	public ModelAndView addNewBusiness(ModelAndView modelAndView, @Valid Business business,
 		BindingResult bindingResult, HttpServletRequest request, Authentication auth) {
@@ -52,8 +58,11 @@ public class BusinessController {
 		return modelAndView;
 	}
 
+	/*
+	 * Shows list of businesses
+	 */
     @RequestMapping(value="/hello/business", method = RequestMethod.GET)
-    public ModelAndView showClock(ModelAndView modelAndView, Business business, Authentication auth) {
+    public ModelAndView showBusinesses(ModelAndView modelAndView, Business business, Authentication auth) {
 
         modelAndView.setViewName("showbusinesses");
         modelAndView.addObject("business",

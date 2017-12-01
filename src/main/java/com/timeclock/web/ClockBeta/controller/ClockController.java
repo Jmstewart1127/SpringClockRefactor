@@ -55,7 +55,7 @@ public class ClockController {
 	// Process form input data
 	@RequestMapping(value = "/hello/business/{id}/adduser", method = RequestMethod.POST)
 	public ModelAndView processRegistrationForm(ModelAndView modelAndView, Business business,
-        @Valid Clock clock, BindingResult bindingResult, HttpServletRequest request, @PathVariable int id) {
+        @Valid Clock clock, BindingResult bindingResult, @PathVariable int id) {
 			
 		if (bindingResult.hasErrors()) { 
 			modelAndView.setViewName("newuser");		
@@ -65,10 +65,10 @@ public class ClockController {
 			cl.setBizId(id);
 			cl.setPayRate(clock.getPayRate());
 		    clockService.saveClock(cl);
-			modelAndView.setViewName("useradded");
+			modelAndView.setViewName("showemployees");
 		}
 			
-		return modelAndView;
+		return this.showClock(modelAndView, clock, business, clockService.findBizIdById(id));
 	}
 
 	// Reset pay period
@@ -111,31 +111,31 @@ public class ClockController {
 	@RequestMapping(value = "/hello/employees/{id}/clockin", method = RequestMethod.POST)
 	public ModelAndView processClockFormAdmin(ModelAndView modelAndView, @Valid Clock clock, Business business,
 		@PathVariable int id) {
-		
-		int userId = id;
-		
-		Boolean isClocked = clockService.findClockedById(userId);
+
+		Boolean isClocked = clockService.findClockedById(id);
 
 		if (isClocked) {
-			clockService.clockOut(userId);
+			clockService.clockOut(id);
 			return this.showClock(modelAndView, clock, business, clockService.findBizIdById(id));
 		} else {
-			clockService.clockIn(userId);
+			clockService.clockIn(id);
 			return this.showClock(modelAndView, clock, business, clockService.findBizIdById(id));
 		}
 
 	}
 	
+	// Show update employee form
 	@RequestMapping(value="/hello/employee/{id}/update", method = RequestMethod.GET)
-    public ModelAndView showUpdateJobsPage(ModelAndView modelAndView, @PathVariable int id) {
-		Iterable<Clock> clock = clockService.findById(id);
+    public ModelAndView showUpdateEmployeePage(ModelAndView modelAndView, @PathVariable int id) {
+		Clock clock = clockService.findById(id);
 		modelAndView.addObject("clock", clock);
 		modelAndView.setViewName("updateemployee");
         return modelAndView;
 	}
     
+	// Process show employee form
     @RequestMapping(value="/hello/employee/{id}/update",method=RequestMethod.POST)
-	public ModelAndView processJobEditForm(ModelAndView modelAndView,
+	public ModelAndView processEmployeeEditForm(ModelAndView modelAndView,
 			@PathVariable int id, @Valid Clock clock, BindingResult bindingResult,
 			HttpServletRequest request) {
 			
@@ -149,12 +149,26 @@ public class ClockController {
 		return modelAndView;
 	}
     
-	@RequestMapping(value="/hello/employee/{id}/delete", method = RequestMethod.GET)
-    public ModelAndView deleteJob(ModelAndView modelAndView, @Valid Clock clock, @PathVariable int id) {
-		modelAndView.addObject(clock);
-		modelAndView.setViewName("showemployees");
-		clockService.delete(clock);
-        return modelAndView;
+//	@RequestMapping(value="/hello/employee/{id}/delete", method = RequestMethod.GET)
+//    public ModelAndView deleteJob(ModelAndView modelAndView, @Valid Clock clock, @PathVariable int id) {
+//		modelAndView.addObject(clock);
+//		modelAndView.setViewName("showemployees");
+//		clockService.delete(clock);
+//        return modelAndView;
+//	}
+	
+    // Delete user
+	@RequestMapping(value = "/hello/employee/{id}/delete", method = RequestMethod.POST)
+	public ModelAndView processDeleteFormAdmin(
+			ModelAndView modelAndView, 
+			@Valid Clock clock, 
+			Business business, 
+			@PathVariable int id) {
+		int bizId = clockService.findBizIdById(id); // Store bizId before deleting user
+		Clock user = clockService.findById(id);
+		clockService.delete(user);
+		return this.showClock(modelAndView, clock, business, bizId);
+
 	}
 
 }

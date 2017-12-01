@@ -87,7 +87,7 @@ public class ClockService {
 		return clockRepository.findClockedById(id);
 	}
 	
-	public Iterable<Clock> findById(int id) {
+	public Clock findById(int id) {
 		return clockRepository.findById(id);
 	}
 	
