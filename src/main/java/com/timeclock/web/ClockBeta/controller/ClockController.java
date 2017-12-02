@@ -127,7 +127,7 @@ public class ClockController {
 	// Show update employee form
 	@RequestMapping(value="/hello/employee/{id}/update", method = RequestMethod.GET)
     public ModelAndView showUpdateEmployeePage(ModelAndView modelAndView, @PathVariable int id) {
-		Clock clock = clockService.findById(id);
+		Clock clock = clockService.findUserById(id);
 		modelAndView.addObject("clock", clock);
 		modelAndView.setViewName("updateemployee");
         return modelAndView;
@@ -165,7 +165,7 @@ public class ClockController {
 			Business business, 
 			@PathVariable int id) {
 		int bizId = clockService.findBizIdById(id); // Store bizId before deleting user
-		Clock user = clockService.findById(id);
+		Clock user = clockService.findUserById(id);
 		clockService.delete(user);
 		return this.showClock(modelAndView, clock, business, bizId);
 
