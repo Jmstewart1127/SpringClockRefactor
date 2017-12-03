@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.timeclock.web.ClockBeta.model.Clock;
 import com.timeclock.web.ClockBeta.service.ClockService;
@@ -35,9 +36,16 @@ public class ClockController {
 	// Show employees by business id
     @RequestMapping(path="/hello/business/{id}/employees", method = RequestMethod.GET)
     public ModelAndView showClock(ModelAndView modelAndView, Clock clock, Business business, @PathVariable int id) {
+    	modelAndView.setViewName("showemployees");
+        modelAndView.addObject("clock", clockService.findByBizId(id));     
+        return modelAndView;
+    }
+    
+    // Show all employees
+    @RequestMapping(value="/hello/employees", method = RequestMethod.GET)
+    public ModelAndView showBusinesses(ModelAndView modelAndView, Clock clock, Business business, Authentication auth) {
         modelAndView.setViewName("showemployees");
-        modelAndView.addObject("clock", clockService.findByBizId(id));
-        
+        modelAndView.addObject("clock", clockService.findAllEmployeesByAdmin(auth));
         return modelAndView;
     }
 
@@ -68,7 +76,7 @@ public class ClockController {
 			modelAndView.setViewName("showemployees");
 		}
 			
-		return this.showClock(modelAndView, clock, business, clockService.findBizIdById(id));
+		return this.showClock(modelAndView, clock, business, id);
 	}
 
 	// Reset pay period
@@ -109,17 +117,15 @@ public class ClockController {
 	
 	// Clock in form for 'showemployees' view
 	@RequestMapping(value = "/hello/employees/{id}/clockin", method = RequestMethod.POST)
-	public ModelAndView processClockFormAdmin(ModelAndView modelAndView, @Valid Clock clock, Business business,
-		@PathVariable int id) {
-
+	public ModelAndView processClockFormAdmin(ModelAndView modelAndView, @Valid Clock clock, Business business, @PathVariable int id) {
 		Boolean isClocked = clockService.findClockedById(id);
-
+		//int bizId = clockService.findBizIdById(id);
 		if (isClocked) {
 			clockService.clockOut(id);
 			return this.showClock(modelAndView, clock, business, clockService.findBizIdById(id));
 		} else {
 			clockService.clockIn(id);
-			return this.showClock(modelAndView, clock, business, clockService.findBizIdById(id));
+			return this.showClock(modelAndView, clock, business, id);
 		}
 
 	}
@@ -133,11 +139,11 @@ public class ClockController {
         return modelAndView;
 	}
     
-	// Process show employee form
+	// Process edit employee form
     @RequestMapping(value="/hello/employee/{id}/update",method=RequestMethod.POST)
 	public ModelAndView processEmployeeEditForm(ModelAndView modelAndView,
-			@PathVariable int id, @Valid Clock clock, BindingResult bindingResult,
-			HttpServletRequest request) {
+		@PathVariable int id, @Valid Clock clock, BindingResult bindingResult,
+		HttpServletRequest request) {
 			
 		if (bindingResult.hasErrors()) { 
 			modelAndView.setViewName("updatejobstatus");		
@@ -148,14 +154,6 @@ public class ClockController {
 			
 		return modelAndView;
 	}
-    
-//	@RequestMapping(value="/hello/employee/{id}/delete", method = RequestMethod.GET)
-//    public ModelAndView deleteJob(ModelAndView modelAndView, @Valid Clock clock, @PathVariable int id) {
-//		modelAndView.addObject(clock);
-//		modelAndView.setViewName("showemployees");
-//		clockService.delete(clock);
-//        return modelAndView;
-//	}
 	
     // Delete user
 	@RequestMapping(value = "/hello/employee/{id}/delete", method = RequestMethod.POST)
@@ -164,11 +162,11 @@ public class ClockController {
 			@Valid Clock clock, 
 			Business business, 
 			@PathVariable int id) {
+		
 		int bizId = clockService.findBizIdById(id); // Store bizId before deleting user
 		Clock user = clockService.findUserById(id);
 		clockService.delete(user);
 		return this.showClock(modelAndView, clock, business, bizId);
-
 	}
 
 }

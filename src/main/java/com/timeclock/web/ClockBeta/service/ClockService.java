@@ -1,13 +1,17 @@
 package com.timeclock.web.ClockBeta.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import com.timeclock.web.ClockBeta.model.Business;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.timeclock.web.ClockBeta.logistics.ClockLogic;
+import com.timeclock.web.ClockBeta.logistics.UserAuthDetails;
 import com.timeclock.web.ClockBeta.model.Clock;
+import com.timeclock.web.ClockBeta.repository.BusinessRepository;
 import com.timeclock.web.ClockBeta.repository.ClockRepository;
 
 @Service
@@ -15,13 +19,19 @@ public class ClockService {
 	
 	@Autowired
 	ClockRepository clockRepository;
-
+	
+	@Autowired
+	BusinessRepository businessRepository;
+	
+	@Autowired
+	HistoryService historyService;
+	
 	@Autowired
 	ClockLogic cl;
 
-	@Autowired
-	HistoryService historyService;
-
+	@Autowired 
+	UserAuthDetails userAuthDetails;
+	
 	public void handleClockInOut(int id) {
 		if (this.findClockedById(id)) {
 			this.clockOut(id);
@@ -73,6 +83,18 @@ public class ClockService {
 			cl.calcWeeklyTime(currentWeek, shift);
 			clockRepository.refreshClock(id, cl.getShiftTime(), cl.getWeeklyTime(), weeklyHours, weeklyPay, d);
 		}
+	}
+	
+	public Iterable<Clock> findAllEmployeesByAdmin(Authentication auth) {
+		Iterable<Business> usersBusinesses = businessRepository.findByAdminId(userAuthDetails.getUserId(auth));
+		ArrayList<Clock> allEmployees = new ArrayList<Clock>();
+		for (Business business : usersBusinesses) {
+			Iterable<Clock> employeesFound = this.findByBizId(business.getId());
+			for (Clock clocks : employeesFound) {
+				allEmployees.add(clocks);
+			}
+		}
+		return allEmployees;
 	}
 
 	public void resetPayPeriod(int bizId) {

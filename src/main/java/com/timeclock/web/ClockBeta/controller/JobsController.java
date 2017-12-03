@@ -98,10 +98,10 @@ public class JobsController {
 	
     @RequestMapping(path="/hello/showjobs", method = RequestMethod.GET)
     public ModelAndView showJobs() {
-        ModelAndView mav = new ModelAndView("showjobs");
-        mav.addObject("jobs", jobsService.findAll());
+        ModelAndView modelAndView = new ModelAndView("showjobs");
+        modelAndView.addObject("jobs", jobsService.findAll());
         
-        return mav;
+        return modelAndView;
     }
     
 	@RequestMapping(value="/hello/jobs/{id}/update", method = RequestMethod.GET)

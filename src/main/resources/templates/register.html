@@ -16,8 +16,7 @@
       <h4>New Business</h4>
 
       <form autocomplete="off" action="#" th:action="@{/hello/newbusiness}"
-        th:object="${business}" method="post" class="m-t" role="form"
-        data-toggle="validator">
+		 method="post" class="m-t" role="form" data-toggle="validator">
 
         <div th:if="${errorMessage}"
           class="alert alert-danger" role="alert"
@@ -28,8 +27,19 @@
             <span class="glyphicon glyphicon-user"></span>
           </span>
           
-          <input type="text" th:field="*{bizName}"
+          <input type="text" th:field="*{business.bizName}"
             placeholder="Business Name" class="form-control" required />
+          <span class="glyphicon form-control-feedback"
+            aria-hidden="true"></span>
+        </div>
+        
+        <div class="form-group input-group has-feedback">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+          
+          <input type="text" th:field="*{jobs.jobAddress}"
+            placeholder="Business Address" class="form-control" required />
           <span class="glyphicon form-control-feedback"
             aria-hidden="true"></span>
         </div>

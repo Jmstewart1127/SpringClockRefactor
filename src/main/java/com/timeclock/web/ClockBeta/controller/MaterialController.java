@@ -42,7 +42,6 @@ public class MaterialController {
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("addmaterial");
         } else {
-
             modelAndView.setViewName("showmaterials");
             modelAndView.addObject(material);
             materialService.saveMaterial(material);
