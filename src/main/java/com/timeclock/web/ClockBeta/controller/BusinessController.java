@@ -53,7 +53,7 @@ public class BusinessController {
 	@RequestMapping(value="/hello/newbusiness", method = RequestMethod.POST)
 	public ModelAndView addNewBusiness(ModelAndView modelAndView, @Valid Business business, @Valid Jobs jobs,
 		BindingResult bindingResult, HttpServletRequest request, Authentication auth) {
-		modelAndView.setViewName("registered");
+		modelAndView.setViewName("showbusinesses");
 		modelAndView.addObject(business);
 		business.setAdminId(userAuthDetails.getUserId(auth));
 		business.setAdminName(userAuthDetails.getUserName(auth));

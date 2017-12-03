@@ -5,17 +5,17 @@
     <title>Hello World!</title>
 </head>
 <body>
-<nav th:fragment="nav" class="navbar navbar-collapse">
+<nav th:fragment="nav" class="navbar navbar-default navbar-collapse nav-extra">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="/login">Spring Clock</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="/hello/newbusiness">Add Business</a></li>
-            <li><a href="/hello/business">Businesses</a></li>
-            <li><a href="/hello/employees">Employees</a></li>
-            <li><a href="/">Time Clock</a></li>
-            <li><a href="/login">Login</a></li>
+            <li class="li-hover"><a href="/hello/newbusiness">Add Business</a></li>
+            <li class="li-hover"><a href="/hello/business">Businesses</a></li>
+            <li class="li-hover"><a href="/hello/employees">Employees</a></li>
+            <li class="li-hover"><a href="/">Time Clock</a></li>
+            <li class="li-hover"><a href="/login">Login</a></li>
         </ul>
     </div>
 </nav>

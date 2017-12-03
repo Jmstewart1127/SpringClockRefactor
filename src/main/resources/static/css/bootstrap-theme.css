@@ -3814,6 +3814,9 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-default {
   background-color: #ffffff;
   border-color: #007AFF;
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+  border-color: transparent !important;
+  border-radius: 0px !important;
 }
 .navbar-default .navbar-brand {
   color: #4a4a4a;

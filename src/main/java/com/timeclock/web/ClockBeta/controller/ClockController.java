@@ -37,7 +37,8 @@ public class ClockController {
     @RequestMapping(path="/hello/business/{id}/employees", method = RequestMethod.GET)
     public ModelAndView showClock(ModelAndView modelAndView, Clock clock, Business business, @PathVariable int id) {
     	modelAndView.setViewName("showemployees");
-        modelAndView.addObject("clock", clockService.findByBizId(id));     
+        modelAndView.addObject("clock", clockService.findByBizId(id));
+        modelAndView.addObject("business", businessService.findById(id));
         return modelAndView;
     }
     
@@ -125,7 +126,7 @@ public class ClockController {
 			return this.showClock(modelAndView, clock, business, clockService.findBizIdById(id));
 		} else {
 			clockService.clockIn(id);
-			return this.showClock(modelAndView, clock, business, id);
+			return this.showClock(modelAndView, clock, business, clockService.findBizIdById(id));
 		}
 
 	}
