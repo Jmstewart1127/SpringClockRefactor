@@ -81,12 +81,12 @@ public class ClockController {
 	}
 
 	// Reset pay period
-	@RequestMapping(value = "/hello/business/reset", method = RequestMethod.GET)
+	@RequestMapping(value = "/hello/business/{id}/reset", method = RequestMethod.GET)
 	public ModelAndView resetPayPeriod(ModelAndView modelAndView, Business business,
-		@Valid Clock clock, Authentication auth) {
+		@Valid Clock clock, @PathVariable int id, Authentication auth) {
     	modelAndView.setViewName("showbusinesses");
 		modelAndView.addObject("business", businessService.findByCurrentUserId(auth));
-		clockService.resetPayPeriod(userAuthDetails.getUserId(auth));
+		clockService.resetPayPeriod(id);
 
 		return modelAndView;
 	}

@@ -56,7 +56,7 @@
 			
 			<div class="container">
 				<a class="button" th:href="@{/hello/business/{id}/adduser(id=${business.id})}">Add New Employee</a><br>
-				<a class="button" th:href="@{/hello/business/reset}">Reset</a>
+				<a class="button" th:href="@{/hello/business/{id}/reset(id=${business.id})}">Reset</a>
 			</div>
 <div th:include="scripts :: scripts"></div>
 <script>
