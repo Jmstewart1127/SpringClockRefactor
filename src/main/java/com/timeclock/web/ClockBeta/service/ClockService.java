@@ -96,6 +96,18 @@ public class ClockService {
 		}
 		return allEmployees;
 	}
+	
+	public Iterable<Clock> findAllEmployeesByAdminId(int id) {
+		Iterable<Business> usersBusinesses = businessRepository.findByAdminId(id);
+		ArrayList<Clock> allEmployees = new ArrayList<Clock>();
+		for (Business business : usersBusinesses) {
+			Iterable<Clock> employeesFound = this.findByBizId(business.getId());
+			for (Clock clocks : employeesFound) {
+				allEmployees.add(clocks);
+			}
+		}
+		return allEmployees;
+	}
 
 	public void resetPayPeriod(int bizId) {
 		clockRepository.resetClock(bizId);

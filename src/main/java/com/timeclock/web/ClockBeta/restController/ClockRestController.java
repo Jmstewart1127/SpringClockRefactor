@@ -32,6 +32,15 @@ public class ClockRestController {
 	public Iterable<Clock> getEmployee(@PathVariable int id) {
 		return clockService.findById(id);
 	}
+	
+	/*
+	* Get all employees by admin id 
+	*/
+	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
+	@RequestMapping("/rest/get/all/employees/{id}")
+	public Iterable<Clock> getEmployees(@PathVariable int id) {
+		return clockService.findAllEmployeesByAdminId(id);
+	}
 
 	/*
 	* Employee Clock In (Web)
