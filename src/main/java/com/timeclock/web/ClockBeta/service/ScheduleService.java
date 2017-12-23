@@ -25,5 +25,5 @@ public class ScheduleService {
         return scheduleRepository.findScheduleByBizId(id);
     }
 
-    
+
 }
