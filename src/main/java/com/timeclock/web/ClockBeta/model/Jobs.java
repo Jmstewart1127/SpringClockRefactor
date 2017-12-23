@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Entity
@@ -33,6 +34,8 @@ public class Jobs {
     private Boolean isPaid = false;
     @Column(name = "material_cost")
 	private double materialCost;
+	@Column(name = "completion_date")
+	private LocalDate completionDate;
 	
     public Jobs() {
 		super();
@@ -118,12 +121,19 @@ public class Jobs {
 		this.isPaid = isPaid;
 	}
 
-
 	public double getMaterialCost() {
 		return materialCost;
 	}
 
 	public void setMaterialCost(double materialCost) {
 		this.materialCost = materialCost;
+	}
+
+	public LocalDate getCompletionDate() {
+		return completionDate;
+	}
+
+	public void setCompletionDate(LocalDate completionDate) {
+		this.completionDate = completionDate;
 	}
 }

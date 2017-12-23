@@ -16,12 +16,6 @@ public class Schedule {
     private int clockId;
     @Column(name = "job_id")
     private int jobId;
-    @Column(name = "day")
-    private LocalDate day;
-    @Column(name = "time")
-    private Date time;
-    @Column(name = "present")
-    private Boolean present = false;
 
     public Schedule() {
         super();
@@ -59,27 +53,4 @@ public class Schedule {
         this.jobId = jobId;
     }
 
-    public LocalDate getDay() {
-        return day;
-    }
-
-    public void setDay(LocalDate day) {
-        this.day = day;
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
-    public Boolean getPresent() {
-        return present;
-    }
-
-    public void setPresent(Boolean present) {
-        this.present = present;
-    }
 }
