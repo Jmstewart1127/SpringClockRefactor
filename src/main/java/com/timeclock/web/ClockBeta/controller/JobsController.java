@@ -31,7 +31,6 @@ public class JobsController {
 		modelAndView.addObject("jobs", jobs);
 		modelAndView.addObject("business", business);
 		modelAndView.setViewName("newjob");
-		
 		return modelAndView;
 	}
 	
@@ -62,7 +61,6 @@ public class JobsController {
 	public ModelAndView showJobUpdateForm(ModelAndView modelAndView, Jobs jobs) {
 		modelAndView.addObject("jobs", jobs);
 		modelAndView.setViewName("updatejobstatus");
-		
 		return modelAndView;
 	}
 	
@@ -100,7 +98,6 @@ public class JobsController {
     public ModelAndView showJobs() {
         ModelAndView modelAndView = new ModelAndView("showjobs");
         modelAndView.addObject("jobs", jobsService.findAll());
-        
         return modelAndView;
     }
     
@@ -119,8 +116,7 @@ public class JobsController {
 			
 		if (bindingResult.hasErrors()) { 
 			modelAndView.setViewName("updatejobstatus");		
-		} else { 
- 
+		} else {
 			modelAndView.setViewName("showjobs");
 			jobsService.saveJobs(jobs);
 		}

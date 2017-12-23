@@ -1,5 +1,6 @@
 package com.timeclock.web.ClockBeta.service;
 
+import com.timeclock.web.ClockBeta.model.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,11 +8,16 @@ import com.timeclock.web.ClockBeta.logistics.PaymentLogic;
 import com.timeclock.web.ClockBeta.model.Jobs;
 import com.timeclock.web.ClockBeta.repository.JobsRepository;
 
+import java.util.ArrayList;
+
 @Service
 public class JobsService {
 
 	@Autowired
 	JobsRepository jobsRepository;
+
+	@Autowired
+	ScheduleService scheduleService;
 	
 	public Jobs findById(int id) {
 		return jobsRepository.findById(id);
@@ -71,6 +77,17 @@ public class JobsService {
 
 	public void updateMaterialCost(int id, double materialCost) {
 		jobsRepository.updateMaterialCost(id, materialCost);
+	}
+
+	/*
+	* find all jobs assigned to employee
+	*/
+	public Iterable<Jobs> findJobsAssignedToEmployee(int id) {
+		ArrayList<Jobs> jobs = new ArrayList<>();
+		for (int jobId : scheduleService.getJobIdsByClockId(id)) {
+			jobs.add(this.findById(jobId));
+		}
+		return jobs;
 	}
 
 	public void checkIfPaid(int id, double totalPaid) {

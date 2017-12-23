@@ -1,8 +1,12 @@
 package com.timeclock.web.ClockBeta.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
+
+/*
+*
+* Which employees are on which jobs.
+*
+*/
 
 @Entity
 public class Schedule {

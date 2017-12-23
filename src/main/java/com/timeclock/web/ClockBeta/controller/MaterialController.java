@@ -27,7 +27,6 @@ public class MaterialController {
 
     @RequestMapping(value="/hello/jobs/materials/update", method = RequestMethod.GET)
     public ModelAndView showUpdateMaterialsPage(ModelAndView modelAndView, Material material) {
-
         modelAndView.addObject("material", material);
         modelAndView.setViewName("addmaterial");
         return modelAndView;

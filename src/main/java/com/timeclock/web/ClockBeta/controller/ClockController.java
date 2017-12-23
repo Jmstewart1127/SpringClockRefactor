@@ -54,10 +54,8 @@ public class ClockController {
 	@RequestMapping(path="/hello/business/{id}/adduser", method = RequestMethod.GET)
 	public ModelAndView showNewUserForm(ModelAndView modelAndView,
         Clock clock, Business business) {
-
 		modelAndView.addObject("clock", clock);
 		modelAndView.setViewName("newuser");
-		
 		return modelAndView;
 	}
 	
@@ -87,7 +85,6 @@ public class ClockController {
     	modelAndView.setViewName("showbusinesses");
 		modelAndView.addObject("business", businessService.findByCurrentUserId(auth));
 		clockService.resetPayPeriod(id);
-
 		return modelAndView;
 	}
 
@@ -96,7 +93,6 @@ public class ClockController {
 	public ModelAndView showClockForm(ModelAndView modelAndView, Clock clock) {
 		modelAndView.addObject("clock", clock);
 		modelAndView.setViewName("timeclock");
-		
 		return modelAndView;
 	}
 
@@ -118,9 +114,13 @@ public class ClockController {
 	
 	// Clock in form for 'showemployees' view
 	@RequestMapping(value = "/hello/employees/{id}/clockin", method = RequestMethod.POST)
-	public ModelAndView processClockFormAdmin(ModelAndView modelAndView, @Valid Clock clock, Business business, @PathVariable int id) {
+	public ModelAndView processClockFormAdmin(
+			ModelAndView modelAndView,
+			@Valid Clock clock, Business business,
+			@PathVariable int id) {
+
 		Boolean isClocked = clockService.findClockedById(id);
-		//int bizId = clockService.findBizIdById(id);
+
 		if (isClocked) {
 			clockService.clockOut(id);
 			return this.showClock(modelAndView, clock, business, clockService.findBizIdById(id));
@@ -142,9 +142,11 @@ public class ClockController {
     
 	// Process edit employee form
     @RequestMapping(value="/hello/employee/{id}/update",method=RequestMethod.POST)
-	public ModelAndView processEmployeeEditForm(ModelAndView modelAndView,
-		@PathVariable int id, @Valid Clock clock, BindingResult bindingResult,
-		HttpServletRequest request) {
+	public ModelAndView processEmployeeEditForm(
+			ModelAndView modelAndView,
+			@Valid Clock clock,
+			BindingResult bindingResult,
+			HttpServletRequest request) {
 			
 		if (bindingResult.hasErrors()) { 
 			modelAndView.setViewName("updatejobstatus");		
@@ -152,7 +154,6 @@ public class ClockController {
 			modelAndView.setViewName("showemployees");
 			clockService.saveClock(clock);
 		}
-			
 		return modelAndView;
 	}
 	

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="head :: head">
+    <title>View Jobs</title>
+</head>
+
+<body>
+<aside th:include="sidebar :: sidebar"></aside>
+<nav th:include="nav :: nav" class="navbar navbar-default"></nav>
+<div class="container">
+    <table class="table table-striped">
+        <caption></caption>
+
+        <form autocomplete="off" action="#" th:action="@{/hello/jobs/{id}/add/employees(id=${jobs.id})}"
+              th:object="${schedule}" method="post" class="m-t" role="form"
+              data-toggle="validator">
+            <table class="table table-striped table-advance table-hover">
+                <tbody>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Employee Name</th>
+                    <th>Add Employee</th>
+                </tr>
+                <tr th:each="clock : ${clock}">
+                    <td th:text="${clock.id}">1</td>
+                    <td th:text="${clock.user}">1</td>
+                    <td><input type="checkbox" name="clockIds" th:value="${clock.id}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <button type="submit" class="btn btn-primary">
+                Add To Job
+            </button>
+        </form>
+
+    <br>
+    <div> <a class="button" href="/hello/newjob">Add New Job</a></div>
+    <div> <a class="button" href="/hello/showjobs">View All Jobs</a></div>
+</div>
+<div th:include="scripts :: scripts"></div>
+</body>
+</html>

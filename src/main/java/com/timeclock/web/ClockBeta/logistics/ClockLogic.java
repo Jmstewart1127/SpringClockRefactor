@@ -3,13 +3,12 @@
  */
 package com.timeclock.web.ClockBeta.logistics;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * @author Jacob Stewart
  * 
- * Handles Logic
+ * Calculates employee hours when clocking in and out.
  *
  */
 public class ClockLogic {
@@ -19,7 +18,6 @@ public class ClockLogic {
 	private long shiftTime;
 	private long weeklyTime;
 	private double weeklyHours;
-	private ArrayList<Long> list  = new ArrayList<Long>(); 
 	
 	public ClockLogic() {}
 
@@ -67,7 +65,6 @@ public class ClockLogic {
 		long startTime = start.getTime();
 		long endTime = end.getTime();
 		long shiftTime = endTime - startTime;
-
 		setShiftTime(shiftTime);
 		System.out.println(shiftTime + " Shift");
 		return shiftTime;
@@ -79,7 +76,6 @@ public class ClockLogic {
 		toAdd += currentWeek;
 		setWeeklyTime(toAdd);
 		System.out.println(weeklyTime + " week");
-		
 		return weeklyTime;
 	}
 	
@@ -102,9 +98,5 @@ public class ClockLogic {
 	public double calculatePay(double time, double payRate) {
 		return (double)Math.round((time * payRate) * 100d) / 100d;
 	}
-	
-
-	
-	
 
 }

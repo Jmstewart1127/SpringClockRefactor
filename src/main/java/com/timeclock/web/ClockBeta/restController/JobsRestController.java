@@ -1,6 +1,5 @@
 package com.timeclock.web.ClockBeta.restController;
 
-import com.timeclock.web.ClockBeta.model.Clock;
 import com.timeclock.web.ClockBeta.model.Jobs;
 import com.timeclock.web.ClockBeta.service.JobsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +20,15 @@ public class JobsRestController {
     public Iterable<Jobs> showJobAddressByBizId(@PathVariable int bizId) {
         return jobsService.findAddressByBizId(bizId);
     }
+
+    /*
+    *  Gets all job addresses by business ID
+    */
+    @RequestMapping("/rest/jobs/assigned/employee/{clockId}")
+    public Iterable<Jobs> showJobsAssignedToEmployee(@PathVariable int clockId) {
+        return jobsService.findJobsAssignedToEmployee(clockId);
+    }
+
+
 
 }
