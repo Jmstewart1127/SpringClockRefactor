@@ -34,17 +34,13 @@ public class ClockLogic {
 		this.weeklyTime = weeklyTime;
 	}
 	
-	private void calcShiftTime(Date start, Date end) {
-		setShiftTime(end.getTime() - start.getTime());
-	}
-	
 	public void calcWeeklyTime(long currentWeek, long shift) {
 		shift += currentWeek;
 		setWeeklyTime(shift);
 	}
 	
-	public void endShift(Date start, Date end) {
-		calcShiftTime(start, end);
+	public void endShift(Date start, Date end) { 
+		setShiftTime(end.getTime() - start.getTime());
 	}
 	
 	public double timeToHours(long time) {
