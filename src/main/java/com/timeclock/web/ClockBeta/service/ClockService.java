@@ -64,7 +64,7 @@ public class ClockService {
 			cl.endShift(lastRefreshTime, d);
 			cl.calcWeeklyTime(currentWeek, shift);
 			clockRepository.updateClock(id, d, cl.getShiftTime(), cl.getWeeklyTime(), weeklyHours, weeklyPay);
-			historyService.saveHistory(id, startTime, d, shift); // add time to hours sometime
+			historyService.saveHistory(id, startTime, d, shift);
 		}
 	}
 

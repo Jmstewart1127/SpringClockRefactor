@@ -35,8 +35,11 @@ public class JobsController {
 	}
 	
 	@RequestMapping(value = "/hello/business/{id}/newjob", method = RequestMethod.POST)
-	public ModelAndView processJobRegistrationForm(ModelAndView modelAndView, 
-			@PathVariable int id, Jobs jobs, Business business, BindingResult bindingResult, HttpServletRequest request) {
+	public ModelAndView processJobRegistrationForm(
+			ModelAndView modelAndView,
+			@PathVariable int id,
+			Jobs jobs,
+			BindingResult bindingResult) {
 
 
 		if (bindingResult.hasErrors()) { 
@@ -65,8 +68,10 @@ public class JobsController {
 	}
 	
 	@RequestMapping(value = "/hello/jobpayments", method = RequestMethod.POST)
-	public ModelAndView processJobUpdateForm(ModelAndView modelAndView, 
-			@Valid Jobs jobs, BindingResult bindingResult, HttpServletRequest request) {
+	public ModelAndView processJobUpdateForm(
+			ModelAndView modelAndView,
+			@Valid Jobs jobs,
+			BindingResult bindingResult) {
 				
 		Jobs jobExists = jobsService.findById(jobs.getId());
 		

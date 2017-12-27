@@ -39,10 +39,10 @@ public class MaterialController {
     }
 
     @RequestMapping(value="/hello/jobs/materials/update",method=RequestMethod.POST)
-    public ModelAndView processMaterialsForm(ModelAndView modelAndView,
-                                                @Valid Material material,
-                                                BindingResult bindingResult,
-                                                HttpServletRequest request) {
+    public ModelAndView processMaterialsForm(
+            ModelAndView modelAndView,
+            @Valid Material material,
+            BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("addmaterial");
@@ -71,11 +71,11 @@ public class MaterialController {
     }
 
     @RequestMapping(value="/hello/jobs/{id}/materials/update",method=RequestMethod.POST)
-    public ModelAndView processJobMaterialsForm(ModelAndView modelAndView,
-                                                @PathVariable int id,
-                                                BindingResult bindingResult,
-                                                Jobs jobs,
-                                                Material material) {
+    public ModelAndView processJobMaterialsForm(
+            ModelAndView modelAndView,
+            @PathVariable int id,
+            BindingResult bindingResult,
+            Material material) {
 
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("addmaterial");

@@ -70,7 +70,6 @@ public class ScheduleController {
                 }
             }
         }
-
         return modelAndView;
     }
 }

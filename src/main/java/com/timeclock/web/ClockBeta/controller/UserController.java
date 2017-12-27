@@ -35,7 +35,6 @@ public class UserController {
 	public ModelAndView showNewUserForm(ModelAndView modelAndView, User user) {
 		modelAndView.addObject("user", user);
 		modelAndView.setViewName("registernew");
-		
 		return modelAndView;
 	}
 	
@@ -53,15 +52,14 @@ public class UserController {
 		
 		if (userExists != null) {
 			modelAndView.addObject("alreadyRegisteredMessage", 
-					"Oops!  There is already a user registered with the email provided.");
+					"There is already a user registered with the email provided.");
 			modelAndView.setViewName("register");
 			bindingResult.reject("email");
 		}
 			
 		if (bindingResult.hasErrors()) { 
 			modelAndView.setViewName("newuser");		
-		} 
-			else {
+		} else {
 				UserRole ur = new UserRole();
 				userService.saveUser(user);
 				ur.setUserName(user.getUserName());
