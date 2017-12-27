@@ -51,12 +51,14 @@ public class ScheduleController {
             ModelAndView modelAndView,
             @PathVariable int id,
             @RequestParam List<Integer> clockIds,
+            @Valid Jobs jobs,
             BindingResult bindingResult,
             HttpServletRequest request) {
 
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("updatejobstatus");
         } else {
+            modelAndView.addObject("jobs", jobsService.findById(id));
             modelAndView.setViewName("showjobs");
             for (int clockId : clockIds) {
                 if (!scheduleService.checkIfExists(clockId, id)) {
@@ -67,7 +69,6 @@ public class ScheduleController {
                     scheduleService.saveSchedule(s);
                 }
             }
-
         }
 
         return modelAndView;

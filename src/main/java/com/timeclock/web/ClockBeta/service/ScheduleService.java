@@ -41,11 +41,8 @@ public class ScheduleService {
     /*
     * check if schedule already exists
     */
-    public Boolean checkIfExists(int clockId, int jobId) {
-        if (scheduleRepository.checkIfScheduleExists(clockId, jobId) > 0) {
-            return true;
-        }
-        return false;
+    public boolean checkIfExists(int clockId, int jobId) {
+        return scheduleRepository.existsByClockIdAndJobId(clockId, jobId);
     }
 
     public Schedule saveSchedule(Schedule schedule) {
