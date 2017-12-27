@@ -30,11 +30,14 @@
             <td th:text="${material.totalPrice}">1</td>
         </tr>
 
-
     </table>
     <br>
-    <div> <a class="button" href="/hello/newjob">Add New Job</a></div>
-    <div> <a class="button" href="/hello/showjobs">View All Jobs</a></div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3 th:text="${'Total Material Cost: $' + totalCost}"></h3>
+        </div>
+    </div>
+    <div> <a class="button" th:href="@{/hello/jobs/{id}/materials/update(id=${jobs.id})}">Add More Materials</a></div>
 </div>
 <div th:include="scripts :: scripts"></div>
 </body>

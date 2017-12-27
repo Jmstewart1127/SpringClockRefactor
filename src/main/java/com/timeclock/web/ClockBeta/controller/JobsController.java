@@ -100,6 +100,14 @@ public class JobsController {
         modelAndView.addObject("jobs", jobsService.findAll());
         return modelAndView;
     }
+
+	@RequestMapping(path="/hello/business/{id}/jobs", method = RequestMethod.GET)
+	public ModelAndView showJobs(@PathVariable int id) {
+		ModelAndView modelAndView = new ModelAndView("showjobs");
+		modelAndView.addObject("jobs", jobsService.findByBizId(id));
+		return modelAndView;
+	}
+
     
 	@RequestMapping(value="/hello/jobs/{id}/update", method = RequestMethod.GET)
     public ModelAndView showUpdateJobsPage(ModelAndView modelAndView, @PathVariable int id) {
@@ -121,45 +129,6 @@ public class JobsController {
 			jobsService.saveJobs(jobs);
 		}
 			
-		return modelAndView;
-	}
-
-    @RequestMapping(value="/hello/jobs/{id}/materials/", method = RequestMethod.GET)
-    public ModelAndView showMaterialsPage(ModelAndView modelAndView, @PathVariable int id) {
-		modelAndView.addObject("material", materialService.findByJobId(id));
-        modelAndView.setViewName("showmaterials");
-        return modelAndView;
-    }
-
-	@RequestMapping(value="/hello/jobs/{id}/materials/update", method = RequestMethod.GET)
-	public ModelAndView showUpdateMaterialsPage(ModelAndView modelAndView, @PathVariable int id, Material material) {
-		modelAndView.addObject("material", material);
-		modelAndView.setViewName("addmaterial");
-		return modelAndView;
-	}
-
-	@RequestMapping(value="/hello/jobs/{id}/materials/update",method=RequestMethod.POST)
-	public ModelAndView processJobMaterialsForm(ModelAndView modelAndView,
-        @PathVariable int id, BindingResult bindingResult, Material material,
-        HttpServletRequest request) {
-
-		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("addmaterial");
-		} else {
-			modelAndView.setViewName("showmaterials");
-			modelAndView.addObject(material);
-			material.setJobId(id);
-			int quantity = material.getQuantity();
-			double price = material.getPrice();
-			double totalPrice = materialService.calculateTotalPrice(quantity, price);
-			double currentMaterialCost = jobsService.findMaterialCostById(id);
-			double newCost = currentMaterialCost + totalPrice;
-			jobsService.updateMaterialCost(id, newCost);
-			material.setTotalPrice(totalPrice);
-			Material mat = new Material(id, material.getPoNumber(), material.getPartName(), material.getQuantity(), material.getPrice(), totalPrice);
-			materialService.saveMaterial(mat);
-		}
-
 		return modelAndView;
 	}
    

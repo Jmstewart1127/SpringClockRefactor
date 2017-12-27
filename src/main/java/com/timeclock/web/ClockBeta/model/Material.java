@@ -10,6 +10,8 @@ public class Material {
     private int id;
     @Column(name = "job_id")
     private int jobId;
+    @Column(name = "purchased_from")
+    private String purchasedFrom;
     @Column(name = "po_number")
     private int poNumber;
     @Column(name = "part_name")
@@ -48,6 +50,14 @@ public class Material {
 
     public void setJobId(int jobId) {
         this.jobId = jobId;
+    }
+
+    public String getPurchasedFrom() {
+        return purchasedFrom;
+    }
+
+    public void setPurchasedFrom(String purchasedFrom) {
+        this.purchasedFrom = purchasedFrom;
     }
 
     public int getPoNumber() {

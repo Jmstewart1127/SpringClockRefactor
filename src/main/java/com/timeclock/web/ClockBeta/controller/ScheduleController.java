@@ -50,9 +50,6 @@ public class ScheduleController {
     public ModelAndView processJobEditForm(
             ModelAndView modelAndView,
             @PathVariable int id,
-            @Valid Jobs jobs,
-            @Valid Clock clock,
-            @Valid Schedule schedule,
             @RequestParam List<Integer> clockIds,
             BindingResult bindingResult,
             HttpServletRequest request) {
@@ -66,7 +63,6 @@ public class ScheduleController {
                 s.setJobId(id);
                 s.setBizId(jobsService.findById(id).getBizId());
                 s.setClockId(clockId);
-                System.out.println(clockId);
                 scheduleService.saveSchedule(s);
             }
 

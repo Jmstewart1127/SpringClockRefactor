@@ -21,6 +21,7 @@
                         <th>Business ID</th>
                         <th>Business Name</th>
                         <th>Add Employees/Add Jobs/Delete</th>
+                        <th>View Jobs</th>
                         <th>View Employees</th>
                     </tr>
                     <tr th:each="business : ${business}">
@@ -33,6 +34,7 @@
                                 <a class="btn btn-danger" th:href="@{/hello/business/{id}/delete(id=${business.id})}"><i class="icon_close_alt2"></i></a>
                             </div>
                         </td>
+                        <td><a class="btn btn-primary" th:href="@{/hello/business/{id}/jobs(id=${business.id})}">View Jobs</a></td>
                         <td><a class="btn btn-primary" th:href="@{/hello/business/{id}/employees(id=${business.id})}">View Employees</a></td>
                     </tr>
                     </tbody>
