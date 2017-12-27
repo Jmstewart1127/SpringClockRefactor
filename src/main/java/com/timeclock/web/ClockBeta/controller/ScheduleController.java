@@ -59,11 +59,13 @@ public class ScheduleController {
         } else {
             modelAndView.setViewName("showjobs");
             for (int clockId : clockIds) {
-                Schedule s = new Schedule();
-                s.setJobId(id);
-                s.setBizId(jobsService.findById(id).getBizId());
-                s.setClockId(clockId);
-                scheduleService.saveSchedule(s);
+                if (!scheduleService.checkIfExists(clockId, id)) {
+                    Schedule s = new Schedule();
+                    s.setJobId(id);
+                    s.setBizId(jobsService.findById(id).getBizId());
+                    s.setClockId(clockId);
+                    scheduleService.saveSchedule(s);
+                }
             }
 
         }

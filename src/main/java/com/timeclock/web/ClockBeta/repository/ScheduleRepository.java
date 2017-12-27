@@ -16,4 +16,10 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
             + " WHERE clockId= :clockId")
     Iterable<Integer> findJobIdsByClockId(@Param("clockId")int clockId);
 
+    @Query("SELECT id FROM com.timeclock.web.ClockBeta.model.Schedule"
+            + " WHERE clockId= :clockId AND jobId= :jobId")
+    int checkIfScheduleExists(
+            @Param("clockId")int clockId,
+            @Param("jobId")int jobId);
+
 }
