@@ -45,27 +45,42 @@ public interface JobsRepository extends CrudRepository <Jobs, Long> {
 			+ " WHERE id= :id")
 	double findMaterialCostById(@Param("id")int id);
 
+	@Query("SELECT laborCost FROM com.timeclock.web.ClockBeta.model.Jobs"
+			+ " WHERE id= :id")
+	double findLaborCostById(@Param("id")int id);
+
 	@Modifying
 	@Transactional
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Jobs "
 			+ "SET is_paid =:isPaid WHERE id=:id")
-	void isPaid(@Param("id")int id,
-				@Param("isPaid") Boolean isPaid);
+	void isPaid(
+			@Param("id")int id,
+			@Param("isPaid") Boolean isPaid);
 
 	@Modifying
 	@Transactional
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Jobs "
 			+ "SET material_cost =:materialCost WHERE id=:id")
-	void updateMaterialCost(@Param("id")int id,
-				@Param("materialCost") double materialCost);
+	void updateMaterialCost(
+			@Param("id")int id,
+			@Param("materialCost") double materialCost);
+
+	@Modifying
+	@Transactional
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.Jobs "
+			+ "SET labor_cost =:laborCost WHERE id=:id")
+	void updateLaborCost(
+			@Param("id")int id,
+			@Param("laborCost") double laborCost);
 
 	@Modifying
 	@Transactional
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Jobs "
 			+ "SET amount_due=:amountDue, amount_paid=:amountPaid WHERE id=:id")
-	void updateAmountDue(@Param("id")int id,
-			  @Param("amountPaid")double amountPaid,
-			  @Param("amountDue")double amountDue); 
+	void updateAmountDue(
+			@Param("id")int id,
+			@Param("amountPaid")double amountPaid,
+			@Param("amountDue")double amountDue);
 	
 	@Modifying
 	@Transactional

@@ -39,7 +39,7 @@ public class ClockLogic {
 		setWeeklyTime(shift);
 	}
 	
-	public void endShift(Date start, Date end) {
+	public void calcShiftTime(Date start, Date end) {
 		setShiftTime(end.getTime() - start.getTime());
 	}
 	

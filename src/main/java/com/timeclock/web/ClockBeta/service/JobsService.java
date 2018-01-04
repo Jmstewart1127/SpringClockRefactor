@@ -80,31 +80,23 @@ public class JobsService {
 	}
 
 	/*
-	* find all jobs assigned to employee
+	* Update labor cost
 	*/
-	public Iterable<Jobs> findJobsAssignedToEmployee(int id) {
-		ArrayList<Jobs> jobs = new ArrayList<>();
-		for (int jobId : scheduleService.getJobIdsByClockId(id)) {
-			jobs.add(this.findById(jobId));
-		}
-		return jobs;
+	public void updateLaborCost(int jobId, double laborAmount) {
+		jobsRepository.updateLaborCost(jobId, jobsRepository.findLaborCostById(jobId) + laborAmount);
 	}
 
 	public void checkIfPaid(int id, double totalPaid) {
-		double totalAmountCharged = findTotalAmountChargedById(id);
-		Boolean paid = true;
-		
-		if (totalAmountCharged == totalPaid) {
-			isPaid(id, paid);
+		if (findTotalAmountChargedById(id) == totalPaid) {
+			isPaid(id, true);
 		}
 	}
 	
 	public void addPayment(String customerName, double amountPaid) {
 		PaymentLogic pl = new PaymentLogic();
 		int id = findIdByCustomerName(customerName);
-		double amountDue = findBalanceDueById(id);
 		double totalAmountPaid = findAmountPaidById(id) + amountPaid;
-		pl.makePayment(amountDue, amountPaid);
+		pl.makePayment(findBalanceDueById(id), amountPaid);
 		double newAmountDue = pl.getBalanceDue();
 		updateAmountDueById(id, totalAmountPaid, newAmountDue);
 		checkIfPaid(id, totalAmountPaid);

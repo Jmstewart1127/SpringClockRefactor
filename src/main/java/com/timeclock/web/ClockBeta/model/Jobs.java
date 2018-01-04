@@ -34,6 +34,8 @@ public class Jobs {
     private Boolean isPaid = false;
     @Column(name = "material_cost")
 	private double materialCost;
+    @Column(name = "labor_cost")
+	private double laborCost;
 	@Column(name = "completion_date")
 	private LocalDate completionDate;
 	
@@ -127,6 +129,14 @@ public class Jobs {
 
 	public void setMaterialCost(double materialCost) {
 		this.materialCost = materialCost;
+	}
+
+	public double getLaborCost() {
+		return laborCost;
+	}
+
+	public void setLaborCost(double laborCost) {
+		this.laborCost = laborCost;
 	}
 
 	public LocalDate getCompletionDate() {

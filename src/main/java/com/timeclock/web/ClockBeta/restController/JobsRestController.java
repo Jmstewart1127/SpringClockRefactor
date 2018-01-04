@@ -21,14 +21,4 @@ public class JobsRestController {
         return jobsService.findAddressByBizId(bizId);
     }
 
-    /*
-    *  Gets all job addresses by business ID
-    */
-    @RequestMapping("/rest/jobs/assigned/employee/{clockId}")
-    public Iterable<Jobs> showJobsAssignedToEmployee(@PathVariable int clockId) {
-        return jobsService.findJobsAssignedToEmployee(clockId);
-    }
-
-
-
 }

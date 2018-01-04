@@ -39,6 +39,17 @@ public class ScheduleService {
     }
 
     /*
+    * find all jobs assigned to employee
+    */
+    public Iterable<Jobs> findJobsAssignedToEmployee(int id) {
+        ArrayList<Jobs> jobs = new ArrayList<>();
+        for (int jobId : getJobIdsByClockId(id)) {
+            jobs.add(jobsService.findById(jobId));
+        }
+        return jobs;
+    }
+
+    /*
     * check if schedule already exists
     */
     public boolean checkIfExists(int clockId, int jobId) {

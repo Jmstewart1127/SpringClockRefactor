@@ -70,6 +70,24 @@ public class ClockRestController {
 	}
 
 	/*
+    * Employee Clock In (Mobile) With Job ID
+    */
+	@CrossOrigin(origins = {"http://localhost:4200", "https://spring-clock-ui.herokuapp.com"})
+	@RequestMapping(value="/rest/clock/in/{id}/{jobId}")
+	public void clockIn(@PathVariable int id, @PathVariable int jobId) {
+		clockService.clockInAtJob(id, jobId);
+	}
+
+	/*
+	* Employee Clock Out (Mobile) With Job ID
+ 	*/
+	@CrossOrigin(origins = {"http://localhost:4200", "https://spring-clock-ui.herokuapp.com"})
+	@RequestMapping(value="/rest/clock/out/{id}/{jobId}")
+	public void clockOut(@PathVariable int id, @PathVariable int jobId) {
+		clockService.clockOutFromJob(id, jobId);
+	}
+
+	/*
 	* Refresh Employee Status
 	*/
 	@CrossOrigin(origins = {"http://localhost:4200", "https://spring-clock-ui.herokuapp.com"})
