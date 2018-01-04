@@ -19,6 +19,8 @@ public interface ClockRepository extends CrudRepository <Clock, Long> {
 	Clock findByUser(String user);
 	
 	Clock findByClocked(Boolean clocked);
+
+	int findClockedInAtById(int id);
 	
 	Iterable<Clock> findByBizId(int bizId);
 

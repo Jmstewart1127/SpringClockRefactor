@@ -92,8 +92,17 @@ public class ClockRestController {
 	*/
 	@CrossOrigin(origins = {"http://localhost:4200", "https://spring-clock-ui.herokuapp.com"})
 	@RequestMapping(value="/rest/status/refresh/{id}")
-	public void refreshClock(@PathVariable int id) {
-		clockService.refreshClock(id);
+	public void refreshClockWithJobId(@PathVariable int id) {
+		clockService.refreshClockAndAddLabor(id);
 	}
+
+	/*
+	* Refresh Employee Status
+	*/
+//	@CrossOrigin(origins = {"http://localhost:4200", "https://spring-clock-ui.herokuapp.com"})
+//	@RequestMapping(value="/rest/status/refresh/{id}")
+//	public void refreshClock(@PathVariable int id) {
+//		clockService.refreshClock(id);
+//	}
 	
 }

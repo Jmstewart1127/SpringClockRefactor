@@ -117,7 +117,7 @@ public class ClockService {
 	/*
 	* Refresh with Job ID... Adds labor cost upon refresh
 	*/
-	public void refreshClockAndAddLabor(int id, int jobId) {
+	public void refreshClockAndAddLabor(int id) {
 		if (this.findClockedById(id)) {
 			Date d = new Date();
 			Date startTime = clockRepository.findStartTimeById(id);
@@ -127,6 +127,7 @@ public class ClockService {
 			} else {
 				cl.calcShiftTime(startTime, d);
 			}
+			int jobId = findClockedInAtById(id);
 			double shiftPay = cl.calculatePay(cl.longToDoubleInHours(cl.getShiftTime()), clockRepository.findPayRateById(id));
 			cl.calcWeeklyTime(clockRepository.findWeekTimeById(id), cl.getShiftTime());
 			double weeklyPay = cl.calculatePay(cl.longToDoubleInHours(cl.getWeeklyTime()), clockRepository.findPayRateById(id));
@@ -211,6 +212,10 @@ public class ClockService {
 	
 	public Clock findByClocked(Boolean clocked) {
 		return clockRepository.findByClocked(clocked);
+	}
+
+	public int findClockedInAtById(int id) {
+		return clockRepository.findClockedInAtById(id);
 	}
 	
 	public void delete(Clock clock) {
