@@ -19,13 +19,14 @@ public interface ClockRepository extends CrudRepository <Clock, Long> {
 	Clock findByUser(String user);
 	
 	Clock findByClocked(Boolean clocked);
-
-	int findClockedInAtById(int id);
 	
 	Iterable<Clock> findByBizId(int bizId);
 
 	@Query("SELECT bizId FROM com.timeclock.web.ClockBeta.model.Clock WHERE id= :id")
 	int findBizIdById(@Param("id")int id);
+
+	@Query("SELECT clockedInAt FROM com.timeclock.web.ClockBeta.model.Clock WHERE id= :id")
+	int findClockedInAtById(@Param("id")int id);
 
 	@Query("SELECT clocked FROM com.timeclock.web.ClockBeta.model.Clock WHERE id= :id")
 	Boolean findClockedById(@Param("id")int id);
