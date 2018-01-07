@@ -64,6 +64,9 @@ public class JobsService {
 	}
 	
 	public void deleteJob(int id) {
+		for (Schedule s : scheduleService.getScheduleByJobId(id)) {
+			scheduleService.deleteById(s);
+		}
 		jobsRepository.deleteJob(id);
 	}
 	

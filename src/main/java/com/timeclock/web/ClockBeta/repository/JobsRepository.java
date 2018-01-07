@@ -16,8 +16,6 @@ public interface JobsRepository extends CrudRepository <Jobs, Long> {
 	Jobs findByCategory(String category);
 	
 	Jobs findByCustomerName(String customerName);
-	
-	Jobs deleteById(int id);
 
 	Iterable<Jobs> findByBizId(int bizId);
 

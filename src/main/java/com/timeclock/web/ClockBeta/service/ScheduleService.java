@@ -24,15 +24,22 @@ public class ScheduleService {
     /*
     * find schedule by employee
     */
-    public Iterable<Schedule> getScheduleByClockId(int id) {
-        return scheduleRepository.findScheduleByClockId(id);
+    public Iterable<Schedule> getScheduleByClockId(int clockId) {
+        return scheduleRepository.findScheduleByClockId(clockId);
+    }
+
+    /*
+    * find schedule by job
+    */
+    public Iterable<Schedule> getScheduleByJobId(int jobId) {
+        return scheduleRepository.findScheduleByClockId(jobId);
     }
 
     /*
     * find all schedules by business
     */
-    public Iterable<Schedule> getScheduleByBizId(int id) {
-        return scheduleRepository.findScheduleByBizId(id);
+    public Iterable<Schedule> getScheduleByBizId(int bizId) {
+        return scheduleRepository.findScheduleByBizId(bizId);
     }
 
     /*
@@ -69,6 +76,13 @@ public class ScheduleService {
     */
     public boolean checkIfExists(int clockId, int jobId) {
         return scheduleRepository.existsByClockIdAndJobId(clockId, jobId);
+    }
+
+    /*
+    * delete schedule by id
+    */
+    public void deleteById(Schedule schedule) {
+        scheduleRepository.delete(schedule);
     }
 
     public Schedule saveSchedule(Schedule schedule) {
