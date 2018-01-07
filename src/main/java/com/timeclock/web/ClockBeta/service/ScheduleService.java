@@ -1,5 +1,6 @@
 package com.timeclock.web.ClockBeta.service;
 
+import com.timeclock.web.ClockBeta.model.Clock;
 import com.timeclock.web.ClockBeta.model.Jobs;
 import com.timeclock.web.ClockBeta.model.Schedule;
 import com.timeclock.web.ClockBeta.repository.ScheduleRepository;
@@ -13,6 +14,9 @@ public class ScheduleService {
 
     @Autowired
     ScheduleRepository scheduleRepository;
+
+    @Autowired
+    ClockService clockService;
 
     @Autowired
     JobsService jobsService;
@@ -47,6 +51,17 @@ public class ScheduleService {
             jobs.add(jobsService.findById(jobId));
         }
         return jobs;
+    }
+
+    /*
+    * find all employees assigned to job
+    */
+    public Iterable<Clock> findAllEmployeesOnJob(int jobId) {
+        ArrayList<Clock> clock = new ArrayList<>();
+        for (int employee : scheduleRepository.findClockIdsByJobId(jobId)) {
+            clock.add(clockService.findUserById(employee));
+        }
+        return clock;
     }
 
     /*

@@ -1,5 +1,6 @@
 package com.timeclock.web.ClockBeta.restController;
 
+import com.timeclock.web.ClockBeta.model.Clock;
 import com.timeclock.web.ClockBeta.model.Jobs;
 import com.timeclock.web.ClockBeta.model.Schedule;
 import com.timeclock.web.ClockBeta.service.ScheduleService;
@@ -16,7 +17,7 @@ public class ScheduleRestController {
     ScheduleService scheduleService;
 
     /*
-    *  Gets all jobs scheduled to user by Business ID
+    * Gets all jobs scheduled to user by Business ID
     */
     @CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
     @RequestMapping("/rest/jobs/employee/schedule/{clockId}")
@@ -25,7 +26,7 @@ public class ScheduleRestController {
     }
 
     /*
-    *  Gets all job addresses by business ID
+    * Gets all job addresses by business ID
     */
     @CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
     @RequestMapping("/rest/jobs/assigned/employee/{clockId}")
@@ -40,5 +41,14 @@ public class ScheduleRestController {
     @RequestMapping("/rest/jobs/employee/schedule/jobs/{clockId}")
     public Iterable<Integer> showJobAddressByClockId(@PathVariable int clockId) {
         return scheduleService.getJobIdsByClockId(clockId);
+    }
+
+    /*
+    * Gets all job ID's assigned to user
+    */
+    @CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
+    @RequestMapping("/rest/jobs/assigned/employees/{jobId}")
+    public Iterable<Clock> showEmployeesAssignedToJob(@PathVariable int jobId) {
+        return scheduleService.findAllEmployeesOnJob(jobId);
     }
 }

@@ -97,6 +97,15 @@ public class ClockRestController {
 	}
 
 	/*
+	* Delete User By ID
+	*/
+	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
+	@RequestMapping(value="/rest/clock/delete/{id}")
+	public void deleteClockById(@PathVariable int id) {
+		clockService.deleteById(id);
+	}
+
+	/*
 	* Refresh Employee Status
 	*/
 //	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})

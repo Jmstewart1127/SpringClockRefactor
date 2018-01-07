@@ -186,6 +186,14 @@ public class ClockService {
 		return allEmployees;
 	}
 
+	/*
+	* Delete user by id
+	*/
+	public void deleteById(int id) {
+		clockRepository.delete(findUserById(id));
+	}
+
+
 	public void resetPayPeriod(int bizId) {
 		clockRepository.resetClock(bizId);
 	}

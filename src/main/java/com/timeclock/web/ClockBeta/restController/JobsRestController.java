@@ -23,4 +23,13 @@ public class JobsRestController {
         return jobsService.findAddressByBizId(bizId);
     }
 
+    /*
+    * Gets all jobs by buisness ID
+    */
+    @CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
+    @RequestMapping("/rest/jobs/all/{bizId}")
+    public Iterable<Jobs> showJobsByBizId(@PathVariable int bizId) {
+        return jobsService.findByBizId(bizId);
+    }
+
 }
