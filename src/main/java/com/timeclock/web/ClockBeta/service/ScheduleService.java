@@ -55,7 +55,9 @@ public class ScheduleService {
     public Iterable<Jobs> findJobsAssignedToEmployee(int id) {
         ArrayList<Jobs> jobs = new ArrayList<>();
         for (int jobId : getJobIdsByClockId(id)) {
-            jobs.add(jobsService.findById(jobId));
+            if (jobsService.findById(jobId) != null) {
+                jobs.add(jobsService.findById(jobId));
+            }
         }
         return jobs;
     }
