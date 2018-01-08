@@ -43,7 +43,8 @@ public class ScheduleService {
     }
 
     /*
-    * find all jobs assigned to employee
+    * find all job id's of jobs assigned to employee
+    * This and the method below could be refactored into a combination of the two.
     */
     public Iterable<Integer> getJobIdsByClockId(int id) {
         return scheduleRepository.findJobIdsByClockId(id);

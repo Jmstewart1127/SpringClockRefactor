@@ -15,8 +15,6 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
     Iterable<Schedule> findScheduleByClockId(int clockId);
 
     Iterable<Schedule> findScheduleByClockIdAndJobId(int clockId, int jobId);
-//
-//    void deleteSchedule(Schedule schedule);
 
     boolean existsByClockIdAndJobId(int clockId, int jobId);
 

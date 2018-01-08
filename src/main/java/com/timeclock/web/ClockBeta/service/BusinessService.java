@@ -37,5 +37,7 @@ public class BusinessService {
 	public void saveBusiness(Business business) {
 		businessRepository.save(business);
 	}
+
+	//add material and labor cost update methods
 	
 }

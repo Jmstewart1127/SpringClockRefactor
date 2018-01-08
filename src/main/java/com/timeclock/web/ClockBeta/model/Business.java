@@ -18,6 +18,10 @@ public class Business {
 	private String bizName;
     @Column(name = "admin_name")
 	private String adminName;
+    @Column(name = "ytd_labor_cost")
+	private double ytdLaborCost;
+    @Column(name = "ytd_material_cost")
+	private double ytdMaterialCost;
 	
     public int getId() {
 		return id;
@@ -50,5 +54,20 @@ public class Business {
 	public void setAdminName(String adminName) {
 		this.adminName = adminName;
 	}
-	
+
+	public double getYtdLaborCost() {
+		return ytdLaborCost;
+	}
+
+	public void setYtdLaborCost(double ytdLaborCost) {
+		this.ytdLaborCost = ytdLaborCost;
+	}
+
+	public double getYtdMaterialCost() {
+		return ytdMaterialCost;
+	}
+
+	public void setYtdMaterialCost(double ytdMaterialCost) {
+		this.ytdMaterialCost = ytdMaterialCost;
+	}
 }
