@@ -19,9 +19,9 @@ public class Business {
     @Column(name = "admin_name")
 	private String adminName;
     @Column(name = "ytd_labor_cost")
-	private double ytdLaborCost;
+	private double ytdLaborCost = 0;
     @Column(name = "ytd_material_cost")
-	private double ytdMaterialCost;
+	private double ytdMaterialCost = 0;
 	
     public int getId() {
 		return id;
