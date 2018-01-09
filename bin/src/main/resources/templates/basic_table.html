@@ -708,19 +708,19 @@
 								<th>Pay Rate</th>
 								<th>Clocked In</th>
 							</tr>
-    						<tr th:each="clock : ${clock}">
-        						<td th:text="${clock.id}">1</td>
-        						<td th:text="${clock.user}">1</td>
-        						<td th:text="${clock.clockIn}">1</td>
-        						<td th:text="${clock.clockOut}">1</td>
-        						<td th:text="${clock.weekTimeInHours}">1</td>
-        						<td th:text="${clock.totalPay}">1</td>
-        						<td th:text="${clock.payRate}">1</td>
-        						<td th:text="${clock.clocked}">1</td>
+    						<tr th:each="employee : ${employee}">
+        						<td th:text="${employee.id}">1</td>
+        						<td th:text="${employee.user}">1</td>
+        						<td th:text="${employee.clockInTime}">1</td>
+        						<td th:text="${employee.clockOutTime}">1</td>
+        						<td th:text="${employee.weekTimeInHours}">1</td>
+        						<td th:text="${employee.totalPay}">1</td>
+        						<td th:text="${employee.payRate}">1</td>
+        						<td th:text="${employee.isClockedIn}">1</td>
         						<td>
         						  <div class="btn-group">
-                                      <a class="btn btn-primary" th:href="@{/employee/{id}/update(id=${clock.id})}"><i class="icon_plus_alt2"></i></a>
-                                      <a class="btn btn-danger" th:href="@{/employee/{id}/delete(id=${clock.id})}"><i class="icon_close_alt2"></i></a>
+                                      <a class="btn btn-primary" th:href="@{/employee/{id}/update(id=${employee.id})}"><i class="icon_plus_alt2"></i></a>
+                                      <a class="btn btn-danger" th:href="@{/employee/{id}/delete(id=${employee.id})}"><i class="icon_close_alt2"></i></a>
                                   </div>
         						</td>
     						</tr>

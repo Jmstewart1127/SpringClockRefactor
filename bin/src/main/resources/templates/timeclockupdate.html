@@ -8,12 +8,12 @@
 <body>
 <aside th:include="sidebar :: sidebar"></aside>
 <nav th:include="nav :: nav" class="navbar navbar-default"></nav>
-	<form th:action="@{/clock}" method="POST">
+	<form th:action="@{/employee}" method="POST">
 		<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
 	</form>	
 	
 	<div class="container">
-		<form th:action="@{/}" th:object="${clock}" method="POST" class="form-signin">
+		<form th:action="@{/}" th:object="${employee}" method="POST" class="form-signin">
 			<h3 class="Clock">Enter employee ID to end shift.</h3>
 			<br/>
 			<h3>Status Updated</h3> 

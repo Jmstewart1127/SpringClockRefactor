@@ -23,10 +23,10 @@
                     <th>Employee Name</th>
                     <th>Add Employee</th>
                 </tr>
-                <tr th:each="clock : ${clock}">
-                    <td th:text="${clock.id}">1</td>
-                    <td th:text="${clock.user}">1</td>
-                    <td><input type="checkbox" name="clockIds" th:value="${clock.id}"></td>
+                <tr th:each="employee : ${employee}">
+                    <td th:text="${employee.id}">1</td>
+                    <td th:text="${employee.employeeName}">1</td>
+                    <td><input type="checkbox" name="clockIds" th:value="${employee.id}"></td>
                 </tr>
                 </tbody>
             </table>

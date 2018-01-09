@@ -2,51 +2,50 @@ package com.timeclock.web.ClockBeta.repository;
 
 import java.util.Date;
 
+import com.timeclock.web.ClockBeta.model.Employee;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.timeclock.web.ClockBeta.model.Clock;
+public interface EmployeeRepository extends CrudRepository <Employee, Long> {
+	
+	Iterable<Employee> findById(int id);
+	
+	Employee findUserById(int id);
+	
+	Employee findByEmployeeName(String employeeName);
+	
+	Employee findByIsClockedIn(Boolean clocked);
 
-public interface ClockRepository extends CrudRepository <Clock, Long> {
-	
-	Iterable<Clock> findById(int id);
-	
-	Clock findUserById(int id);
-	
-	Clock findByUser(String user);
-	
-	Clock findByClocked(Boolean clocked);
-	
-	Iterable<Clock> findByBizId(int bizId);
+	Iterable<Employee> findByBusinessId(int businessId);
 
-	@Query("SELECT bizId FROM com.timeclock.web.ClockBeta.model.Clock WHERE id= :id")
-	int findBizIdById(@Param("id")int id);
+	@Query("SELECT businessId FROM com.timeclock.web.ClockBeta.model.Employee WHERE id= :id")
+	int findBusinessIdById(@Param("id")int id);
 
-	@Query("SELECT clockedInAt FROM com.timeclock.web.ClockBeta.model.Clock WHERE id= :id")
-	int findClockedInAtById(@Param("id")int id);
+	@Query("SELECT jobIdClockedInAt FROM com.timeclock.web.ClockBeta.model.Employee WHERE id= :id")
+	int findJobIdClockedInAtById(@Param("id")int id);
 
-	@Query("SELECT clocked FROM com.timeclock.web.ClockBeta.model.Clock WHERE id= :id")
-	Boolean findClockedById(@Param("id")int id);
+	@Query("SELECT isClockedIn FROM com.timeclock.web.ClockBeta.model.Employee WHERE id= :id")
+	Boolean findIsClockedInById(@Param("id")int id);
 	
-	@Query("SELECT payRate FROM com.timeclock.web.ClockBeta.model.Clock WHERE id= :id")
+	@Query("SELECT payRate FROM com.timeclock.web.ClockBeta.model.Employee WHERE id= :id")
 	double findPayRateById(@Param("id")int id);
 	
-	@Query("SELECT clockIn FROM com.timeclock.web.ClockBeta.model.Clock WHERE id= :id")
+	@Query("SELECT clockInTime FROM com.timeclock.web.ClockBeta.model.Employee WHERE id= :id")
 	Date findStartTimeById(@Param("id")int id);
 	
-	@Query("SELECT weekTime FROM com.timeclock.web.ClockBeta.model.Clock WHERE id= :id")
+	@Query("SELECT weekTime FROM com.timeclock.web.ClockBeta.model.Employee WHERE id= :id")
 	Long findWeekTimeById(@Param("id")int id);
 
-	@Query("SELECT lastRefresh FROM com.timeclock.web.ClockBeta.model.Clock WHERE id= :id")
+	@Query("SELECT lastRefresh FROM com.timeclock.web.ClockBeta.model.Employee WHERE id= :id")
 	Date findLastRefreshById(@Param("id")int id);
 	
 	@Modifying
 	@Transactional
-	@Query("UPDATE com.timeclock.web.ClockBeta.model.Clock "
-			+ "SET clock_in=:startTime, last_refresh=:lastRefresh, clocked=true WHERE id=:id")
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee "
+			+ "SET clock_in=:startTime, last_refresh=:lastRefresh, is_clocked_in=true WHERE id=:id")
 	void updateClock(
 			@Param("id")int id,
 			@Param("startTime")Date startTime,
@@ -54,7 +53,7 @@ public interface ClockRepository extends CrudRepository <Clock, Long> {
 
 	@Modifying
 	@Transactional
-	@Query("UPDATE com.timeclock.web.ClockBeta.model.Clock SET "
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee SET "
 			+ "clock_out=:endTime, shift_time=:shiftTime, week_time=:weeklyTime, "
 			+ "week_time_in_hours=:weeklyTimeInHours, total_pay=:totalPay, clocked=false WHERE id=:id")
 	void updateClock(
@@ -66,11 +65,11 @@ public interface ClockRepository extends CrudRepository <Clock, Long> {
 			@Param("totalPay")double totalPay);
 
 	/*
-	* Clock In With Job ID
+	* Employee In With Job ID
 	*/
 	@Modifying
 	@Transactional
-	@Query("UPDATE com.timeclock.web.ClockBeta.model.Clock "
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee "
 			+ "SET clock_in=:startTime, clocked_in_at=:clockedInAt, last_refresh=:lastRefresh, " +
 			"clocked=true WHERE id=:id")
 	void clockIn(
@@ -80,11 +79,11 @@ public interface ClockRepository extends CrudRepository <Clock, Long> {
 			@Param("lastRefresh")Date lastRefresh);
 
 	/*
-	* Clock Out With Job ID
+	* Employee Out With Job ID
 	*/
 	@Modifying
 	@Transactional
-	@Query("UPDATE com.timeclock.web.ClockBeta.model.Clock SET "
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee SET "
 			+ "clocked_in_at=:clockedInAt, clock_out=:endTime, shift_time=:shiftTime, week_time=:weeklyTime, "
 			+ "week_time_in_hours=:weeklyTimeInHours, total_pay=:totalPay, clocked=false WHERE id=:id")
 	void clockOut(
@@ -98,7 +97,7 @@ public interface ClockRepository extends CrudRepository <Clock, Long> {
 
 	@Modifying
 	@Transactional
-	@Query("UPDATE com.timeclock.web.ClockBeta.model.Clock SET "
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee SET "
 			+ "shift_time=:shiftTime, week_time=:weeklyTime, clocked_in_at=:clockedInAt,"
 			+ "week_time_in_hours=:weeklyTimeInHours, total_pay=:totalPay, "
 			+ "last_refresh=:lastRefresh, clocked=true WHERE id=:id")
@@ -113,7 +112,7 @@ public interface ClockRepository extends CrudRepository <Clock, Long> {
 
 	@Modifying
 	@Transactional
-	@Query("UPDATE com.timeclock.web.ClockBeta.model.Clock SET "
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee SET "
 			+ "shift_time=:shiftTime, week_time=:weeklyTime, "
 			+ "week_time_in_hours=:weeklyTimeInHours, total_pay=:totalPay, "
 			+ "last_refresh=:lastRefresh, clocked=true WHERE id=:id")
@@ -127,14 +126,14 @@ public interface ClockRepository extends CrudRepository <Clock, Long> {
 
 	@Modifying
 	@Transactional
-	@Query("UPDATE com.timeclock.web.ClockBeta.model.Clock SET "
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee SET "
 			+ "clock_out=null, clock_in=null, shift_time=0, week_time=0, "
 			+ "week_time_in_hours=0, total_pay=0, clocked=false WHERE bizId=:bizId")
 	void resetClock(@Param("bizId")int bizId);
 	
 	@Modifying
 	@Transactional
-	@Query("DELETE FROM com.timeclock.web.ClockBeta.model.Clock WHERE id=:id")
+	@Query("DELETE FROM com.timeclock.web.ClockBeta.model.Employee WHERE id=:id")
 	void deleteClock(@Param("id")int id);
 	  
 }

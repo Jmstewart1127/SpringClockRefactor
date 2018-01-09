@@ -4,9 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.timeclock.web.ClockBeta.logistics.UserAuthDetails;
-import com.timeclock.web.ClockBeta.model.Business;
-import com.timeclock.web.ClockBeta.model.Clock;
-import com.timeclock.web.ClockBeta.service.ClockService;
+import com.timeclock.web.ClockBeta.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -25,7 +23,7 @@ public class UserController {
 	UserService userService;
 
 	@Autowired
-    ClockService clockService;
+	EmployeeService employeeService;
 
 	@Autowired
     UserAuthDetails userAuthDetails;

@@ -1,45 +1,45 @@
 package com.timeclock.web.ClockBeta.restController;
 
+import com.timeclock.web.ClockBeta.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.timeclock.web.ClockBeta.model.Clock;
-import com.timeclock.web.ClockBeta.service.ClockService;
+import com.timeclock.web.ClockBeta.service.EmployeeService;
 
 @RestController
-public class ClockRestController {
+public class EmployeeRestController {
 	
 	@Autowired
-	ClockService clockService;
+	EmployeeService employeeService;
 	
 	/*
-	 * Displays all employee data by business id
+	 * Displays All Employee Data by Business ID
 	 */
 	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
 	@RequestMapping("/rest/employees/{id}")
-	public Iterable<Clock> showEmployeesByBizId(@PathVariable int id) {
-		return clockService.findByBizId(id);
+	public Iterable<Employee> showEmployeesByBizId(@PathVariable int id) {
+		return employeeService.findEmployeeByBizId(id);
 	}
 
 	/*
-	* Gets user by id
+	* Gets Employee By ID
 	*/
 	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
 	@RequestMapping("/rest/get/employee/{id}")
-	public Iterable<Clock> getEmployee(@PathVariable int id) {
-		return clockService.findById(id);
+	public Iterable<Employee> getEmployee(@PathVariable int id) {
+		return employeeService.findById(id);
 	}
 	
 	/*
-	* Get all employees by admin id 
+	* Get All Employees By Admin ID
 	*/
 	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
 	@RequestMapping("/rest/get/all/employees/{id}")
-	public Iterable<Clock> getEmployees(@PathVariable int id) {
-		return clockService.findAllEmployeesByAdminId(id);
+	public Iterable<Employee> getEmployees(@PathVariable int id) {
+		return employeeService.findAllEmployeesByAdminId(id);
 	}
 
 	/*
@@ -48,25 +48,25 @@ public class ClockRestController {
 	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
 	@RequestMapping(value="/rest/web/clock/in/{id}")
 	public void handleClockInOut(@PathVariable int id) {
-		clockService.handleClockInOut(id);
+		employeeService.handleClockInOut(id);
 	}
 
 	/*
- 	* Employee Clock In (Mobile)
+ 	* Employee Clock In (Mobile) without job id for apps not yet updated
  	*/
 	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
 	@RequestMapping(value="/rest/clock/in/{id}")
 	public void clockIn(@PathVariable int id) {
-		clockService.clockIn(id);
+		employeeService.clockIn(id);
 	}
 
 	/*
-	* Employee Clock Out (Mobile)
+	* Employee Clock Out (Mobile) without job id for apps not yet updated
  	*/
 	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
 	@RequestMapping(value="/rest/clock/out/{id}")
 	public void clockOut(@PathVariable int id) {
-		clockService.clockOut(id);
+		employeeService.clockOut(id);
 	}
 
 	/*
@@ -75,7 +75,7 @@ public class ClockRestController {
 	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
 	@RequestMapping(value="/rest/clock/in/{id}/{jobId}")
 	public void clockIn(@PathVariable int id, @PathVariable int jobId) {
-		clockService.clockInAtJob(id, jobId);
+		employeeService.clockInAtJob(id, jobId);
 	}
 
 	/*
@@ -84,7 +84,7 @@ public class ClockRestController {
 	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
 	@RequestMapping(value="/rest/clock/out/{id}/{jobId}")
 	public void clockOut(@PathVariable int id, @PathVariable int jobId) {
-		clockService.clockOutFromJob(id, jobId);
+		employeeService.clockOutFromJob(id, jobId);
 	}
 
 	/*
@@ -92,8 +92,8 @@ public class ClockRestController {
 	*/
 	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
 	@RequestMapping(value="/rest/status/refresh/{id}")
-	public void refreshClockWithJobId(@PathVariable int id) {
-		clockService.refreshClockAndAddLabor(id);
+	public void refreshEmployeeStatusWithJobId(@PathVariable int id) {
+		employeeService.refreshClockAndAddLabor(id);
 	}
 
 	/*
@@ -101,8 +101,8 @@ public class ClockRestController {
 	*/
 	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
 	@RequestMapping(value="/rest/clock/delete/{id}")
-	public void deleteClockById(@PathVariable int id) {
-		clockService.deleteById(id);
+	public void deleteEmployeeById(@PathVariable int id) {
+		employeeService.deleteById(id);
 	}
 
 	/*

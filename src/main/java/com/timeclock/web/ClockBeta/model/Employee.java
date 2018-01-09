@@ -9,29 +9,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Clock {
+public class Employee {
 	
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-    @Column(name = "biz_id")
-    private int bizId;
+    @Column(name = "business_id")
+    private int businessId;
     @Column(name = "clocked_in_at")
-	private int clockedInAt;
-    @Column(name = "user")
-	private String user;
-    @Column(name = "clock_in")
-	private Date clockIn;
-    @Column(name = "clock_out")
-	private Date clockOut;
+	private int jobIdClockedInAt;
+    @Column(name = "employee_name")
+	private String employeeName;
+    @Column(name = "clock_in_time")
+	private Date clockInTime;
+    @Column(name = "clock_out_time")
+	private Date clockOutTime;
     @Column(name = "shift_time")
 	private long shiftTime; 
     @Column(name = "week_time")
 	private long weekTime;
     @Column(name = "week_time_in_hours")
     private double weekTimeInHours;
-    @Column(name = "is_clocked")
-    private Boolean clocked = false;
+    @Column(name = "is_clocked_in")
+    private Boolean isClockedIn = false;
     @Column(name = "pay_rate")
     private double payRate;
     @Column(name = "total_pay")
@@ -40,7 +40,7 @@ public class Clock {
 	private Date lastRefresh;
 
 
-	public Clock() {
+	public Employee() {
 		super();
 	}
 
@@ -52,44 +52,44 @@ public class Clock {
 		this.id = id;
 	}
 	
-	public int getBizId() {
-		return bizId;
-	}
-	
-	public void setBizId(int bizId) {
-		this.bizId = bizId;
+	public int getBusinessId() {
+		return businessId;
 	}
 
-	public int getClockedInAt() {
-		return clockedInAt;
+	public void setBusinessId(int businessId) {
+		this.businessId = businessId;
 	}
 
-	public void setClockedInAt(int clockedInAt) {
-		this.clockedInAt = clockedInAt;
+	public int getjobIdClockedInAt() {
+		return jobIdClockedInAt;
 	}
 
-	public String getUser() {
-		return user;
+	public void setJobIdClockedInAt(int jobIdClockedInAt) {
+		this.jobIdClockedInAt = jobIdClockedInAt;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public String getEmployeeName() {
+		return employeeName;
 	}
 
-	public Date getClockIn() {
-		return clockIn;
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 
-	public void setClockIn(Date clockIn) {
-		this.clockIn = clockIn;
+	public Date getClockInTime() {
+		return clockInTime;
 	}
 
-	public Date getClockOut() {
-		return clockOut;
+	public void setClockInTime(Date clockInTime) {
+		this.clockInTime = clockInTime;
 	}
 
-	public void setClockOut(Date clockOut) {
-		this.clockOut = clockOut;
+	public Date getClockOutTime() {
+		return clockOutTime;
+	}
+
+	public void setClockOutTime(Date clockOutTime) {
+		this.clockOutTime = clockOutTime;
 	}
 
 	public long getShiftTime() {
@@ -116,12 +116,12 @@ public class Clock {
 		this.weekTimeInHours = weekTimeInHours;
 	}
 
-	public Boolean getClocked() {
-		return clocked;
+	public Boolean getIsClockedIn() {
+		return isClockedIn;
 	}
 
-	public void setClocked(Boolean clocked) {
-		this.clocked = clocked;
+	public void setIsClockedIn(Boolean isClockedIn) {
+		this.isClockedIn = isClockedIn;
 	}
 
 	public double getPayRate() {

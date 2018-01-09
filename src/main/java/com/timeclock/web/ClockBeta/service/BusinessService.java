@@ -26,7 +26,7 @@ public class BusinessService {
 		return businessRepository.findByBizName(bizName);
 	}
 
-	public Iterable<Business> findByCurrentUserId(Authentication auth) {
+	public Iterable<Business> findByLoggedInUserId(Authentication auth) {
 	    return businessRepository.findByAdminId(userAuthDetails.getUserId(auth));
     }
 
@@ -34,10 +34,20 @@ public class BusinessService {
         return businessRepository.findByAdminId(id);
     }
 
+    public void updateYtdLaborCost(int businessId, double additionalLaborCost) {
+		double currentLaborCost = businessRepository.findYtdLaborCostById(businessId);
+		double newLaborCost = currentLaborCost + additionalLaborCost;
+		businessRepository.updateYtdLaborCost(businessId, newLaborCost);
+	}
+
+	public void updateYtdMaterialCost(int businessId, double additionalMaterialCost) {
+		double currentMaterialCost = businessRepository.findYtdMaterialCostById(businessId);
+		double newMaterialCost = currentMaterialCost + additionalMaterialCost;
+		businessRepository.updateYtdMaterialCost(businessId, newMaterialCost);
+	}
+
 	public void saveBusiness(Business business) {
 		businessRepository.save(business);
 	}
-
-	//add material and labor cost update methods
 	
 }

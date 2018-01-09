@@ -25,9 +25,9 @@ public class HistoryService {
 			long shiftTime
 			) {
 		History h = new History();
-		h.setUserId(userId);
-		h.setClockIn(startTime);
-		h.setClockOut(endTime);
+		h.setEmployeeId(userId);
+		h.setClockInTime(startTime);
+		h.setClockOutTime(endTime);
 		h.setShiftTime(shiftTime);
 		historyRepository.save(h);
 	}

@@ -1,6 +1,6 @@
 package com.timeclock.web.ClockBeta.restController;
 
-import com.timeclock.web.ClockBeta.model.Clock;
+import com.timeclock.web.ClockBeta.model.Employee;
 import com.timeclock.web.ClockBeta.model.Jobs;
 import com.timeclock.web.ClockBeta.model.Schedule;
 import com.timeclock.web.ClockBeta.service.ScheduleService;
@@ -48,7 +48,7 @@ public class ScheduleRestController {
     */
     @CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
     @RequestMapping("/rest/jobs/assigned/employees/{jobId}")
-    public Iterable<Clock> showEmployeesAssignedToJob(@PathVariable int jobId) {
+    public Iterable<Employee> showEmployeesAssignedToJob(@PathVariable int jobId) {
         return scheduleService.findAllEmployeesOnJob(jobId);
     }
 }

@@ -26,7 +26,7 @@
                     </tr>
                     <tr th:each="business : ${business}">
                         <td th:text="${business.id}">1</td>
-                        <td th:text="${business.bizName}"></td>
+                        <td th:text="${business.businessName}"></td>
                         <td>
                             <div class="btn-group">
                                 <a class="btn btn-primary" th:href="@{/hello/business/{id}/adduser(id=${business.id})}"><i class="icon_profile"></i></a>

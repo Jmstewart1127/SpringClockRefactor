@@ -1,9 +1,9 @@
 package com.timeclock.web.ClockBeta.controller;
 
-import com.timeclock.web.ClockBeta.model.Clock;
+import com.timeclock.web.ClockBeta.model.Employee;
 import com.timeclock.web.ClockBeta.model.Jobs;
 import com.timeclock.web.ClockBeta.model.Schedule;
-import com.timeclock.web.ClockBeta.service.ClockService;
+import com.timeclock.web.ClockBeta.service.EmployeeService;
 import com.timeclock.web.ClockBeta.service.JobsService;
 import com.timeclock.web.ClockBeta.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,17 +30,17 @@ public class ScheduleController {
     JobsService jobsService;
 
     @Autowired
-    ClockService clockService;
+    EmployeeService employeeService;
 
     @RequestMapping(value="/hello/jobs/{id}/add/employees", method = RequestMethod.GET)
     public ModelAndView showUpdateJobsPage(
             ModelAndView modelAndView,
             Authentication auth,
             @Valid Jobs jobs,
-            @Valid Clock clock,
+            @Valid Employee employee,
             @Valid Schedule schedule) {
         modelAndView.addObject("jobs", jobs);
-        modelAndView.addObject("clock", clockService.findAllEmployeesByAdmin(auth));
+        modelAndView.addObject("employee", employeeService.findAllEmployeesByAdmin(auth));
         modelAndView.addObject("schedule", schedule);
         modelAndView.setViewName("scheduleemployees");
         return modelAndView;
@@ -64,8 +64,8 @@ public class ScheduleController {
                 if (!scheduleService.checkIfExists(clockId, id)) {
                     Schedule s = new Schedule();
                     s.setJobId(id);
-                    s.setBizId(jobsService.findById(id).getBizId());
-                    s.setClockId(clockId);
+                    s.setBusinessId(jobsService.findById(id).getBusinessId());
+                    s.setEmployeeId(clockId);
                     scheduleService.saveSchedule(s);
                 }
             }

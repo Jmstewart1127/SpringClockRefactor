@@ -30,8 +30,8 @@ public class BusinessRestController {
     @CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
     @RequestMapping(value = "/rest/user/businesses")
     public Iterable<Business> getBusinessesByCurrentLogin(Authentication auth) {
-        System.out.println(":: " + businessService.findByCurrentUserId(auth));
-        return businessService.findByCurrentUserId(auth);
+        System.out.println(":: " + businessService.findByLoggedInUserId(auth));
+        return businessService.findByLoggedInUserId(auth);
     }
 
 }

@@ -14,8 +14,8 @@ public class Business {
 	private int id;
     @Column(name = "admin_id")
     private int adminId;
-    @Column(name = "biz_name")
-	private String bizName;
+    @Column(name = "business_name")
+	private String businessName;
     @Column(name = "admin_name")
 	private String adminName;
     @Column(name = "ytd_labor_cost")
@@ -39,12 +39,12 @@ public class Business {
 		this.adminId = adminId;
 	}
 
-	public String getBizName() {
-		return bizName;
+	public String getBusinessName() {
+		return businessName;
 	}
 	
-	public void setBizName(String bizName) {
-		this.bizName = bizName;
+	public void setBusinessName(String businessName) {
+		this.businessName = businessName;
 	}
 	
 	public String getAdminName() {

@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.timeclock.web.ClockBeta.model.Business;
-import com.timeclock.web.ClockBeta.model.Material;
 import com.timeclock.web.ClockBeta.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,7 +45,7 @@ public class JobsController {
 			modelAndView.setViewName("newuser");		
 		} else {
 			Jobs j = new Jobs();
-			j.setBizId(id);
+			j.setBusinessId(id);
 			j.setCustomerName(jobs.getCustomerName());
 			j.setCategory(jobs.getCategory());
 			j.setJobAddress(jobs.getJobAddress());

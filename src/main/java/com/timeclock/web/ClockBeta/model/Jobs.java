@@ -13,8 +13,8 @@ public class Jobs {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	@Column(name = "biz_id")
-	private int bizId;
+	@Column(name = "business_id")
+	private int businessId;
     @Column(name = "job_name")
     private String jobName;
     @Column(name = "job_address")
@@ -50,12 +50,12 @@ public class Jobs {
 		this.id = id;
 	}
 
-	public int getBizId() {
-		return bizId;
+	public int getBusinessId() {
+		return businessId;
 	}
 
-	public void setBizId(int bizId) {
-		this.bizId = bizId;
+	public void setBusinessId(int businessId) {
+		this.businessId = businessId;
 	}
 
 	public String getJobName() {

@@ -14,22 +14,22 @@ public class History {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	@Column(name = "user_id")
-	private int userId;
-    @Column(name = "biz_id")
-    private int bizId;
+	@Column(name = "employee_id")
+	private int employeeId;
+    @Column(name = "business_id")
+    private int businessId;
     @Column(name = "user")
 	private String user;
-    @Column(name = "clock_in")
-	private Date clockIn;
-    @Column(name = "clock_out")
-	private Date clockOut;
+    @Column(name = "clock_in_time")
+	private Date clockInTime;
+    @Column(name = "clock_out_time")
+	private Date clockOutTime;
     @Column(name = "shift_time")
 	private long shiftTime; 
     @Column(name = "week_time")
 	private long weekTime;
     @Column(name = "is_clocked")
-    private Boolean clocked;
+    private Boolean isClockedIn;
 	
     public History() {
     	super();
@@ -43,20 +43,20 @@ public class History {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
+	public int getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
 
-	public int getBizId() {
-		return bizId;
+	public int getBusinessId() {
+		return businessId;
 	}
 
-	public void setBizId(int bizId) {
-		this.bizId = bizId;
+	public void setBusinessId(int businessId) {
+		this.businessId = businessId;
 	}
 
 	public String getUser() {
@@ -67,20 +67,20 @@ public class History {
 		this.user = user;
 	}
 
-	public Date getClockIn() {
-		return clockIn;
+	public Date getClockInTime() {
+		return clockInTime;
 	}
 
-	public void setClockIn(Date clockIn) {
-		this.clockIn = clockIn;
+	public void setClockInTime(Date clockInTime) {
+		this.clockInTime = clockInTime;
 	}
 
-	public Date getClockOut() {
-		return clockOut;
+	public Date getClockOutTime() {
+		return clockOutTime;
 	}
 
-	public void setClockOut(Date clockOut) {
-		this.clockOut = clockOut;
+	public void setClockOutTime(Date clockOutTime) {
+		this.clockOutTime = clockOutTime;
 	}
 
 	public long getShiftTime() {
@@ -99,12 +99,12 @@ public class History {
 		this.weekTime = weekTime;
 	}
 
-	public Boolean getClocked() {
-		return clocked;
+	public Boolean getIsClockedIn() {
+		return isClockedIn;
 	}
 
-	public void setClocked(Boolean clocked) {
-		this.clocked = clocked;
+	public void setIsClockedIn(Boolean isClockedIn) {
+		this.isClockedIn = isClockedIn;
 	}
     
     

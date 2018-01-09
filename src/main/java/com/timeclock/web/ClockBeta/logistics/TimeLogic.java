@@ -11,12 +11,12 @@ import java.util.Date;
  * Calculates employee hours when clocking in and out.
  *
  */
-public class ClockLogic {
+public class TimeLogic {
 
 	private long shiftTime;
 	private long weeklyTime;
 	
-	public ClockLogic() {}
+	public TimeLogic() {}
 
 	public long getShiftTime() {
 		return shiftTime;
@@ -47,8 +47,8 @@ public class ClockLogic {
 		return (double)Math.round(((double)time / 3600000) * 100d) / 100d;
 	}
 	
-	public double longToDoubleInHours(long aLong) {
-		return (double)aLong / 3600000;
+	public double longToDoubleInHours(long time) {
+		return (double)time / 3600000;
 	}
 	
 	public double calculatePay(double time, double payRate) {

@@ -14,10 +14,10 @@ public class Schedule {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
-    @Column(name = "biz_id")
-    private int bizId;
-    @Column(name = "clock_id")
-    private int clockId;
+    @Column(name = "business_id")
+    private int businessId;
+    @Column(name = "employee_id")
+    private int employeeId;
     @Column(name = "job_id")
     private int jobId;
 
@@ -33,20 +33,20 @@ public class Schedule {
         this.id = id;
     }
 
-    public int getBizId() {
-        return bizId;
+    public int getBusinessId() {
+        return businessId;
     }
 
-    public void setBizId(int bizId) {
-        this.bizId = bizId;
+    public void setBusinessId(int businessId) {
+        this.businessId = businessId;
     }
 
-    public int getClockId() {
-        return clockId;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setClockId(int clockId) {
-        this.clockId = clockId;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public int getJobId() {

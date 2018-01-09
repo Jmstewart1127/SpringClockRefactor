@@ -15,14 +15,14 @@
       <h4>Update Job</h4>
 
       <form autocomplete="off" action="#" th:action="@{/hello/employee/{path}/update(path=${id})}"
-        th:object="${clock}" method="post" class="m-t" role="form"
+        th:object="${employee}" method="post" class="m-t" role="form"
         data-toggle="validator">
           
 	    <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span>
           </span>
-          <input type="text" th:field="*{user}"
+          <input type="text" th:field="*{employeeName}"
             placeholder="Customer Name" class="form-control" required />
           <span class="glyphicon form-control-feedback"
             aria-hidden="true"></span>

@@ -16,17 +16,17 @@
       <h4>New Employee</h4>
 
       <form autocomplete="off" action="#" th:action="@{/hello/adduser}"
-        th:object="${clock}" method="post" class="m-t" role="form"
+        th:object="${employee}" method="post" class="m-t" role="form"
         data-toggle="validator">
 
         <div class="form-group input-group has-feedback">
-          <label th:if="${#fields.hasErrors('bizId')}"
-            th:errors="*{bizId}" class="validation-message"></label>
+          <label th:if="${#fields.hasErrors('businessId')}"
+            th:errors="*{businessId}" class="validation-message"></label>
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span>
           </span>
           
-          <input type="text" th:field="*{bizId}"
+          <input type="text" th:field="*{businessId}"
             placeholder="Business Id" class="form-control" required />
           <span class="glyphicon form-control-feedback"
             aria-hidden="true"></span>
