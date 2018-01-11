@@ -13,11 +13,9 @@ public interface EmployeeRepository extends CrudRepository <Employee, Long> {
 	
 	Iterable<Employee> findById(int id);
 	
-	Employee findUserById(int id);
+	Employee findEmployeeNameById(int id);
 	
 	Employee findByEmployeeName(String employeeName);
-	
-	Employee findByIsClockedIn(Boolean clocked);
 
 	Iterable<Employee> findByBusinessId(int businessId);
 
@@ -45,7 +43,7 @@ public interface EmployeeRepository extends CrudRepository <Employee, Long> {
 	@Modifying
 	@Transactional
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee "
-			+ "SET clock_in=:startTime, last_refresh=:lastRefresh, is_clocked_in=true WHERE id=:id")
+			+ "SET clock_in_time=:startTime, last_refresh=:lastRefresh, is_clocked_in=true WHERE id=:id")
 	void updateClock(
 			@Param("id")int id,
 			@Param("startTime")Date startTime,
@@ -54,8 +52,8 @@ public interface EmployeeRepository extends CrudRepository <Employee, Long> {
 	@Modifying
 	@Transactional
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee SET "
-			+ "clock_out=:endTime, shift_time=:shiftTime, week_time=:weeklyTime, "
-			+ "week_time_in_hours=:weeklyTimeInHours, total_pay=:totalPay, clocked=false WHERE id=:id")
+			+ "clock_out_time=:endTime, shift_time=:shiftTime, week_time=:weeklyTime, "
+			+ "week_time_in_hours=:weeklyTimeInHours, total_pay=:totalPay, is_clocked_in=false WHERE id=:id")
 	void updateClock(
 			@Param("id")int id,
 			@Param("endTime")Date endTime,
@@ -71,7 +69,7 @@ public interface EmployeeRepository extends CrudRepository <Employee, Long> {
 	@Transactional
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee "
 			+ "SET clock_in=:startTime, clocked_in_at=:clockedInAt, last_refresh=:lastRefresh, " +
-			"clocked=true WHERE id=:id")
+			"is_clocked_in=true WHERE id=:id")
 	void clockIn(
 			@Param("id")int id,
 			@Param("clockedInAt")int clockedInAt,
@@ -85,7 +83,7 @@ public interface EmployeeRepository extends CrudRepository <Employee, Long> {
 	@Transactional
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee SET "
 			+ "clocked_in_at=:clockedInAt, clock_out=:endTime, shift_time=:shiftTime, week_time=:weeklyTime, "
-			+ "week_time_in_hours=:weeklyTimeInHours, total_pay=:totalPay, clocked=false WHERE id=:id")
+			+ "week_time_in_hours=:weeklyTimeInHours, total_pay=:totalPay, is_clocked_in=false WHERE id=:id")
 	void clockOut(
 			@Param("id")int id,
 			@Param("clockedInAt")int clockedInAt,
@@ -100,7 +98,7 @@ public interface EmployeeRepository extends CrudRepository <Employee, Long> {
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee SET "
 			+ "shift_time=:shiftTime, week_time=:weeklyTime, clocked_in_at=:clockedInAt,"
 			+ "week_time_in_hours=:weeklyTimeInHours, total_pay=:totalPay, "
-			+ "last_refresh=:lastRefresh, clocked=true WHERE id=:id")
+			+ "last_refresh=:lastRefresh, is_clocked_in=true WHERE id=:id")
 	void refreshClockWithJobId(
 			@Param("id")int id,
 			@Param("shiftTime")long shiftTime,
@@ -115,7 +113,7 @@ public interface EmployeeRepository extends CrudRepository <Employee, Long> {
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee SET "
 			+ "shift_time=:shiftTime, week_time=:weeklyTime, "
 			+ "week_time_in_hours=:weeklyTimeInHours, total_pay=:totalPay, "
-			+ "last_refresh=:lastRefresh, clocked=true WHERE id=:id")
+			+ "last_refresh=:lastRefresh, is_clocked_in=true WHERE id=:id")
 	void refreshClock(
 			@Param("id")int id,
 			@Param("shiftTime")long shiftTime,
@@ -128,7 +126,7 @@ public interface EmployeeRepository extends CrudRepository <Employee, Long> {
 	@Transactional
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Employee SET "
 			+ "clock_out=null, clock_in=null, shift_time=0, week_time=0, "
-			+ "week_time_in_hours=0, total_pay=0, clocked=false WHERE bizId=:bizId")
+			+ "week_time_in_hours=0, total_pay=0, is_clocked_in=false WHERE bizId=:bizId")
 	void resetClock(@Param("bizId")int bizId);
 	
 	@Modifying

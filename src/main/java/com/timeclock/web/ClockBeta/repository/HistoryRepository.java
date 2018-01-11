@@ -13,23 +13,25 @@ import com.timeclock.web.ClockBeta.model.History;
 
 public interface HistoryRepository extends CrudRepository <History, Long> {
 
-	Iterable<History> findByUserId(int id);
+	Iterable<History> findByEmployeeId(int id);
 
 	@Modifying
 	@Transactional
-	@Query("UPDATE com.timeclock.web.ClockBeta.model.History SET clock_in=:startTime, clocked=true WHERE id=:id")
-	void updateClock(@Param("id")int id, 
-			  @Param("startTime")Date startTime); 
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.History SET clock_in_time=:clockInTime, " +
+			"isClockedIn=true WHERE id=:id")
+	void updateEmployeeHistory(@Param("id")int id,
+							   @Param("clockInTime")Date clockInTime);
 
 	@Modifying
 	@Transactional
-	@Query("UPDATE com.timeclock.web.ClockBeta.model.History SET clock_in=:startTime, clock_out=:endTime, " +
-			"shift_time=:shiftTime, week_time=:weeklyTime, clocked=false WHERE userId=:userId")
-	void updateClock(@Param("userId")int userId,
-			  @Param("startTime")Date startTime,
-			  @Param("endTime")Date endTime, 
-			  @Param("shiftTime")long shiftTime, 
-			  @Param("weeklyTime")long weeklyTime);
+	@Query("UPDATE com.timeclock.web.ClockBeta.model.History SET clock_in_time=:clockInTime, " +
+			"clock_out_time=:clockOutTime, shift_time=:shiftTime, week_time=:weeklyTime, " +
+			"isClockedIn=false WHERE employeeId=:employeeId")
+	void updateEmployeeHistory(@Param("employeeId")int employeeId,
+							   @Param("clockInTime")Date clockInTime,
+							   @Param("clockOutTime")Date clockOutTime,
+							   @Param("shiftTime")long shiftTime,
+							   @Param("weeklyTime")long weeklyTime);
 
 	
 }

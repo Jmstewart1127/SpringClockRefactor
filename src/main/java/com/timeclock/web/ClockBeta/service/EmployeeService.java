@@ -196,7 +196,7 @@ public class EmployeeService {
 	* Delete user by id
 	*/
 	public void deleteById(int id) {
-		employeeRepository.delete(findUserById(id));
+		employeeRepository.delete(findEmployeeNameById(id));
 	}
 
 	public void resetPayPeriod(int bizId) {
@@ -215,16 +215,12 @@ public class EmployeeService {
 		return employeeRepository.findById(id);
 	}
 	
-	public Employee findUserById(int id) {
-		return employeeRepository.findUserById(id);
+	public Employee findEmployeeNameById(int id) {
+		return employeeRepository.findEmployeeNameById(id);
 	}
 	
 	public Employee findByEmployeeName(String employeeName) {
 		return employeeRepository.findByEmployeeName(employeeName);
-	}
-	
-	public Employee findByIsClockedIn(Boolean isClockedIn) {
-		return employeeRepository.findByIsClockedIn(isClockedIn);
 	}
 
 	public int findClockedInAtById(int id) {
@@ -235,11 +231,11 @@ public class EmployeeService {
 		employeeRepository.delete(employee);
 	}
 	
-	public Employee saveClock(Employee employee) {
+	public Employee saveEmployee(Employee employee) {
 		return employeeRepository.save(employee);
 	}
 	
-	public int findBizIdById(int id) {
+	public int findBusinessIdById(int id) {
 		return employeeRepository.findBusinessIdById(id);
 	}
 }

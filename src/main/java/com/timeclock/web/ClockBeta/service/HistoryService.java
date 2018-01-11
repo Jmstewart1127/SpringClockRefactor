@@ -15,7 +15,7 @@ public class HistoryService {
 	HistoryRepository historyRepository;
 
 	public Iterable<History> findByUserId(int id) {
-		return historyRepository.findByUserId(id);
+		return historyRepository.findByEmployeeId(id);
 	}
 
 	public void saveHistory(

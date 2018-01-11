@@ -256,7 +256,7 @@
                         </ul>
                     </li>
                     <!-- alert notification end-->
-                    <!-- user login dropdown start-->
+                    <!-- employeeName login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
@@ -290,7 +290,7 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- user login dropdown end -->
+                    <!-- employeeName login dropdown end -->
                 </ul>
                 <!-- notificatoin dropdown end-->
             </div>
@@ -710,7 +710,7 @@
 							</tr>
     						<tr th:each="employee : ${employee}">
         						<td th:text="${employee.id}">1</td>
-        						<td th:text="${employee.user}">1</td>
+        						<td th:text="${employee.employeeName}">1</td>
         						<td th:text="${employee.clockInTime}">1</td>
         						<td th:text="${employee.clockOutTime}">1</td>
         						<td th:text="${employee.weekTimeInHours}">1</td>

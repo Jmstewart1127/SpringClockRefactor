@@ -8,22 +8,22 @@ import org.springframework.data.repository.query.Param;
 
 public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
 
-    Iterable<Schedule> findScheduleByBizId(int bizId);
+    Iterable<Schedule> findScheduleByBusinessId(int businessId);
 
     Iterable<Schedule> findScheduleByJobId(int jobId);
 
-    Iterable<Schedule> findScheduleByClockId(int clockId);
+    Iterable<Schedule> findScheduleByEmployeeId(int employeeId);
 
-    Iterable<Schedule> findScheduleByClockIdAndJobId(int clockId, int jobId);
+    Iterable<Schedule> findScheduleByEmployeeIdAndJobId(int clockId, int jobId);
 
-    boolean existsByClockIdAndJobId(int clockId, int jobId);
+    boolean existsByEmployeeIdAndJobId(int employeeId, int jobId);
 
     @Query("SELECT jobId FROM com.timeclock.web.ClockBeta.model.Schedule"
-            + " WHERE clockId= :clockId")
-    Iterable<Integer> findJobIdsByClockId(@Param("clockId")int clockId);
+            + " WHERE employeeId= :employeeId")
+    Iterable<Integer> findJobIdsByClockId(@Param("employeeId")int employeeId);
 
-    @Query("SELECT clockId FROM com.timeclock.web.ClockBeta.model.Schedule"
+    @Query("SELECT employeeId FROM com.timeclock.web.ClockBeta.model.Schedule"
             + " WHERE jobId= :jobId")
-    Iterable<Integer> findClockIdsByJobId(@Param("jobId")int jobId);
+    Iterable<Integer> findEmployeeIdsByJobId(@Param("jobId")int jobId);
 
 }

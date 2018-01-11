@@ -27,7 +27,7 @@ Fixed issues:
 * [#8675](http://dev.ckeditor.com/ticket/8675): Deleting cells in nested table removes outer table cell.
 * [#9815](http://dev.ckeditor.com/ticket/9815): Can't edit dialog fields on editor initialized in jQuery UI modal dialog.
 * [#8888](http://dev.ckeditor.com/ticket/8888): CKEditor dialogs do not show completely in small window.
-* [#9360](http://dev.ckeditor.com/ticket/9360): [Inline editor] Blocks shown for a div stay permanently even after user exists editing the div.
+* [#9360](http://dev.ckeditor.com/ticket/9360): [Inline editor] Blocks shown for a div stay permanently even after employeeName exists editing the div.
 * [#9531](http://dev.ckeditor.com/ticket/9531): [Firefox & Inline editor] Toolbar is lost when closing format combo by clicking on its button.
 * [#9553](http://dev.ckeditor.com/ticket/9553): Table width incorrectly set when `border-width` style is specified.
 * [#9594](http://dev.ckeditor.com/ticket/9594): Cannot tab past CKEditor when it is in read only mode.

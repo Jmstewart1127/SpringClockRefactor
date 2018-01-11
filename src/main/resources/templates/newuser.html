@@ -15,43 +15,43 @@
 
         <h4>New Employee</h4>
 
-        <form autocomplete="off" action="#" th:action="@{/hello/business/{id}/addemployee(id=${business.id})}"
+        <form autocomplete="off" action="#" th:action="@{/hello/business/{id}/adduser(id=${business.id})}"
               method="post" class="m-t" role="form"
               data-toggle="validator">
 
             <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
-                <input type="text" th:field="*{user.userName}"
-                       placeholder="Employee Name" name="userName" class="form-control" required />
+                <input type="text" th:field="*{employee.employeeName}"
+                       placeholder="Employee Name" name="employeeName" class="form-control" required />
                 <span class="glyphicon form-control-feedback"
                       aria-hidden="true"></span>
             </div>
 
-            <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
-          </span>
-                <input type="text" th:field="*{user.password}"
-                       placeholder="password" name="password" class="form-control" required />
-                <span class="glyphicon form-control-feedback"
-                      aria-hidden="true"></span>
-            </div>
+            <!--<div class="form-group input-group has-feedback">-->
+          <!--<span class="input-group-addon">-->
+            <!--<span class="glyphicon glyphicon-employeeName"></span>-->
+          <!--</span>-->
+                <!--<input type="text" th:field="*{user.password}"-->
+                       <!--placeholder="password" name="password" class="form-control" required />-->
+                <!--<span class="glyphicon form-control-feedback"-->
+                      <!--aria-hidden="true"></span>-->
+            <!--</div>-->
+
+            <!--<div class="form-group input-group has-feedback">-->
+          <!--<span class="input-group-addon">-->
+            <!--<span class="glyphicon glyphicon-employeeName"></span>-->
+          <!--</span>-->
+                <!--<input type="text" name="password1"-->
+                       <!--placeholder="Re-type password" class="form-control" required />-->
+                <!--<span class="glyphicon form-control-feedback"-->
+                      <!--aria-hidden="true"></span>-->
+            <!--</div>-->
 
             <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
-          </span>
-                <input type="text" name="password1"
-                       placeholder="Re-type password" class="form-control" required />
-                <span class="glyphicon form-control-feedback"
-                      aria-hidden="true"></span>
-            </div>
-
-            <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
                 <input type="text" th:field="*{employee.payRate}"
                        placeholder="Pay Rate" name="payRate" class="form-control" required  />

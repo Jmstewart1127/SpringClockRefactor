@@ -15,7 +15,7 @@ public interface BusinessRepository extends CrudRepository <Business, Long> {
 	
 	Business findById(int id);
 	
-	Business findByBizName(String bizName);
+	Business findByBusinessName(String bizName);
 
 	Iterable<Business> findByAdminId(int adminId);
 
@@ -34,7 +34,7 @@ public interface BusinessRepository extends CrudRepository <Business, Long> {
 	@Modifying
 	@Transactional
 	@Query("UPDATE com.timeclock.web.ClockBeta.model.Business "
-			+ "SET ytd_material_cost=:ytdMaterialCost WHERE id=:id")
+			+ "SET ytd_labor_cost=:ytdLaborCost WHERE id=:id")
 	void updateYtdLaborCost(
 			@Param("id")int id,
 			@Param("ytdLaborCost")double ytdLaborCost);

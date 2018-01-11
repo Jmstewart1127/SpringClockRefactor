@@ -21,7 +21,7 @@ public class EmployeeRestController {
 	@CrossOrigin(origins = {"http://localhost:3000", "https://spring-clock-ui.herokuapp.com"})
 	@RequestMapping("/rest/employees/{id}")
 	public Iterable<Employee> showEmployeesByBizId(@PathVariable int id) {
-		return employeeService.findEmployeeByBizId(id);
+		return employeeService.findEmployeeByBusinessId(id);
 	}
 
 	/*

@@ -8,8 +8,6 @@ import com.timeclock.web.ClockBeta.logistics.PaymentLogic;
 import com.timeclock.web.ClockBeta.model.Jobs;
 import com.timeclock.web.ClockBeta.repository.JobsRepository;
 
-import java.util.ArrayList;
-
 @Service
 public class JobsService {
 
@@ -28,11 +26,11 @@ public class JobsService {
 	}
 
 	public Iterable<Jobs> findByBizId(int bizId) {
-		return jobsRepository.findByBizId(bizId);
+		return jobsRepository.findByBusinessId(bizId);
 	}
 
 	public Iterable<Jobs> findAddressByBizId(int bizId) {
-		return jobsRepository.findAddressByBizId(bizId);
+		return jobsRepository.findAddressByBusinessId(bizId);
 	}
 	
 	public Jobs findByCategory(String category) {

@@ -23,7 +23,7 @@
           <label th:if="${#fields.hasErrors('businessId')}"
             th:errors="*{businessId}" class="validation-message"></label>
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
           
           <input type="text" th:field="*{businessId}"
@@ -34,9 +34,9 @@
 
         <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
-          <input type="text" th:field="*{user}"
+          <input type="text" th:field="*{employeeName}"
             placeholder="Employee Name" class="form-control" required />
           <span class="glyphicon form-control-feedback"
             aria-hidden="true"></span>
@@ -44,7 +44,7 @@
         
         <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
           <input type="text" th:field="*{payRate}"
             placeholder="Pay Rate" class="form-control" required />

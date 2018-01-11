@@ -23,7 +23,7 @@
           <label th:if="${#fields.hasErrors('userName')}"
             th:errors="*{userName}" class="validation-message"></label>
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span> 
           <input type="text" th:field="*{userName}"
             placeholder="Username" class="form-control" required />
@@ -33,7 +33,7 @@
 
         <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
           <input type="password" th:field="*{password}"
             placeholder="password" class="form-control" required />
@@ -43,7 +43,7 @@
         
         <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
           <input type="password" name="password1"
             placeholder="re-type password" class="form-control" required />
@@ -52,13 +52,13 @@
         </div>
         
         <div class="form-group input-group has-feedback">
-          <span class="glyphicon glyphicon-user">Admin</span>
+          <span class="glyphicon glyphicon-employeeName">Admin</span>
           </span>
           <input type="radio" th:field="*{role}" th:value="admin"
             placeholder="Admin" class="form-control" required />
           <span class="glyphicon form-control-feedback"
             aria-hidden="true">User</span>
-          <input type="radio" th:field="*{role}" th:value="user"
+          <input type="radio" th:field="*{role}" th:value="employeeName"
             placeholder="Employee" class="form-control" required />
           <span class="glyphicon form-control-feedback"
             aria-hidden="true"></span>

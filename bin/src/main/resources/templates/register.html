@@ -42,7 +42,7 @@
           <label th:if="${#fields.hasErrors('bizName')}"
             th:errors="*{bizName}" class="validation-message"></label>
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
           
           <input type="text" th:field="*{bizName}"
@@ -53,7 +53,7 @@
 
         <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
           <input type="text" th:field="*{adminName}"
             placeholder="Last Name" class="form-control" required />

@@ -18,8 +18,8 @@ public class History {
 	private int employeeId;
     @Column(name = "business_id")
     private int businessId;
-    @Column(name = "user")
-	private String user;
+    @Column(name = "employeeName")
+	private String employeeName;
     @Column(name = "clock_in_time")
 	private Date clockInTime;
     @Column(name = "clock_out_time")
@@ -59,12 +59,12 @@ public class History {
 		this.businessId = businessId;
 	}
 
-	public String getUser() {
-		return user;
+	public String getEmployeeName() {
+		return employeeName;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 
 	public Date getClockInTime() {

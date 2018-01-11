@@ -24,7 +24,7 @@
                 <label th:if="${#fields.hasErrors('poNumber')}"
                        th:errors="*{poNumber}" class="validation-message"></label>
                 <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
 
                 <input type="text" th:field="*{poNumber}"
@@ -35,7 +35,7 @@
 
             <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
                 <input type="text" th:field="*{partName}"
                        placeholder="Part Name" class="form-control" required />
@@ -45,7 +45,7 @@
 
             <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
                 <input type="text" th:field="*{quantity}"
                        placeholder="Quantity" class="form-control" required />
@@ -55,7 +55,7 @@
 
             <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
                 <input type="text" th:field="*{price}"
                        placeholder="Price" class="form-control" required />

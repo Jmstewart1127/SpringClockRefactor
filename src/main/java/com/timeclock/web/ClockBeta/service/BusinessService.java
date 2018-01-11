@@ -22,8 +22,8 @@ public class BusinessService {
 		return businessRepository.findById(id);
 	}
 	
-	public Business findByBizName(String bizName) {
-		return businessRepository.findByBizName(bizName);
+	public Business findByBusinessName(String businessName) {
+		return businessRepository.findByBusinessName(businessName);
 	}
 
 	public Iterable<Business> findByLoggedInUserId(Authentication auth) {

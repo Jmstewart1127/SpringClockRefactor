@@ -90,11 +90,9 @@ public class JobsController {
 			double amountPaid = jobs.getAmountPaid();
 			System.out.println(customerName + " name");
 			System.out.println(amountPaid + " paid");
-		    jobsService.addPayment(customerName, amountPaid);   
-		    
+		    jobsService.addPayment(customerName, amountPaid);
 			modelAndView.setViewName("newjobadded");
 		}
-			
 		return modelAndView;
 	}
 	

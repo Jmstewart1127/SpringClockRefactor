@@ -1,6 +1,5 @@
 package com.timeclock.web.ClockBeta.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.timeclock.web.ClockBeta.logistics.UserAuthDetails;
@@ -34,9 +33,9 @@ public class EmployeeController {
 
 	// Show employees by business id
     @RequestMapping(path="/hello/business/{id}/employees", method = RequestMethod.GET)
-    public ModelAndView showClock(ModelAndView modelAndView, Employee employee, Business business, @PathVariable int id) {
+    public ModelAndView showEmployees(ModelAndView modelAndView, Employee employee, Business business, @PathVariable int id) {
     	modelAndView.setViewName("showemployees");
-        modelAndView.addObject("employee", employeeService.findEmployeeByBizId(id));
+        modelAndView.addObject("employee", employeeService.findEmployeeByBusinessId(id));
         modelAndView.addObject("business", businessService.findById(id));
         return modelAndView;
     }
@@ -53,7 +52,9 @@ public class EmployeeController {
 	@RequestMapping(path="/hello/business/{id}/adduser", method = RequestMethod.GET)
 	public ModelAndView showNewUserForm(
 			ModelAndView modelAndView,
-			Employee employee, Business business) {
+			@PathVariable int id,
+			Employee employee,
+			Business business) {
 		modelAndView.addObject("employee", employee);
 		modelAndView.setViewName("newuser");
 		return modelAndView;
@@ -67,19 +68,19 @@ public class EmployeeController {
 			@Valid Employee employee,
 			BindingResult bindingResult,
 			@PathVariable int id) {
-			
-		if (bindingResult.hasErrors()) { 
-			modelAndView.setViewName("newuser");		
+
+		if (bindingResult.hasErrors()) {
+			modelAndView.setViewName("newuser");
 		} else {
-		    Employee cl = new Employee();
-		    cl.setEmployeeName(employee.getEmployeeName());
-			cl.setBusinessId(id);
-			cl.setPayRate(employee.getPayRate());
-		    employeeService.saveClock(cl);
+		    Employee e = new Employee();
+			System.out.println(employee.getEmployeeName());
+		    e.setEmployeeName(employee.getEmployeeName());
+			e.setBusinessId(id);
+			e.setPayRate(employee.getPayRate());
+		    employeeService.saveEmployee(e);
 			modelAndView.setViewName("showemployees");
 		}
-			
-		return this.showClock(modelAndView, employee, business, id);
+		return this.showEmployees(modelAndView, employee, business, id);
 	}
 
 	// Reset pay period
@@ -104,7 +105,7 @@ public class EmployeeController {
 		return modelAndView;
 	}
 
-	// Process employee in form
+	// Process employee time clock form
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ModelAndView processClockForm(ModelAndView modelAndView, @Valid Employee employee) {
 		modelAndView.setViewName("timeclockupdate");
@@ -120,29 +121,27 @@ public class EmployeeController {
 		}
 	}
 	
-	// Employee in form for 'showemployees' view
+	// Clock in form for 'showemployees' view
 	@RequestMapping(value = "/hello/employees/{id}/clockin", method = RequestMethod.POST)
 	public ModelAndView processClockFormAdmin(
 			ModelAndView modelAndView,
-			@Valid Employee employee, Business business,
+			@Valid Employee employee,
+			Business business,
 			@PathVariable int id) {
-
-		Boolean isClocked = employeeService.findIsClockedInById(id);
-
-		if (isClocked) {
+		Boolean isClockedIn = employeeService.findIsClockedInById(id);
+		if (isClockedIn) {
 			employeeService.clockOut(id);
-			return this.showClock(modelAndView, employee, business, employeeService.findBizIdById(id));
+			return this.showEmployees(modelAndView, employee, business, employeeService.findBusinessIdById(id));
 		} else {
 			employeeService.clockIn(id);
-			return this.showClock(modelAndView, employee, business, employeeService.findBizIdById(id));
+			return this.showEmployees(modelAndView, employee, business, employeeService.findBusinessIdById(id));
 		}
-
 	}
 	
 	// Show update employee form
 	@RequestMapping(value="/hello/employee/{id}/update", method = RequestMethod.GET)
     public ModelAndView showUpdateEmployeePage(ModelAndView modelAndView, @PathVariable int id) {
-		Employee employee = employeeService.findUserById(id);
+		Employee employee = employeeService.findEmployeeNameById(id);
 		modelAndView.addObject("employee", employee);
 		modelAndView.setViewName("updateemployee");
         return modelAndView;
@@ -153,14 +152,12 @@ public class EmployeeController {
 	public ModelAndView processEmployeeEditForm(
 			ModelAndView modelAndView,
 			@Valid Employee employee,
-			BindingResult bindingResult,
-			HttpServletRequest request) {
-			
+			BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) { 
 			modelAndView.setViewName("updatejobstatus");		
 		} else {
 			modelAndView.setViewName("showemployees");
-			employeeService.saveClock(employee);
+			employeeService.saveEmployee(employee);
 		}
 		return modelAndView;
 	}
@@ -168,15 +165,15 @@ public class EmployeeController {
     // Delete user
 	@RequestMapping(value = "/hello/employee/{id}/delete", method = RequestMethod.POST)
 	public ModelAndView processDeleteFormAdmin(
-			ModelAndView modelAndView, 
+			ModelAndView modelAndView,
 			@Valid Employee employee,
-			Business business, 
+			Business business,
 			@PathVariable int id) {
-		
-		int bizId = employeeService.findBizIdById(id); // Store bizId before deleting user
-		Employee user = employeeService.findUserById(id);
+
+		int bizId = employeeService.findBusinessIdById(id); // Store bizId before deleting user
+		Employee user = employeeService.findEmployeeNameById(id);
 		employeeService.delete(user);
-		return this.showClock(modelAndView, employee, business, bizId);
+		return this.showEmployees(modelAndView, employee, business, bizId);
 	}
 
 }

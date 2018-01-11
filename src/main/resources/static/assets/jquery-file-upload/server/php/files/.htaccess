@@ -10,4 +10,4 @@ ForceType application/octet-stream
 # Uncomment the following lines to prevent unauthorized download of files:
 #AuthName "Authorization required"
 #AuthType Basic
-#require valid-user
+#require valid-employeeName

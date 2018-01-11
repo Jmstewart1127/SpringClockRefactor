@@ -17,11 +17,11 @@ public interface JobsRepository extends CrudRepository <Jobs, Long> {
 	
 	Jobs findByCustomerName(String customerName);
 
-	Iterable<Jobs> findByBizId(int bizId);
+	Iterable<Jobs> findByBusinessId(int businessId);
 
 	@Query("SELECT jobAddress FROM com.timeclock.web.ClockBeta.model.Jobs"
-			+ " WHERE bizId= :bizId")
-	Iterable<Jobs> findAddressByBizId(@Param("bizId")int bizId);
+			+ " WHERE businessId= :businessId")
+	Iterable<Jobs> findAddressByBusinessId(@Param("businessId")int businessId);
 
 	@Query("SELECT amountCharged FROM com.timeclock.web.ClockBeta.model.Jobs"
 			+ " WHERE id= :id")

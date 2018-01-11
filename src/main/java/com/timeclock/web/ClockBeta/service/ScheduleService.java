@@ -25,21 +25,21 @@ public class ScheduleService {
     * find schedule by employee
     */
     public Iterable<Schedule> getScheduleByClockId(int clockId) {
-        return scheduleRepository.findScheduleByClockId(clockId);
+        return scheduleRepository.findScheduleByEmployeeId(clockId);
     }
 
     /*
     * find schedule by job
     */
     public Iterable<Schedule> getScheduleByJobId(int jobId) {
-        return scheduleRepository.findScheduleByClockId(jobId);
+        return scheduleRepository.findScheduleByEmployeeId(jobId);
     }
 
     /*
     * find all schedules by business
     */
     public Iterable<Schedule> getScheduleByBizId(int bizId) {
-        return scheduleRepository.findScheduleByBizId(bizId);
+        return scheduleRepository.findScheduleByBusinessId(bizId);
     }
 
     /*
@@ -68,8 +68,8 @@ public class ScheduleService {
     */
     public Iterable<Employee> findAllEmployeesOnJob(int jobId) {
         ArrayList<Employee> clock = new ArrayList<>();
-        for (int employee : scheduleRepository.findClockIdsByJobId(jobId)) {
-            clock.add(employeeService.findUserById(employee));
+        for (int employee : scheduleRepository.findEmployeeIdsByJobId(jobId)) {
+            clock.add(employeeService.findEmployeeNameById(employee));
         }
         return clock;
     }
@@ -78,7 +78,7 @@ public class ScheduleService {
     * check if schedule already exists
     */
     public boolean checkIfExists(int clockId, int jobId) {
-        return scheduleRepository.existsByClockIdAndJobId(clockId, jobId);
+        return scheduleRepository.existsByEmployeeIdAndJobId(clockId, jobId);
     }
 
     /*

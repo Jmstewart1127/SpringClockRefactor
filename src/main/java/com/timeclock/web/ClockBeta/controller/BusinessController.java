@@ -47,8 +47,11 @@ public class BusinessController {
 	 * Adds business 
 	 */
 	@RequestMapping(value="/hello/newbusiness", method = RequestMethod.POST)
-	public ModelAndView addNewBusiness(ModelAndView modelAndView, @Valid Business business, @Valid Jobs jobs,
-		BindingResult bindingResult, HttpServletRequest request, Authentication auth) {
+	public ModelAndView addNewBusiness(
+			ModelAndView modelAndView,
+			@Valid Business business,
+			@Valid Jobs jobs,
+			Authentication auth) {
 		modelAndView.setViewName("showbusinesses");
 		modelAndView.addObject(business);
 		business.setAdminId(userAuthDetails.getUserId(auth));
@@ -65,7 +68,7 @@ public class BusinessController {
 	 * Shows list of businesses
 	 */
     @RequestMapping(value="/hello/business", method = RequestMethod.GET)
-    public ModelAndView showBusinesses(ModelAndView modelAndView, Business business, Authentication auth) {
+    public ModelAndView showBusinesses(ModelAndView modelAndView, Authentication auth) {
         modelAndView.setViewName("showbusinesses");
         modelAndView.addObject("business", businessService.findByLoggedInUserId(auth));
         return modelAndView;

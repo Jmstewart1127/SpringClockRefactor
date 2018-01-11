@@ -24,7 +24,7 @@
           <label th:if="${#fields.hasErrors('jobName')}"
             th:errors="*{jobName}" class="validation-message"></label>
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
           
           <input type="text" th:field="*{jobName}"
@@ -35,7 +35,7 @@
 
         <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
           <input type="text" th:field="*{jobAddress}"
             placeholder="Job Address" class="form-control" required />
@@ -45,7 +45,7 @@
         
         <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
           <input type="text" th:field="*{category}"
             placeholder="Job Category" class="form-control" required />
@@ -55,7 +55,7 @@
         
         <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
           <input type="text" th:field="*{customerName}"
             placeholder="Customer Name" class="form-control" required />
@@ -65,7 +65,7 @@
         
         <div class="form-group input-group has-feedback">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-employeeName"></span>
           </span>
           <input type="text" th:field="*{amountDue}"
             placeholder="Quoted Amount" class="form-control" required />
