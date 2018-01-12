@@ -63,7 +63,7 @@ public interface EmployeeRepository extends CrudRepository <Employee, Long> {
 			@Param("totalPay")double totalPay);
 
 	/*
-	* Employee In With Job ID
+	* Clock In With Job ID
 	*/
 	@Modifying
 	@Transactional

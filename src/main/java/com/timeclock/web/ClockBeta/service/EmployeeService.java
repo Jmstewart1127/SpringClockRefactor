@@ -35,28 +35,32 @@ public class EmployeeService {
 	UserAuthDetails userAuthDetails;
 	
 	public void handleClockInOut(int id) {
-		if (this.findIsClockedInById(id)) {
+		if (this.checkIfEmployeeIsClockedInById(id)) {
 			this.clockOut(id);
 		} else {
 			this.clockIn(id);
 		}
 	}
 
+	public boolean checkIfEmployeeIsClockedIn(int id) {
+		return employeeRepository.findIsClockedInById(id);
+	}
+
 	/*
-	* Original Employee In Without Job ID
+	* Original Clock In Without Job ID
 	*/
 	public void clockIn(int id) {
-		if (!this.findIsClockedInById(id)) {
+		if (!this.checkIfEmployeeIsClockedInById(id)) {
 			Date d = new Date();
 			employeeRepository.updateClock(id, d, d);
 		}
 	}
 
 	/*
-	* Original Employee Out Without Job ID
+	* Original Clock Out Without Job ID
 	*/
 	public void clockOut(int id) {
-		if (this.findIsClockedInById(id)) {
+		if (this.checkIfEmployeeIsClockedInById(id)) {
 			Date d = new Date();
 			Date startTime = employeeRepository.findStartTimeById(id);
 			Date lastRefreshTime = employeeRepository.findLastRefreshById(id);
@@ -78,7 +82,7 @@ public class EmployeeService {
 	* Employee In With Job ID
 	*/
 	public void clockInAtJob(int id, int jobId) {
-		if (!this.findIsClockedInById(id)) {
+		if (!this.checkIfEmployeeIsClockedInById(id)) {
 			Date d = new Date();
 			employeeRepository.clockIn(id, jobId, d, d);
 		}
@@ -88,7 +92,7 @@ public class EmployeeService {
 	* Employee Out With Job ID
 	*/
 	public void clockOutFromJob(int id, int jobId) {
-		if (this.findIsClockedInById(id)) {
+		if (this.checkIfEmployeeIsClockedInById(id)) {
 			Date d = new Date();
 			Date startTime = employeeRepository.findStartTimeById(id);
 			Date lastRefreshTime = employeeRepository.findLastRefreshById(id);
@@ -124,7 +128,7 @@ public class EmployeeService {
 	* Refresh with Job ID... Adds labor cost upon refresh
 	*/
 	public void refreshClockAndAddLabor(int id) {
-		if (this.findIsClockedInById(id)) {
+		if (this.checkIfEmployeeIsClockedInById(id)) {
 			Date d = new Date();
 			Date startTime = employeeRepository.findStartTimeById(id);
 			Date lastRefreshTime = employeeRepository.findLastRefreshById(id);
@@ -147,7 +151,7 @@ public class EmployeeService {
 	* Refresh without job id for mobile/rest
 	*/
 	public void refreshClock(int id) {
-		if (this.findIsClockedInById(id)) {
+		if (this.checkIfEmployeeIsClockedInById(id)) {
 			Date d = new Date();
 			Date lastRefreshTime = employeeRepository.findLastRefreshById(id);
 			long currentWeek = employeeRepository.findWeekTimeById(id);
@@ -207,7 +211,7 @@ public class EmployeeService {
 		return employeeRepository.findByBusinessId(bizId);
 	}
 	
-	public Boolean findIsClockedInById(int id) {
+	public Boolean checkIfEmployeeIsClockedInById(int id) {
 		return employeeRepository.findIsClockedInById(id);
 	}
 	
@@ -223,7 +227,7 @@ public class EmployeeService {
 		return employeeRepository.findByEmployeeName(employeeName);
 	}
 
-	public int findClockedInAtById(int id) {
+	private int findClockedInAtById(int id) {
 		return employeeRepository.findJobIdClockedInAtById(id);
 	}
 	

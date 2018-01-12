@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * @author Jacob Stewart
  * 
- * Calculates employee hours when clocking in and out.
+ * Calculates employee hours and pay when clocking in and out.
  *
  */
 public class TimeLogic {
@@ -34,9 +34,9 @@ public class TimeLogic {
 		this.weeklyTime = weeklyTime;
 	}
 	
-	public void calcWeeklyTime(long currentWeek, long shift) {
-		shift += currentWeek;
-		setWeeklyTime(shift);
+	public void calcWeeklyTime(long currentWeek, long shiftTime) {
+		shiftTime += currentWeek;
+		setWeeklyTime(shiftTime);
 	}
 	
 	public void calcShiftTime(Date start, Date end) {

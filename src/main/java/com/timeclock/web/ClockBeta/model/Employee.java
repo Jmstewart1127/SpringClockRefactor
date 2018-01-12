@@ -39,7 +39,6 @@ public class Employee {
 	@Column(name = "last_refresh")
 	private Date lastRefresh;
 
-
 	public Employee() {
 		super();
 	}

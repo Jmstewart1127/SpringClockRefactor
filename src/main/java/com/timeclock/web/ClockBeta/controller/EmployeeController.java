@@ -110,7 +110,7 @@ public class EmployeeController {
 	public ModelAndView processClockForm(ModelAndView modelAndView, @Valid Employee employee) {
 		modelAndView.setViewName("timeclockupdate");
 		int userId = employee.getId();
-		Boolean isClocked = employeeService.findIsClockedInById(userId);
+		Boolean isClocked = employeeService.checkIfEmployeeIsClockedInById(userId);
 		
 		if (isClocked) {
 			employeeService.clockOut(userId);
@@ -128,7 +128,7 @@ public class EmployeeController {
 			@Valid Employee employee,
 			Business business,
 			@PathVariable int id) {
-		Boolean isClockedIn = employeeService.findIsClockedInById(id);
+		Boolean isClockedIn = employeeService.checkIfEmployeeIsClockedInById(id);
 		if (isClockedIn) {
 			employeeService.clockOut(id);
 			return this.showEmployees(modelAndView, employee, business, employeeService.findBusinessIdById(id));
